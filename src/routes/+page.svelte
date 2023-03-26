@@ -5,41 +5,49 @@
 
 	export let data: PageData;
 
+	const taintedMessage: string | null | false =
+		'Do you want to leave this page? Changes you made may not be saved.';
 	// Client API:
-	const { form, errors, constraints } = superForm(data.form);
+	const { form, errors, constraints, enhance } = superForm(data.form, { taintedMessage });
 </script>
 
 <SuperDebug data={$form} />
-<h1>Hello World</h1>
-<a href="/dishes">Dishes</a>
-<h1>sveltekit-superforms</h1>
+<div class="flex justify-center items-center flex-col">
+	<h1 class="text-3xl my-2">Homepage</h1>
+	<h3 class="text-lg my-2">sveltekit-superforms demo:</h3>
+	<div class="w-full max-w-xs">
+		<form method="POST" use:enhance class="bg-base-300 shadow-md rounded px-8 pt-6 pb-8 mb-4">
+			<div class="mb-4">
+				<label class="block text-primary text-sm font-bold mb-2" for="name">Name</label>
+				<input
+					type="text"
+					name="name"
+					class="input input-bordered w-full max-w-xs"
+					data-invalid={$errors.name}
+					bind:value={$form.name}
+					{...$constraints.name}
+				/>
+				{#if $errors.name}<span class="invalid">{$errors.name}</span>{/if}
+			</div>
+			<div class="mb-6">
+				<label for="email" class="block text-primary text-sm font-bold mb-2">E-mail</label>
+				<input
+					type="text"
+					name="email"
+					data-invalid={$errors.email}
+					bind:value={$form.email}
+					{...$constraints.email}
+					class="input input-bordered w-full max-w-xs"
+				/>
+				{#if $errors.email}<span class="text-error">{$errors.email}</span>{/if}
+			</div>
 
-<form method="POST">
-	<label for="name">Name</label>
-	<input
-		type="text"
-		name="name"
-		data-invalid={$errors.name}
-		bind:value={$form.name}
-		{...$constraints.name}
-	/>
-	{#if $errors.name}<span class="invalid">{$errors.name}</span>{/if}
-
-	<label for="email">E-mail</label>
-	<input
-		type="text"
-		name="email"
-		data-invalid={$errors.email}
-		bind:value={$form.email}
-		{...$constraints.email}
-	/>
-	{#if $errors.email}<span class="invalid">{$errors.email}</span>{/if}
-
-	<div><button>Submit</button></div>
-</form>
-
-<style>
-	.invalid {
-		color: red;
-	}
-</style>
+			<div class="flex items-center justify-between">
+				<button
+					class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+					>Submit</button
+				>
+			</div>
+		</form>
+	</div>
+</div>
