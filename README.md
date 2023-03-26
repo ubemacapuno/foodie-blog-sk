@@ -1,38 +1,31 @@
-# create-svelte
+## Foodie Blog
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+<p>This is a SvelteKit app for saving and rating recipes! Work in process . . .</p>
+## How It's Made:
 
-## Creating a project
+**Tech used:**
 
-If you're seeing this, you've probably already done this step. Congrats!
+SvelteKit, TypeScript, MongoDB, Superforms library
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+## Install the dependencies either using NPM/Yarn/PNPM:
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Using PNPM:
 
 ```bash
-npm run dev
+# Install dependencies
+$ pnpm i
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+# Start development server
+$ pnpm run dev
 ```
 
-## Building
+Open http://127.0.0.1:5173/ to view it in the browser.
 
-To create a production version of your app:
+## Things to add:
 
-```bash
-npm run build
-```
+- Create a `.env` file and add the following:
+  - DB_URI=(your MongoDB connection string)
 
-You can preview the production build with `npm run preview`.
+## Lessons Learned:
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+- TBD
