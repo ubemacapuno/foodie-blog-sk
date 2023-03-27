@@ -38,7 +38,10 @@
 	"type": "module",
 	"dependencies": {
 		"daisyui": "^2.51.5",
+		"deep-rename-keys": "^0.2.1",
+		"deep-replace": "^0.0.8",
 		"mongodb": "^4.12.1",
+		"omit-deep": "^0.3.0",
 		"zod": "^3.20.2",
 		"zod-to-json-schema": "^3.20.1"
 	}

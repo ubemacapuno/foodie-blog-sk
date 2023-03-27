@@ -11,7 +11,6 @@
 	const { form, errors, constraints, enhance } = superForm(data.form, { taintedMessage });
 </script>
 
-<SuperDebug data={$form} />
 <div class="flex justify-center items-center flex-col">
 	<h1 class="text-3xl my-2">Homepage</h1>
 </div>
