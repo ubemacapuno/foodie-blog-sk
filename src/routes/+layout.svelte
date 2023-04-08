@@ -1,45 +1,13 @@
 <script>
-	import '../app.css';
+	import '../app.postcss';
+	// Your selected Skeleton theme:
+	import '@skeletonlabs/skeleton/themes/theme-skeleton.css';
+
+	// This contains the bulk of Skeletons required styles:
+	import '@skeletonlabs/skeleton/styles/all.css';
+
+	// Finally, your application's global stylesheet (sometimes labeled 'app.css')
+	import '../app.postcss';
 </script>
 
-<div class="drawer">
-	<input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
-	<div class="drawer-content flex flex-col">
-		<!-- Navbar -->
-		<div class="w-full navbar bg-base-300">
-			<div class="flex-none lg:hidden">
-				<label for="my-drawer-3" class="btn btn-square btn-ghost">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						fill="none"
-						viewBox="0 0 24 24"
-						class="inline-block w-6 h-6 stroke-current"
-						><path
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2"
-							d="M4 6h16M4 12h16M4 18h16"
-						/></svg
-					>
-				</label>
-			</div>
-			<div class="flex-1 px-2 mx-2">Foodie Blog</div>
-			<div class="flex-none hidden lg:block">
-				<ul class="menu menu-horizontal">
-					<!-- Navbar menu content here -->
-					<li><a href="/">Home</a></li>
-					<li><a href="/dishes">Blog</a></li>
-				</ul>
-			</div>
-		</div>
-		<slot />
-	</div>
-	<div class="drawer-side">
-		<label for="my-drawer-3" class="drawer-overlay" />
-		<ul class="menu p-4 w-80 bg-base-100">
-			<!-- Sidebar content here -->
-			<li><a href="/">Home</a></li>
-			<li><a href="/dishes">Blog</a></li>
-		</ul>
-	</div>
-</div>
+<slot />
