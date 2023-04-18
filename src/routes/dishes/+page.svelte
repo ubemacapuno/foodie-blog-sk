@@ -3,9 +3,12 @@
 	import type { PageData } from './$types';
 	import { superForm } from 'sveltekit-superforms/client';
 	import { dishes_schema } from '$db/models/dishes/schema';
+	import { slide, fly } from 'svelte/transition';
+	import Switch from '$lib/components/Switch.svelte';
 
 	export let data: PageData;
 
+	let showDebug = false;
 	// Client API:
 	const { form, errors, constraints, enhance } = superForm(data.form, {
 		taintedMessage: 'Please make sure to fill out all required fields before leaving this page!',
@@ -13,7 +16,6 @@
 	});
 </script>
 
-<SuperDebug data={$form} />
 <div class="flex justify-center items-center flex-col">
 	<h1 class="text-3xl my-2">Blog</h1>
 	<h3 class="text-lg my-2">Form for adding dishes:</h3>
@@ -51,5 +53,17 @@
 				>
 			</div>
 		</form>
+		<div class="py-2 flex justify-between content-center">
+			<span class={showDebug ? 'text-warning' : ''}>Form Debugger</span>
+			{#if showDebug}
+				<span transition:fly={{ y: 200, duration: 200 }}>🍪</span>
+			{/if}
+			<Switch bind:checked={showDebug} />
+		</div>
+		{#if showDebug}
+			<div transition:slide|local>
+				<SuperDebug data={$form} />
+			</div>
+		{/if}
 	</div>
 </div>
