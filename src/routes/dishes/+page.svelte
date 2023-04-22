@@ -33,16 +33,50 @@
 				/>
 				{#if $errors.name}<span class="invalid">{$errors.name}</span>{/if}
 			</div>
-			<div class="mb-6">
+			<div class="mb-6 rating">
 				<label for="rating" class="block text-primary text-sm font-bold mb-2">Rating</label>
-				<input
-					type="text"
-					name="rating"
-					data-invalid={$errors.rating}
-					bind:value={$form.rating}
-					{...$constraints.rating}
-					class="input input-bordered w-full max-w-xs"
-				/>
+				<div class="flex justify-center items-center">
+					<input
+						type="radio"
+						name="rating"
+						value="1"
+						checked={$form.rating === '1'}
+						on:change={() => ($form.rating = '1')}
+						class="mask mask-star-2 bg-orange-400"
+					/>
+					<input
+						type="radio"
+						name="rating"
+						value="2"
+						checked={$form.rating === '2'}
+						on:change={() => ($form.rating = '2')}
+						class="mask mask-star-2 bg-orange-400"
+					/>
+					<input
+						type="radio"
+						name="rating"
+						value="3"
+						checked={$form.rating === '3'}
+						on:change={() => ($form.rating = '3')}
+						class="mask mask-star-2 bg-orange-400"
+					/>
+					<input
+						type="radio"
+						name="rating"
+						value="4"
+						checked={$form.rating === '4'}
+						on:change={() => ($form.rating = '4')}
+						class="mask mask-star-2 bg-orange-400"
+					/>
+					<input
+						type="radio"
+						name="rating"
+						value="5"
+						checked={$form.rating === '5'}
+						on:change={() => ($form.rating = '5')}
+						class="mask mask-star-2 bg-orange-400"
+					/>
+				</div>
 				{#if $errors.rating}<span class="text-error">{$errors.rating}</span>{/if}
 			</div>
 
