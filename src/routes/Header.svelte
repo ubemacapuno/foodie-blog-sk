@@ -16,7 +16,7 @@
 	<div class="navbar bg-base-300">
 		<div class="flex-1">
 			<a class="btn btn-ghost normal-case text-xl">
-				<span class="text-accent">Foodie</span>
+				<span class="text-primary">Foodie</span>
 				<span class="lowercase text-base-content">blog</span>
 			</a>
 		</div>

@@ -79,7 +79,41 @@
 				</div>
 				{#if $errors.rating}<span class="text-error">{$errors.rating}</span>{/if}
 			</div>
-
+			<div class="mb-4">
+				<label class="block text-primary text-sm font-bold mb-2" for="cuisine">Cuisine</label>
+				<input
+					type="text"
+					name="cuisine"
+					class="input input-bordered w-full max-w-xs"
+					data-invalid={$errors.cuisine}
+					bind:value={$form.cuisine}
+					{...$constraints.cuisine}
+				/>
+			</div>
+			<div class="mb-4">
+				<label class="block text-primary text-sm font-bold mb-2" for="instructions"
+					>Instructions</label
+				>
+				<textarea
+					class="textarea textarea-bordered"
+					placeholder="Instructions"
+					name="instructions"
+					data-invalid={$errors.instructions}
+					bind:value={$form.instructions}
+					{...$constraints.instructions}
+				/>
+			</div>
+			<div class="mb-4">
+				<label class="block text-primary text-sm font-bold mb-2" for="notes">Notes</label>
+				<textarea
+					class="textarea textarea-bordered"
+					placeholder="Additional notes"
+					name="notes"
+					data-invalid={$errors.notes}
+					bind:value={$form.notes}
+					{...$constraints.notes}
+				/>
+			</div>
 			<div class="flex items-center justify-between">
 				<button
 					class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
@@ -95,7 +129,7 @@
 			<Switch bind:checked={showDebug} />
 		</div>
 		{#if showDebug}
-			<div transition:slide|local>
+			<div transition:slide|local class="mb-7">
 				<SuperDebug data={$form} />
 			</div>
 		{/if}
