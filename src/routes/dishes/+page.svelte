@@ -9,16 +9,33 @@
 	export let data: PageData;
 
 	let showDebug = false;
+	let newIngredient = '';
+
 	// Client API:
 	const { form, errors, constraints, enhance } = superForm(data.form, {
+		// This is a requirement when the schema contains nested objects:
+		dataType: 'json',
 		taintedMessage: 'Please make sure to fill out all required fields before leaving this page!',
 		validators: dishes_schema
 	});
+
+	function addIngredient() {
+		if (newIngredient.trim() !== '') {
+			$form.ingredients = [...$form.ingredients, newIngredient];
+			newIngredient = '';
+		} else {
+			alert('Ingredient must not be BLANK.');
+		}
+	}
+
+	function removeIngredient(index) {
+		$form.ingredients.splice(index, 1);
+		$form.ingredients = $form.ingredients;
+	}
 </script>
 
 <div class="flex justify-center items-center flex-col">
-	<h1 class="text-3xl my-2">Blog</h1>
-	<h3 class="text-lg my-2">Form for adding dishes:</h3>
+	<h1 class="text-3xl my-2">Add A Dish:</h1>
 	<div class="w-full max-w-xs">
 		<form method="POST" use:enhance class="bg-base-300 shadow-md rounded px-8 pt-6 pb-8 mb-4">
 			<div class="mb-4">
@@ -31,7 +48,7 @@
 					bind:value={$form.name}
 					{...$constraints.name}
 				/>
-				{#if $errors.name}<span class="invalid">{$errors.name}</span>{/if}
+				{#if $errors.name}<span class="text-warning">{$errors.name}</span>{/if}
 			</div>
 			<div class="mb-6 rating">
 				<label for="rating" class="block text-primary text-sm font-bold mb-2">Rating</label>
@@ -89,6 +106,34 @@
 					bind:value={$form.cuisine}
 					{...$constraints.cuisine}
 				/>
+			</div>
+			<div class="mb-4">
+				<label class="block text-primary text-sm font-bold mb-2" for="ingredients"
+					>Ingredients</label
+				>
+				<input
+					type="text"
+					name="newIngredient"
+					class="input input-bordered w-full max-w-xs"
+					placeholder="Add ingredients"
+					bind:value={newIngredient}
+				/>
+				<button on:click|preventDefault={addIngredient} class="btn-primary btn py-1 px-2 mt-2"
+					>Add</button
+				>
+				<div>
+					{#each $form.ingredients as ingredient, index}
+						<div class="flex items-center mt-2">
+							<span>{ingredient}</span>
+							<button on:click={() => removeIngredient(index)} class="ml-2 btn btn-error btn-xs"
+								>Remove</button
+							>
+						</div>
+					{/each}
+				</div>
+				{#if $errors.ingredients}<span class="text-error"
+						>{JSON.stringify($errors.ingredients)}</span
+					>{/if}
 			</div>
 			<div class="mb-4">
 				<label class="block text-primary text-sm font-bold mb-2" for="instructions"

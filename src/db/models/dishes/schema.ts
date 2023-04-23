@@ -5,15 +5,15 @@ import { zodToJsonSchema } from 'zod-to-json-schema';
 // Validation schema for dishes
 
 export const dishes_schema = z.object({
-	name: z.string().nonempty(),
+	name: z.string().min(3),
 	dateAdded: z.date().default(() => new Date()),
 	dateCooked: z.date().default(() => new Date()),
 	rating: z.string().nonempty().default('5'),
-	ingredients: z.string().optional().default(''),
+	ingredients: z.array(z.string().min(3)).optional().default([]),
 	instructions: z.string().optional().default(''),
 	cuisine: z.string().optional().default(''),
 	notes: z.string().optional().default(''),
-	userId: z.string().nonempty().optional().default('')
+	userId: z.string().nonempty().optional()
 });
 
 export const dishes_raw_schema_json = zodToJsonSchema(dishes_schema, {
