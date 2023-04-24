@@ -50,8 +50,8 @@
 				/>
 				{#if $errors.name}<span class="text-warning">{$errors.name}</span>{/if}
 			</div>
+			<label for="rating" class="block text-primary text-sm font-bold mb-2">Rating</label>
 			<div class="mb-6 rating">
-				<label for="rating" class="block text-primary text-sm font-bold mb-2">Rating</label>
 				<div class="flex justify-center items-center">
 					<input
 						type="radio"
@@ -122,11 +122,11 @@
 					>Add</button
 				>
 				<div>
-					{#each $form.ingredients as ingredient, index}
+					{#each $form.ingredients || [] as ingredient, index}
 						<div class="flex items-center mt-2">
 							<span>{ingredient}</span>
 							<button on:click={() => removeIngredient(index)} class="ml-2 btn btn-error btn-xs"
-								>Remove</button
+								>🗑️</button
 							>
 						</div>
 					{/each}
@@ -140,7 +140,7 @@
 					>Instructions</label
 				>
 				<textarea
-					class="textarea textarea-bordered"
+					class="textarea textarea-bordered textarea-md"
 					placeholder="Instructions"
 					name="instructions"
 					data-invalid={$errors.instructions}
@@ -151,7 +151,7 @@
 			<div class="mb-4">
 				<label class="block text-primary text-sm font-bold mb-2" for="notes">Notes</label>
 				<textarea
-					class="textarea textarea-bordered"
+					class="textarea textarea-bordered textarea-md"
 					placeholder="Additional notes"
 					name="notes"
 					data-invalid={$errors.notes}
@@ -173,10 +173,10 @@
 			{/if}
 			<Switch bind:checked={showDebug} />
 		</div>
-		{#if showDebug}
-			<div transition:slide|local class="mb-7">
-				<SuperDebug data={$form} />
-			</div>
-		{/if}
 	</div>
 </div>
+{#if showDebug}
+	<div transition:slide|local class="mb-7 px-1">
+		<SuperDebug data={$form} />
+	</div>
+{/if}

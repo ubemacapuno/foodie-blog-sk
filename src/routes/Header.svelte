@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
 	import { page } from '$app/stores';
 
 	let userTheme = 'dark';
@@ -15,9 +14,9 @@
 <header>
 	<div class="navbar bg-base-300">
 		<div class="flex-1">
-			<a class="btn btn-ghost normal-case text-xl">
+			<a href="/" class="btn btn-ghost normal-case text-xl">
 				<span class="text-primary">Foodie</span>
-				<span class="lowercase text-base-content">blog</span>
+				<span class="lowercase text-base-content">blog 🍪</span>
 			</a>
 		</div>
 		<div class="flex-none">
