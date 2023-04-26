@@ -33,3 +33,4 @@ Open http://127.0.0.1:5173/ to view it in the browser.
 ## Optimizations:
 
 - Incorporate SkeletonUI at a later date and transition from DaisyUI.
+- Incorporate Google OAuth
