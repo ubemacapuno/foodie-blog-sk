@@ -29,3 +29,7 @@ Open http://127.0.0.1:5173/ to view it in the browser.
 ## Lessons Learned:
 
 - TBD
+
+## Optimizations:
+
+- Incorporate SkeletonUI at a later date and transition from DaisyUI.
