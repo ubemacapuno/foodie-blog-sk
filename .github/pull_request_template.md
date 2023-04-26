@@ -1,6 +1,6 @@
 ### Summary:
 
-_Provide an overview_
+_Provide an overview of changes_
 
 ### Details:
 
