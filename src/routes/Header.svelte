@@ -18,7 +18,7 @@
 				</li>
 				<li>
 					<a
-						class:active={$page.url.pathname.match(/^\/dishes\/?[0-9a-fA-F]*$/)}
+						class:active={$page.url.pathname.match(/^\/authenticated\/dishes\/?[0-9a-fA-F]*$/)}
 						class="text-accent"
 						href="/authenticated/dishes">Dishes</a
 					>

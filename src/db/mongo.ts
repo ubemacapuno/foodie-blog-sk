@@ -4,7 +4,7 @@ import { DB_URI } from '$env/static/private';
 const client = new MongoClient(DB_URI);
 
 export function start_mongo() {
-	console.log('Starting Mongo...');
+	console.log('⏱️ Starting Mongo...');
 	return client.connect();
 }
 

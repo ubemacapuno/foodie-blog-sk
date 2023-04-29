@@ -13,8 +13,9 @@ export const dishes_schema = z.object({
 	instructions: z.string().optional().default(''),
 	cuisine: z.string().optional().default(''),
 	notes: z.string().optional().default(''),
-	userId: z.string().nonempty().optional()
+	_id: z.string().min(1)
 });
+export const new_dish_schema = dishes_schema.omit({ _id: true });
 
 export const dishes_raw_schema_json = zodToJsonSchema(dishes_schema, {
 	$refStrategy: 'none'

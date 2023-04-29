@@ -1,4 +1,6 @@
 import { fail } from '@sveltejs/kit';
+import { redirect } from 'sveltekit-flash-message/server';
+import { message, superValidate } from 'sveltekit-superforms/server';
 import {
 	// has_role,
 	get_form_data_object,
@@ -6,44 +8,46 @@ import {
 	type Actions
 } from '$db/actions';
 import { log_error } from '$utilities/log_error';
-import {
-	dishes_schema,
-	// dishes_raw_schema_json,
-	type Dish
-} from './schema';
+import { dishes_schema, type Dish, new_dish_schema } from './schema';
 import { dishes } from './collection';
+import type { InsertOneResult } from 'mongodb';
+import {
+	AUTH_ERROR_MESSAGE,
+	CHECK_FORM_MESSAGE,
+	DEFAULT_FORM_ERROR,
+	getSuccessMessage
+} from '$constants/forms';
 
 // TODO: Finish setting up validation so that we don't show success on empty form submissions
 export const Dishes: Actions = {
-	create: async function ({ locals, request }) {
-		// Check if user has the ability to edit this dish
-		// if (!has_role(locals, 'admin')) return fail(401)
+	create: async function (event) {
+		// TODO: Auth Check for action
+		// if (!isAuthorized(event.locals.user)) return fail(403, { message: AUTH_ERROR_MESSAGE })
 
-		const data = await get_form_data_object(request);
-		console.log('data', data);
+		// Setup Form (remove _id from schema for validation)
+		const form = await superValidate(event, new_dish_schema);
 
-		const insert_data = prepare_data_for_insert<Dish>(data);
-		console.log('insert_data', insert_data);
-		const parse_data = dishes_schema.safeParse(insert_data);
-
-		if (!parse_data.success) {
-			// Loop through the errors array and create a custom errors array
-			const errors = parse_data.error.errors.map((error) => {
-				return {
-					field: error.path[0],
-					message: error.message
-				};
-			});
-			console.log(errors);
-			return fail(400, { error: true, errors });
+		// Check if form is valid
+		if (!form.valid) {
+			return message(form, CHECK_FORM_MESSAGE);
 		}
 
-		const created_path = await dishes.insertOne(insert_data).catch(log_error);
-		console.log('created_path', created_path);
+		// Add new _id to form data
+		const insert_data = prepare_data_for_insert<Dish>(form.data);
 
-		return {
-			id: created_path.insertedId
-		};
+		// Insert into database
+		const created_path = <InsertOneResult>await dishes.insertOne(insert_data).catch(log_error);
+
+		// Redirect to _id page with a toast message
+		throw redirect(
+			303,
+			`/authenticated/dishes/${created_path.insertedId}`,
+			{
+				message: getSuccessMessage('dish', 'created'),
+				status: 'success'
+			},
+			event
+		);
 	},
 
 	update: async function ({ locals, request }) {
