@@ -1,14 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-
-	let userTheme = 'dark';
-	const submitUpdateTheme = ({ action }) => {
-		const theme = action.searchParams.get('theme');
-		userTheme = theme;
-		if (theme) {
-			document.documentElement.setAttribute('data-theme', theme);
-		}
-	};
+	import { signIn, signOut } from '@auth/sveltekit/client';
 </script>
 
 <header>
@@ -28,10 +20,26 @@
 					<a
 						class:active={$page.url.pathname.match(/^\/dishes\/?[0-9a-fA-F]*$/)}
 						class="text-accent"
-						href="/dishes">Dishes</a
+						href="/authenticated/dishes">Dishes</a
 					>
 				</li>
 			</ul>
+		</div>
+		<div class="navbar-end">
+			{#if $page.data.session}
+				{#if $page.data.session.user?.image}
+					<span style="background-image: url('{$page.data.session.user.image}')" class="avatar" />
+				{/if}
+				<button
+					class="btn btn-sm btn-outline btn-secondary link no-underline"
+					on:click={() => signOut()}>Logout</button
+				>
+			{:else}
+				<button
+					class="btn btn-sm btn-outline btn-primary link no-underline"
+					on:click={() => signIn('github')}>Login</button
+				>
+			{/if}
 		</div>
 	</div>
 </header>
