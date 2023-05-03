@@ -26,6 +26,7 @@ export const Dishes: Actions = {
 
 		// Setup Form (remove _id from schema for validation)
 		const form = await superValidate(event, new_dish_schema);
+		console.log('POST', form);
 
 		// Check if form is valid
 		if (!form.valid) {

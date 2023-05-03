@@ -12,12 +12,7 @@
 	let newIngredient = '';
 
 	// Client API:
-	const { form, errors, constraints, enhance } = superForm(data.form, {
-		// This is a requirement when the schema contains nested objects:
-		dataType: 'json',
-		taintedMessage: 'Please make sure to fill out all required fields before leaving this page!',
-		validators: dishes_schema
-	});
+	const { form, errors, constraints, enhance } = superForm(data.form);
 
 	function addIngredient() {
 		if (newIngredient.trim() !== '') {
@@ -37,7 +32,13 @@
 <div class="flex justify-center items-center flex-col">
 	<h1 class="text-3xl my-2">Add A Dish:</h1>
 	<div class="w-full max-w-xs">
-		<form method="POST" use:enhance class="bg-base-300 shadow-md rounded px-8 pt-6 pb-8 mb-4">
+		<form
+			method="POST"
+			action="?/create"
+			use:enhance
+			class="bg-base-300 shadow-md rounded px-8 pt-6 pb-8 mb-4"
+		>
+			<input type="hidden" name="_id" bind:value={$form._id} />
 			<div class="mb-4">
 				<label class="block text-primary text-sm font-bold mb-2" for="name">Dish Name</label>
 				<input
@@ -161,6 +162,7 @@
 			</div>
 			<div class="flex items-center justify-between">
 				<button
+					type="submit"
 					class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
 					>Submit</button
 				>
