@@ -12,7 +12,10 @@
 	let newIngredient = '';
 
 	// Client API:
-	const { form, errors, constraints, enhance } = superForm(data.form);
+	const { form, errors, constraints, enhance } = superForm(data.form, {
+		// This is a requirement when the schema contains nested objects:
+		dataType: 'json'
+	});
 
 	function addIngredient() {
 		if (newIngredient.trim() !== '') {
@@ -27,6 +30,8 @@
 		$form.ingredients.splice(index, 1);
 		$form.ingredients = $form.ingredients;
 	}
+
+	$: ({ dishes } = data);
 </script>
 
 <div class="flex justify-center items-center flex-col">
@@ -182,3 +187,14 @@
 		<SuperDebug data={$form} />
 	</div>
 {/if}
+
+{#each dishes as dish}
+	<div class="my-4 card w-80 bg-base-300 shadow-xl text-primary self-center">
+		<div class="card-body">
+			<h3 class="card-title">{dish.name}</h3>
+			<div class="card-actions justify-end">
+				<a href="/authenticated/dishes/{dish?._id}" class="btn btn-primary">View</a>
+			</div>
+		</div>
+	</div>
+{/each}

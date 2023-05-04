@@ -2,6 +2,8 @@
 	import { signIn } from '@auth/sveltekit/client';
 </script>
 
+<p class="text-error">Stranger Danger!</p>
+
 Please sign in!
 <div>
 	<button

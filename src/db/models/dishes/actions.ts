@@ -63,13 +63,24 @@ export const Dishes: Actions = {
 		if (updated_path?.ok) return updated_path.value;
 	},
 
-	delete: async function ({ locals, request }) {
-		// if (!has_role(locals, 'admin')) return fail(401)
+	delete: async function (event) {
+		// if (!has_role(event.locals, 'admin')) return fail(401)
 
-		const data = await get_form_data_object(request);
+		const data = await get_form_data_object(event.request);
 
 		const updated_path = await dishes.deleteOne({ _id: data._id }).catch(log_error);
 
-		if (updated_path?.deletedCount) return updated_path.deletedCount;
+		// Redirect to /authenticated/dishes route with a success message after successful deletion
+		if (updated_path?.deletedCount) {
+			throw redirect(
+				303,
+				`/authenticated/dishes`,
+				{
+					message: getSuccessMessage('dish', 'deleted'),
+					status: 'success'
+				},
+				event
+			);
+		}
 	}
 };
