@@ -1,9 +1,13 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import { enhance } from '$app/forms';
-	import { invalidateAll } from '$app/navigation';
+	import { getSuperOptions } from '$lib/forms/superforms';
+	import { superForm } from 'sveltekit-superforms/client';
 
 	export let data: PageData;
+
+	// Client API:
+	const { form, enhance } = superForm(data.form, getSuperOptions());
+
 	$: ({ dish } = data);
 	$: console.log('DISH', dish);
 </script>
@@ -21,7 +25,7 @@
 			<p>Notes: {dish.notes}</p>
 
 			<form method="POST" action="?/delete" use:enhance>
-				<input type="hidden" name="_id" value={dish._id} />
+				<input type="hidden" name="_id" value={$form._id} />
 				<button type="submit" class="btn">Delete</button>
 			</form>
 		</div>

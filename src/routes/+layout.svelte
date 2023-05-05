@@ -1,4 +1,5 @@
 <script>
+	import ToastMessage from './ToastMessage.svelte';
 	import '../app.css';
 	import Header from './Header.svelte';
 	import Footer from './Footer.svelte';
@@ -11,3 +12,5 @@
 		<Footer />
 	</div>
 </div>
+<!-- Off Canvas -->
+<ToastMessage />
