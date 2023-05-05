@@ -19,6 +19,9 @@ dependencies:
   lodash:
     specifier: ^4.17.21
     version: 4.17.21
+  lodash.uniqueid:
+    specifier: ^4.0.1
+    version: 4.0.1
   mongodb:
     specifier: ^4.12.1
     version: 4.14.0
@@ -54,6 +57,9 @@ devDependencies:
   '@types/cookie':
     specifier: ^0.5.1
     version: 0.5.1
+  '@types/lodash.uniqueid':
+    specifier: ^4.0.7
+    version: 4.0.7
   '@typescript-eslint/eslint-plugin':
     specifier: ^5.45.0
     version: 5.56.0(@typescript-eslint/parser@5.56.0)(eslint@8.36.0)(typescript@5.0.4)
@@ -1567,6 +1573,16 @@ packages:
     resolution: {integrity: sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==}
     dev: true
 
+  /@types/lodash.uniqueid@4.0.7:
+    resolution: {integrity: sha512-ipMGW5nR+DTR6U5O08k1Ufr1F9iH+F3p7bhdwsnq6V6nCn/HgMq22UalDq4n91+03+pHFKyeXV1Y7vdJrm7S4g==}
+    dependencies:
+      '@types/lodash': 4.14.194
+    dev: true
+
+  /@types/lodash@4.14.194:
+    resolution: {integrity: sha512-r22s9tAS7imvBt2lyHC9B8AGwWnXaYb1tY09oyLkXDs4vArpYJzw09nj8MLx5VfciBPGIb+ZwG0ssYnEPJxn/g==}
+    dev: true
+
   /@types/node@18.15.10:
     resolution: {integrity: sha512-9avDaQJczATcXgfmMAW3MIWArOO7A+m90vuCFLr8AotWf8igO/mRoYukrk2cqZVtv38tHs33retzHEilM7FpeQ==}
 
@@ -2717,6 +2733,10 @@ packages:
   /lodash.merge@4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
     dev: true
+
+  /lodash.uniqueid@4.0.1:
+    resolution: {integrity: sha512-GQQWaIeGlL6DIIr06kj1j6sSmBxyNMwI8kaX9aKpHR/XsMTiaXDVPNPAkiboOTK9OJpTJF/dXT3xYoFQnj386Q==}
+    dev: false
 
   /lodash@4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}

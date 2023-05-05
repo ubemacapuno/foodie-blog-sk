@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import { enhance } from '$app/forms';
-	import { invalidateAll } from '$app/navigation';
 
 	export let data: PageData;
 	$: ({ dish } = data);

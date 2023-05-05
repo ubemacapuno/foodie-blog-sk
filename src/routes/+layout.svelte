@@ -1,4 +1,5 @@
 <script>
+	import ToastMessage from './ToastMessage.svelte';
 	import '../app.css';
 	import Header from './Header.svelte';
 	import Footer from './Footer.svelte';
@@ -6,8 +7,10 @@
 
 <div class="flex flex-col min-h-screen relative">
 	<Header />
+	<ToastMessage />
 	<slot />
 	<div class="mt-10">
 		<Footer />
 	</div>
 </div>
+<!-- Off Canvas -->

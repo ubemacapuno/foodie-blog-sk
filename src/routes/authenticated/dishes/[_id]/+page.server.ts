@@ -25,7 +25,6 @@ export const load = async function ({ params }) {
 } satisfies PageServerLoad;
 
 export const actions = {
-	create: Dishes.create,
 	update: Dishes.update,
 	delete: Dishes.delete
 };

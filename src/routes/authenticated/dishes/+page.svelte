@@ -5,6 +5,7 @@
 	import { dishes_schema } from '$db/models/dishes/schema';
 	import { slide, fly } from 'svelte/transition';
 	import Switch from '$lib/components/Switch.svelte';
+	import ToastPlay from '$lib/components/ToastPlay.svelte';
 
 	export let data: PageData;
 
@@ -182,6 +183,7 @@
 		</div>
 	</div>
 </div>
+<ToastPlay />
 {#if showDebug}
 	<div transition:slide|local class="mb-7 px-1">
 		<SuperDebug data={$form} />
