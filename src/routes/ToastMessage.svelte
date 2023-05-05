@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
 	import { toastMessages } from '$lib/stores/toast';
-	import { STATUS } from '$constants/status';
 	import { initFlash } from 'sveltekit-flash-message/client';
 	import { page } from '$app/stores';
 

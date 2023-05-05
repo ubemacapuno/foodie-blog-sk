@@ -19,12 +19,7 @@ async function authorization({ event, resolve }) {
 }
 
 start_mongo();
-// .then(() => {
-// 	console.log('Mongo DB Started!');
-// })
-// .catch((e) => {
-// 	console.error(e);
-// });
+
 const logger: Handle = async ({ event, resolve }) => {
 	const requestStartTime = Date.now();
 	const response = await resolve(event);

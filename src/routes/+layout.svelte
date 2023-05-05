@@ -7,10 +7,10 @@
 
 <div class="flex flex-col min-h-screen relative">
 	<Header />
-	<ToastMessage />
 	<slot />
 	<div class="mt-10">
 		<Footer />
 	</div>
 </div>
 <!-- Off Canvas -->
+<ToastMessage />
