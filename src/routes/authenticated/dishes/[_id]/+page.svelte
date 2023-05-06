@@ -15,7 +15,10 @@
 {#if dish}
 	<div class="my-4 card w-80 bg-base-300 self-center">
 		<div class="card-body p-3">
-			<h3 class="card-title text-primary">
+			<div class="flex">
+				<a href="/authenticated/dishes" class="btn btn-outline btn-secondary btn-sm">←Back</a>
+			</div>
+			<h3 class="card-title text-2xl text-primary">
 				{dish.name}
 			</h3>
 			<label for="rating" class="block text-sm font-bold mb-2">Rating:</label>
@@ -37,14 +40,18 @@
 			<p>Cuisine: {dish.cuisine}</p>
 			<p>Notes: {dish.notes}</p>
 
-			<form method="POST" action="?/delete" use:enhance>
-				<input type="hidden" name="_id" value={$form._id} />
-				<div class="btn-group">
-					<a href="/authenticated/dishes" class="btn">Back</a>
-					<button class="btn">Edit</button>
-				</div>
-				<button type="submit" class="btn">Delete</button>
-			</form>
+			<div class="flex justify-between">
+				<form>
+					<div class="flex justify-between">
+						<button class="btn btn-sm btn-outline btn-primary">Edit</button>
+					</div>
+				</form>
+
+				<form method="POST" action="?/delete" use:enhance>
+					<input type="hidden" name="_id" value={$form._id} />
+					<button type="submit" class="btn btn-sm btn-outline btn-error">Delete</button>
+				</form>
+			</div>
 		</div>
 	</div>
 {:else}

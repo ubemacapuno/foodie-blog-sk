@@ -1,6 +1,7 @@
 import { fail } from '@sveltejs/kit';
 import { redirect } from 'sveltekit-flash-message/server';
 import { message, superValidate } from 'sveltekit-superforms/server';
+import uniqueId from 'lodash.uniqueid';
 import {
 	// has_role,
 	get_form_data_object,
@@ -45,22 +46,29 @@ export const Dishes: Actions = {
 			`/authenticated/dishes/${created_path.insertedId}`,
 			{
 				message: getSuccessMessage('dish', 'created'),
-				status: 'success'
+				status: 'success',
+				// Add id so the toast gets assigned an id
+				id: uniqueId()
 			},
 			event
 		);
 	},
 
-	update: async function ({ locals, request }) {
-		// if (!has_role(locals, 'admin')) return fail(401)
+	update: async function (event) {
+		// if (!isAuthorized(event.locals.user)) return fail(403, { message: AUTH_ERROR_MESSAGE })
 
-		// Get the data from the request
-		const data = await get_form_data_object(request);
-		const updated_path = await dishes
-			.findOneAndUpdate({ _id: data._id }, { $set: data }, { returnDocument: 'after' })
+		const form = await superValidate(event, dishes_schema);
+
+		if (!form.valid) {
+			return message(form, CHECK_FORM_MESSAGE);
+		}
+
+		await dishes
+			.findOneAndUpdate({ _id: form.data._id }, { $set: form.data }, { returnDocument: 'after' })
 			.catch(log_error);
 
-		if (updated_path?.ok) return updated_path.value;
+		// Send a toast message along with form data
+		return message(form, getSuccessMessage('dish', 'updated'));
 	},
 
 	delete: async function (event) {
@@ -77,7 +85,9 @@ export const Dishes: Actions = {
 			`/authenticated/dishes`,
 			{
 				message: getSuccessMessage('dish', 'deleted'),
-				status: 'success'
+				status: 'success',
+				// Generate a unique id for the toast message
+				id: uniqueId()
 			},
 			event
 		);

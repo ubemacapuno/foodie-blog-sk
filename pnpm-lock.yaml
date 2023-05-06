@@ -96,6 +96,9 @@ devDependencies:
   svelte-check:
     specifier: ^3.0.1
     version: 3.1.4(postcss-load-config@4.0.1)(postcss@8.4.21)(svelte@3.57.0)
+  svelte-portal:
+    specifier: ^2.1.2
+    version: 2.1.2
   svelte-preprocess:
     specifier: ^4.10.7
     version: 4.10.7(postcss-load-config@4.0.1)(postcss@8.4.21)(svelte@3.57.0)(typescript@5.0.4)
@@ -3518,6 +3521,10 @@ packages:
       svelte: '>=3.19.0'
     dependencies:
       svelte: 3.57.0
+
+  /svelte-portal@2.1.2:
+    resolution: {integrity: sha512-u1ONI4ZJDNhVJPDW7tH6RH1ZIzALt6kJZbF00Hz9bgNIVRlzvzimsnwf35rGFMtPFA+FYenvsTHUR815yYNc9A==}
+    dev: true
 
   /svelte-preprocess@4.10.7(postcss-load-config@4.0.1)(postcss@8.4.21)(svelte@3.57.0)(typescript@5.0.4):
     resolution: {integrity: sha512-sNPBnqYD6FnmdBrUmBCaqS00RyCsCpj2BG58A1JBswNF7b0OKviwxqVrOL/CKyJrLSClrSeqQv5BXNg2RUbPOw==}
