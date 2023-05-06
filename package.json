@@ -44,7 +44,7 @@
 	"dependencies": {
 		"@auth/core": "^0.7.1",
 		"@auth/sveltekit": "^0.3.1",
-		"daisyui": "^2.51.5",
+		"daisyui": "^2.51.6",
 		"deep-rename-keys": "^0.2.1",
 		"deep-replace": "^0.0.8",
 		"lodash": "^4.17.21",
