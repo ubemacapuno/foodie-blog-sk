@@ -18,7 +18,20 @@
 			<h3 class="card-title text-primary">
 				{dish.name}
 			</h3>
-			<p>Rating: {dish.rating}</p>
+			<label for="rating" class="block text-sm font-bold mb-2">Rating:</label>
+			<div class="rating">
+				{#each Array.from({ length: 5 }).map((_, i) => i + 1) as rating}
+					<input
+						type="radio"
+						id={`rating_${rating}`}
+						name="rating"
+						value={rating}
+						checked={Number(dish.rating) === rating}
+						disabled
+						class="mask mask-star-2 bg-orange-400 cursor-default"
+					/>
+				{/each}
+			</div>
 			<p>Ingredients: {dish.ingredients}</p>
 			<p>Instructions: {dish.instructions}</p>
 			<p>Cuisine: {dish.cuisine}</p>
@@ -26,6 +39,10 @@
 
 			<form method="POST" action="?/delete" use:enhance>
 				<input type="hidden" name="_id" value={$form._id} />
+				<div class="btn-group">
+					<a href="/authenticated/dishes" class="btn">Back</a>
+					<button class="btn">Edit</button>
+				</div>
 				<button type="submit" class="btn">Delete</button>
 			</form>
 		</div>

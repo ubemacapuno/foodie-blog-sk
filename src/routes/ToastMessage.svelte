@@ -3,7 +3,6 @@
 	import { toastMessages } from '$lib/stores/toast';
 	import { initFlash } from 'sveltekit-flash-message/client';
 	import { page } from '$app/stores';
-	import ToastPlay from '$lib/components/ToastPlay.svelte';
 
 	// ? Toast messages that are used when redirecting on the server
 	const flashMessages = initFlash(page);
@@ -22,6 +21,12 @@
 	{#each $toastMessages
 		.concat($flashMessages || [])
 		.filter(Boolean) as toastMessage (toastMessage.id)}
+		<!--
+			TODO:
+			Should be able to replace logic so that the class is 'alert-{toastMessage.status}, but there is a bug. Keep the current conditional statements for now.
+			For example, the following is not working: class={`alert alert-${toastMessage.status}`}
+		-->
+
 		<div
 			class={`alert ${
 				toastMessage.status === 'info'
@@ -47,4 +52,3 @@
 		</div>
 	{/each}
 </div>
-<ToastPlay />

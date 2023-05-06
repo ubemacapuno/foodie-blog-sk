@@ -74,9 +74,9 @@ export const Dishes: Actions = {
 
 		throw redirect(
 			303,
-			`/`,
+			`/authenticated/dishes`,
 			{
-				message: getSuccessMessage('dishes', 'deleted'),
+				message: getSuccessMessage('dish', 'deleted'),
 				status: 'success'
 			},
 			event
