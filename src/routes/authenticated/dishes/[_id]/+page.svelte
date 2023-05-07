@@ -40,7 +40,6 @@
 	let isEditModalOpen = false;
 
 	$: ({ dish } = data);
-	$: console.log('DISH', dish);
 </script>
 
 {#if dish}
