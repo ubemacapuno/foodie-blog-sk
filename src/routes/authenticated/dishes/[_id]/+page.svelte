@@ -239,7 +239,7 @@
 				>
 			</div>
 		</form>
-		<div class="py-2 flex justify-between content-center">
+		<div class="p-1 pb-4 flex justify-between content-center">
 			<span class={showDebug ? 'text-warning' : ''}>Form Debugger</span>
 			<Switch bind:checked={showDebug} />
 		</div>

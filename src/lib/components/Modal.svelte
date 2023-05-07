@@ -11,7 +11,7 @@
 	<Portal target="body">
 		<div transition:fly={{ opacity: 0, y: 50 }} class="modal-wrapper">
 			<button class="btn-close" on:click={closeModal} aria-label="Close Modal Box">×</button>
-			<div class="px-2 card-body bg-base-200">
+			<div class="p-1 card-body bg-base-200">
 				<slot />
 			</div>
 		</div>
