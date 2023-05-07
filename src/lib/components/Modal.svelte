@@ -5,7 +5,6 @@
 	function closeModal() {
 		isModalOpen = false;
 	}
-	// TODO: clean up classes below after css vars are made and then completely remove Daisy UI from this
 </script>
 
 {#if isModalOpen}
@@ -30,8 +29,8 @@
 		width: 100%;
 		z-index: 1001;
 		padding: 20px;
-		max-height: 90vh; /* change this line */
-		overflow-y: auto; /* add this line */
+		max-height: 90vh;
+		overflow-y: auto; /* Make the Modal scrollable */
 	}
 	.modal-wrapper .btn-close {
 		position: absolute;
@@ -47,7 +46,7 @@
 	@media screen and (max-height: 700px) {
 		.modal-wrapper {
 			inset: 0;
-			max-height: 100vh; /* add this line */
+			max-height: 100vh;
 		}
 	}
 	.background {
