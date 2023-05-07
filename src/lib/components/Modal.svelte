@@ -12,7 +12,7 @@
 	<Portal target="body">
 		<div transition:fly={{ opacity: 0, y: 50 }} class="modal-wrapper">
 			<button class="btn-close" on:click={closeModal} aria-label="Close Modal Box">×</button>
-			<div class="card-body bg-base-200">
+			<div class="px-2 card-body bg-base-200">
 				<slot />
 			</div>
 		</div>
@@ -30,7 +30,8 @@
 		width: 100%;
 		z-index: 1001;
 		padding: 20px;
-		height: auto;
+		max-height: 90vh; /* change this line */
+		overflow-y: auto; /* add this line */
 	}
 	.modal-wrapper .btn-close {
 		position: absolute;
@@ -46,6 +47,7 @@
 	@media screen and (max-height: 700px) {
 		.modal-wrapper {
 			inset: 0;
+			max-height: 100vh; /* add this line */
 		}
 	}
 	.background {
