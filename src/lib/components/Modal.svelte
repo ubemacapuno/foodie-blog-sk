@@ -5,14 +5,13 @@
 	function closeModal() {
 		isModalOpen = false;
 	}
-	// TODO: clean up classes below after css vars are made and then completely remove Daisy UI from this
 </script>
 
 {#if isModalOpen}
 	<Portal target="body">
 		<div transition:fly={{ opacity: 0, y: 50 }} class="modal-wrapper">
 			<button class="btn-close" on:click={closeModal} aria-label="Close Modal Box">×</button>
-			<div class="card-body bg-base-200">
+			<div class="px-2 card-body bg-base-200">
 				<slot />
 			</div>
 		</div>
@@ -30,7 +29,8 @@
 		width: 100%;
 		z-index: 1001;
 		padding: 20px;
-		height: auto;
+		max-height: 90vh;
+		overflow-y: auto; /* Make the Modal scrollable */
 	}
 	.modal-wrapper .btn-close {
 		position: absolute;
@@ -46,6 +46,7 @@
 	@media screen and (max-height: 700px) {
 		.modal-wrapper {
 			inset: 0;
+			max-height: 100vh;
 		}
 	}
 	.background {
