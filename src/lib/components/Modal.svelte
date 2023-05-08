@@ -21,7 +21,7 @@
 
 <style>
 	.modal-wrapper {
-		inset: 100px 0 auto;
+		inset: 25px 0 auto;
 		margin: 0 auto;
 		max-width: 530px;
 		min-width: 320px;
@@ -29,7 +29,7 @@
 		width: 100%;
 		z-index: 1001;
 		padding: 20px;
-		max-height: 90vh;
+		max-height: 90svh;
 		overflow-y: auto; /* Make the Modal scrollable */
 	}
 	.modal-wrapper .btn-close {
