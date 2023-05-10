@@ -108,6 +108,7 @@
 			action="?/update"
 			use:enhance
 			class="bg-base-300 shadow-md rounded px-8 pt-6 pb-8 mb-4"
+			on:submit|preventDefault={() => (isEditModalOpen = false)}
 		>
 			<input type="hidden" name="_id" bind:value={$form._id} />
 			<div class="mb-4">

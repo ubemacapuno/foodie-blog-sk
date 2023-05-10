@@ -37,6 +37,13 @@
 							href="/authenticated/dishes">Dishes</a
 						>
 					</li>
+					<li>
+						<a
+							class:active={$page.url.pathname.match(/^\/about\/?[0-9a-fA-F]*$/)}
+							class="text-accent"
+							href="/about">About</a
+						>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -54,6 +61,13 @@
 						class:active={$page.url.pathname.match(/^\/authenticated\/dishes\/?[0-9a-fA-F]*$/)}
 						class="text-accent"
 						href="/authenticated/dishes">Dishes</a
+					>
+				</li>
+				<li>
+					<a
+						class:active={$page.url.pathname.match(/^\/about\/?[0-9a-fA-F]*$/)}
+						class="text-accent"
+						href="/about">About</a
 					>
 				</li>
 			</ul>
