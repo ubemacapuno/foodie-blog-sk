@@ -10,6 +10,9 @@ dependencies:
   daisyui:
     specifier: ^2.51.6
     version: 2.51.6(autoprefixer@10.4.14)(postcss@8.4.21)
+  date-fns:
+    specifier: ^2.29.3
+    version: 2.29.3
   deep-rename-keys:
     specifier: ^0.2.1
     version: 0.2.1
@@ -2057,6 +2060,11 @@ packages:
       tailwindcss: 3.3.2
     transitivePeerDependencies:
       - ts-node
+    dev: false
+
+  /date-fns@2.29.3:
+    resolution: {integrity: sha512-dDCnyH2WnnKusqvZZ6+jA1O51Ibt8ZMRNkDZdyAyK4YfbDwa/cEmuztzG5pk6hqlp9aSBPYcjOlktquahGwGeA==}
+    engines: {node: '>=0.11'}
     dev: false
 
   /debug@4.3.4:

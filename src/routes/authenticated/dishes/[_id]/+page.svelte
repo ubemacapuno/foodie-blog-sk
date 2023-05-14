@@ -6,6 +6,7 @@
 	import { slide, fly } from 'svelte/transition';
 	import Switch from '$lib/components/Switch.svelte';
 	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
+	import { format } from 'date-fns';
 
 	export let data: PageData;
 
@@ -23,6 +24,15 @@
 		dataType: 'json'
 	});
 
+	function formatDate(dateString: string) {
+		const date = new Date(dateString);
+		/**
+		 * "P" is long localized date
+		 * "p" is long localized time
+		 * @see https://date-fns.org/v2.30.0/docs/format
+		 */
+		return format(date, 'Pp');
+	}
 	function addIngredient() {
 		if (newIngredient.trim() !== '') {
 			$form.ingredients = [...$form.ingredients, newIngredient];
@@ -74,6 +84,12 @@
 			<p>Instructions: {dish.instructions}</p>
 			<p>Cuisine: {dish.cuisine}</p>
 			<p>Notes: {dish.notes}</p>
+			<p>Added {formatDate(dish.date_added)}</p>
+			{#if dish?.date_updated !== dish?.date_added}
+				<p class="text-secondary">
+					*Updated {formatDate(dish.date_updated)}
+				</p>
+			{/if}
 
 			<div class="flex justify-between">
 				<form>

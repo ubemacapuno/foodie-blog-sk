@@ -31,7 +31,10 @@
 		}
 	}
 
-	function removeIngredient(index) {
+	function removeIngredient(event, index) {
+		// stopPropagation prevents form from submitting after deleting items from the ingredient array
+		// @see https://developer.mozilla.org/en-US/docs/Web/API/Event/stopPropagation
+		event.stopPropagation();
 		$form.ingredients.splice(index, 1);
 		$form.ingredients = $form.ingredients;
 	}
@@ -136,8 +139,10 @@
 					{#each $form.ingredients || [] as ingredient, index}
 						<div class="flex items-center mt-2">
 							<span>{ingredient}</span>
-							<button on:click={() => removeIngredient(index)} class="ml-2 btn btn-error btn-xs"
-								>🗑️</button
+							<button
+								type="button"
+								on:click|preventDefault={(event) => removeIngredient(event, index)}
+								class="ml-2 btn btn-error btn-xs">🗑️</button
 							>
 						</div>
 					{/each}

@@ -34,6 +34,10 @@ export const Dishes: Actions = {
 			return message(form, CHECK_FORM_MESSAGE);
 		}
 
+		// Add user form data server-side
+		form.data.date_added = new Date().toISOString();
+		form.data.date_updated = new Date().toISOString();
+
 		// Add new _id to form data
 		const insert_data = prepare_data_for_insert<Dish>(form.data);
 
@@ -62,6 +66,9 @@ export const Dishes: Actions = {
 		if (!form.valid) {
 			return message(form, CHECK_FORM_MESSAGE);
 		}
+
+		// Update date_updated
+		form.data.date_updated = new Date().toISOString();
 
 		await dishes
 			.findOneAndUpdate({ _id: form.data._id }, { $set: form.data }, { returnDocument: 'after' })
