@@ -11,7 +11,7 @@ export const dishes_fields = {
 	name: z.string().min(3),
 	date_added: requiredString,
 	date_updated: requiredString,
-	date_cooked: z.date().default(() => new Date()),
+	date_cooked: z.date().optional(),
 	rating: z.string().nonempty().default('5'),
 	ingredients: z
 		.array(z.string().min(1, 'Ingredient must be at least 1 character long.'))

@@ -8,7 +8,7 @@
 	<meta name="description" content="About this app" />
 </svelte:head>
 
-<div class="card bg-base-300 max-w-3xl shadow-xl mx-1">
+<div class="bg-base-300 shadow-xl mx-1">
 	<div class="card-body">
 		<h1 class="text-3xl font-bold">
 			About <span class="text-accent">Foodie</span><span class="lowercase text-base-content"

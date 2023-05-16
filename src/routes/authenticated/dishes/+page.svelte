@@ -190,13 +190,13 @@
 			{/if}
 			<Switch bind:checked={showDebug} />
 		</div>
+		{#if showDebug}
+			<div transition:slide|local class="mb-7 px-1">
+				<SuperDebug data={$form} />
+			</div>
+		{/if}
 	</div>
 </div>
-{#if showDebug}
-	<div transition:slide|local class="mb-7 px-1">
-		<SuperDebug data={$form} />
-	</div>
-{/if}
 
 {#each dishes as dish}
 	<div class="my-4 card w-80 bg-base-300 shadow-xl text-primary self-center">

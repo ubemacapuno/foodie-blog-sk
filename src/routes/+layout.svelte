@@ -7,7 +7,11 @@
 
 <div class="flex flex-col min-h-screen relative">
 	<Header />
-	<slot />
+	<div class="flex justify-center">
+		<div class="max-w-3xl mx-1 pt-4">
+			<slot />
+		</div>
+	</div>
 	<div class="mt-10">
 		<Footer />
 	</div>
