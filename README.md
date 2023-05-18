@@ -1,6 +1,7 @@
 ## Foodie Blog
 
 <p>This is a SvelteKit app for saving and rating recipes! Work in process . . .</p>
+
 ## How It's Made:
 
 **Tech used:**
