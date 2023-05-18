@@ -24,7 +24,8 @@ const config = {
 			$db: './src/db',
 			$dishes: './src/lib/models/dishes',
 			$elements: './src/elements',
-			$utilities: './src/utilities'
+			$utilities: './src/utilities',
+			$stores: './src/lib/stores'
 		}
 	}
 };
