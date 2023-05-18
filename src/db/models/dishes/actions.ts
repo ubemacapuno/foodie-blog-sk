@@ -78,6 +78,27 @@ export const Dishes: Actions = {
 		return message(form, getSuccessMessage('dish', 'updated'));
 	},
 
+	//TODO: Separate form action for ingredients
+	// updateIngredients: async function (event) {
+	// 	// if (!isAuthorized(event.locals.user)) return fail(403, { message: AUTH_ERROR_MESSAGE })
+
+	// 	const form = await superValidate(event, dishes_schema);
+
+	// 	if (!form.valid) {
+	// 		return message(form, CHECK_FORM_MESSAGE);
+	// 	}
+
+	// 	// Update date_updated
+	// 	form.data.date_updated = new Date().toISOString();
+
+	// 	await dishes
+	// 		.findOneAndUpdate({ _id: form.data._id }, { $set: form.data }, { returnDocument: 'after' })
+	// 		.catch(log_error);
+
+	// 	// Send a toast message along with form data
+	// 	return message(form, getSuccessMessage('dish', 'updated'));
+	// },
+
 	delete: async function (event) {
 		// if (!has_role(event.locals, 'admin')) return fail(401)
 

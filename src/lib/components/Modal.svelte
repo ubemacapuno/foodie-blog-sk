@@ -1,21 +1,46 @@
 <script lang="ts">
 	import { fly, fade } from 'svelte/transition';
 	import Portal from 'svelte-portal/src/Portal.svelte';
+	import { shortcut } from '$lib/actions/shortcut';
+	import Button from '$elements/Button.svelte';
+
 	export let isModalOpen = false;
+	export let isCloseButtonShowing = true;
+	export let title = '';
+	export let style = '';
+	export let onClose = () => {};
+
 	function closeModal() {
+		onClose();
 		isModalOpen = false;
 	}
 </script>
 
 {#if isModalOpen}
 	<Portal target="body">
-		<div transition:fly={{ opacity: 0, y: 50 }} class="modal-wrapper">
-			<button class="btn-close" on:click={closeModal} aria-label="Close Modal Box">×</button>
+		<div transition:fly={{ opacity: 0, y: 50 }} class="modal-wrapper" {style}>
+			{#if isCloseButtonShowing || title}
+				{#if title}
+					<h4 class="text-lg">
+						{title}
+					</h4>
+				{/if}
+				{#if isCloseButtonShowing}
+					<button class="btn-close" on:click={closeModal} aria-label="Close Modal Box">×</button>
+				{/if}
+			{/if}
 			<div class="p-1 card-body bg-base-200">
 				<slot />
 			</div>
 		</div>
-		<div on:click={closeModal} transition:fade class="background" />
+
+		<div
+			on:click={closeModal}
+			transition:fade
+			class="background"
+			use:shortcut={{ key: 'Escape' }}
+			on:keypress={closeModal}
+		/>
 	</Portal>
 {/if}
 
