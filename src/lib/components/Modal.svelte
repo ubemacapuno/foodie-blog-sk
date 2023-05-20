@@ -2,9 +2,8 @@
 	import { fly, fade } from 'svelte/transition';
 	import Portal from 'svelte-portal/src/Portal.svelte';
 	import { shortcut } from '$lib/actions/shortcut';
-	import Button from '$elements/Button.svelte';
 
-	export let isModalOpen = false;
+	export let isModalOpen: string | boolean | undefined = false;
 	export let isCloseButtonShowing = true;
 	export let title = '';
 	export let style = '';

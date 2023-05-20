@@ -1,9 +1,10 @@
 <script lang="ts">
 	export let form;
+	export let action: string;
 	export let errors;
-	export let constraints;
 	export let newIngredient;
 	export let enhance;
+	export let submitText = 'submit';
 
 	function addIngredient() {
 		if (newIngredient.trim() !== '') {
@@ -23,12 +24,7 @@
 	}
 </script>
 
-<form
-	method="POST"
-	action="?/create"
-	use:enhance
-	class="bg-base-300 shadow-md rounded px-8 pt-6 pb-8 mb-4"
->
+<form method="POST" {action} use:enhance class="bg-base-300 shadow-md rounded px-8 pt-6 pb-8 mb-4">
 	<div class="mb-4">
 		<label class="block text-primary text-sm font-bold mb-2" for="ingredients">Ingredients</label>
 		<input
@@ -42,14 +38,20 @@
 			>Add</button
 		>
 		<div>
-			{#each $form.ingredients || [] as ingredient, index}
+			{#each $form?.ingredients || [] as ingredient, index}
 				<div class="flex items-center mt-2">
-					<span>{ingredient}</span>
-					<button
-						type="button"
-						on:click|preventDefault={(event) => removeIngredient(event, index)}
-						class="ml-2 btn btn-error btn-xs">🗑️</button
-					>
+					<ul class="pl-5 list-disc">
+						<li>
+							{ingredient}
+						</li>
+					</ul>
+					{#if $form?.ingredients.length > 1}
+						<button
+							type="button"
+							on:click|preventDefault={(event) => removeIngredient(event, index)}
+							class="ml-2 btn btn-error btn-xs">🗑️</button
+						>
+					{/if}
 				</div>
 			{/each}
 		</div>
@@ -60,6 +62,6 @@
 	<button
 		type="submit"
 		class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-		>Submit</button
+		>{submitText}</button
 	>
 </form>

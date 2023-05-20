@@ -1,16 +1,13 @@
 <script lang="ts">
 	export let form;
+	export let action: string;
 	export let errors;
 	export let constraints;
 	export let enhance;
+	export let submitText = 'submit';
 </script>
 
-<form
-	method="POST"
-	action="?/create"
-	use:enhance
-	class="bg-base-300 shadow-md rounded px-8 pt-6 pb-8 mb-4"
->
+<form method="POST" {action} use:enhance class="bg-base-300 shadow-md rounded px-8 pt-6 pb-8 mb-4">
 	<input type="hidden" name="_id" bind:value={$form._id} />
 	<div class="mb-4">
 		<label class="block text-primary text-sm font-bold mb-2" for="name">Dish Name</label>
@@ -84,6 +81,6 @@
 	<button
 		type="submit"
 		class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-		>Submit</button
+		>{submitText}</button
 	>
 </form>
