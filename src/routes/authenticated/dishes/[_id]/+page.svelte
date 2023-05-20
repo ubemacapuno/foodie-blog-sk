@@ -7,6 +7,8 @@
 	import Switch from '$lib/components/Switch.svelte';
 	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 	import { format } from 'date-fns';
+	import DishIngredientsForm from '../DishIngredientsForm.svelte';
+	import DishNotesForm from '../DishNotesForm.svelte';
 
 	export let data: PageData;
 
@@ -116,6 +118,8 @@
 			</div>
 		</div>
 	</div>
+	<DishIngredientsForm {form} {errors} {constraints} {newIngredient} {enhance} />
+	<DishNotesForm {form} {errors} {constraints} {enhance} />
 {:else}
 	<div class="card w-72 bg-base-300 shadow-xl">
 		<div class="card-body">

@@ -2,9 +2,6 @@
 	export let form;
 	export let errors;
 	export let constraints;
-	export let newIngredient;
-	export let addIngredient;
-	export let removeIngredient;
 	export let enhance;
 </script>
 

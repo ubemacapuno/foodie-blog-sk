@@ -6,6 +6,8 @@
 	import Switch from '$lib/components/Switch.svelte';
 	import { getSuperOptions } from '$lib/forms/superforms';
 	import DishProfileForm from './DishProfileForm.svelte';
+	import DishIngredientsForm from './DishIngredientsForm.svelte';
+	import DishNotesForm from './DishNotesForm.svelte';
 
 	export let data: PageData;
 
@@ -23,22 +25,22 @@
 		dataType: 'json'
 	});
 
-	function addIngredient() {
-		if (newIngredient.trim() !== '') {
-			$form.ingredients = [...$form.ingredients, newIngredient];
-			newIngredient = '';
-		} else {
-			alert('Ingredient must not be BLANK.');
-		}
-	}
+	// function addIngredient() {
+	// 	if (newIngredient.trim() !== '') {
+	// 		$form.ingredients = [...$form.ingredients, newIngredient];
+	// 		newIngredient = '';
+	// 	} else {
+	// 		alert('Ingredient must not be BLANK.');
+	// 	}
+	// }
 
-	function removeIngredient(event, index) {
-		// stopPropagation prevents form from submitting after deleting items from the ingredient array
-		// @see https://developer.mozilla.org/en-US/docs/Web/API/Event/stopPropagation
-		event.stopPropagation();
-		$form.ingredients.splice(index, 1);
-		$form.ingredients = $form.ingredients;
-	}
+	// function removeIngredient(event, index) {
+	// 	// stopPropagation prevents form from submitting after deleting items from the ingredient array
+	// 	// @see https://developer.mozilla.org/en-US/docs/Web/API/Event/stopPropagation
+	// 	event.stopPropagation();
+	// 	$form.ingredients.splice(index, 1);
+	// 	$form.ingredients = $form.ingredients;
+	// }
 
 	$: ({ dishes } = data);
 </script>
@@ -46,7 +48,9 @@
 <div class="flex justify-center items-center flex-col">
 	<h1 class="text-3xl my-2">Add A Dish:</h1>
 	<div class="w-full max-w-xs">
-		<DishProfileForm {form} {errors} {constraints} {newIngredient} {enhance} />
+		<DishProfileForm {form} {errors} {constraints} {enhance} />
+		<!-- move DishIngredientsForm and DishNotesForm to ID page -->
+
 		<!-- <form
 			method="POST"
 			action="?/create"
