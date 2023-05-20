@@ -2,9 +2,8 @@
 	import { fly, fade } from 'svelte/transition';
 	import Portal from 'svelte-portal/src/Portal.svelte';
 	import { shortcut } from '$lib/actions/shortcut';
-	import Button from '$elements/Button.svelte';
 
-	export let isModalOpen = false;
+	export let isModalOpen: string | boolean | undefined = false;
 	export let isCloseButtonShowing = true;
 	export let title = '';
 	export let style = '';
@@ -29,7 +28,7 @@
 					<button class="btn-close" on:click={closeModal} aria-label="Close Modal Box">×</button>
 				{/if}
 			{/if}
-			<div class="p-1 card-body bg-base-200">
+			<div class="p-1 card-body rounded-2xl bg-base-200">
 				<slot />
 			</div>
 		</div>
@@ -46,6 +45,7 @@
 
 <style>
 	.modal-wrapper {
+		border-radius: 1rem;
 		inset: 25px 0 auto;
 		margin: 0 auto;
 		max-width: 530px;
