@@ -3,8 +3,6 @@
 	import { getSuperOptions } from '$lib/forms/superforms';
 	import { superForm } from 'sveltekit-superforms/client';
 	import Modal from '$lib/components/Modal.svelte';
-	import { slide, fly } from 'svelte/transition';
-	import Switch from '$lib/components/Switch.svelte';
 	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
 	import { format } from 'date-fns';
 	import DishIngredientsForm from '../DishIngredientsForm.svelte';
@@ -13,10 +11,9 @@
 
 	export let data: PageData;
 
-	type ActiveModalId = 'profile' | 'ingredients' | 'notes' | undefined;
+	type ActiveModalId = 'profile' | 'ingredients' | 'notes' | 'debug' | undefined;
 
 	let activeModalId: string | ActiveModalId = undefined;
-	let showDebug = false;
 	let newIngredient = '';
 
 	// Client API:
@@ -95,8 +92,8 @@
 	</div>
 	<div class="my-4 card w-80 bg-base-300 self-center">
 		<div class="card-body p-3">
+			<h3 class="card-title text-lg text-primary">Ingredients</h3>
 			{#if dish?.ingredients}
-				<h3 class="card-title text-lg text-primary">Ingredients</h3>
 				<ul class="pl-6 list-disc">
 					{#each dish?.ingredients?.length > 0 ? dish.ingredients : [] as ingredient}
 						<li>{ingredient}</li>
@@ -104,53 +101,47 @@
 				</ul>
 			{/if}
 			<div class="flex justify-between">
-				<form>
-					<div class="flex justify-between">
-						<button
-							on:click={() => (activeModalId = 'ingredients')}
-							type="button"
-							class="btn btn-sm btn-outline btn-primary"
-						>
-							{#if dish?.ingredients?.length > 0}
-								Edit
-							{:else}
-								Add
-							{/if}
-						</button>
-					</div>
-				</form>
+				<button
+					on:click={() => (activeModalId = 'ingredients')}
+					type="button"
+					class="btn btn-sm btn-outline btn-primary"
+				>
+					{#if dish?.ingredients?.length > 0}
+						Edit
+					{:else}
+						Add
+					{/if}
+				</button>
 			</div>
 		</div>
 	</div>
 	<div class="my-4 card w-80 bg-base-300 self-center">
 		<div class="card-body p-3">
 			<h3 class="card-title text-lg text-primary">Instructions</h3>
-			{#if dish?.instructions && dish?.notes}
-				{#if dish?.instructions}
-					<p>{dish?.instructions}</p>
-				{/if}
-				{#if dish?.notes}
-					<p>Notes: {dish?.notes}</p>
-				{/if}
-
-				<div class="flex justify-between">
-					<form>
-						<div class="flex justify-between">
-							<button
-								on:click={() => (activeModalId = 'notes')}
-								type="button"
-								class="btn btn-sm btn-outline btn-primary"
-							>
-								{#if dish?.ingredients.length > 0}
-									Edit
-								{:else}
-									Add
-								{/if}
-							</button>
-						</div>
-					</form>
-				</div>
+			{#if dish?.instructions?.length > 0}
+				<p>{dish?.instructions}</p>
+			{:else}
+				<p>Empty</p>
 			{/if}
+			<h3 class="card-title text-lg text-primary">Notes</h3>
+			{#if dish?.notes?.length > 0}
+				<p>{dish?.notes}</p>
+			{:else}
+				<p>Empty</p>
+			{/if}
+			<div class="flex justify-between">
+				<button
+					on:click={() => (activeModalId = 'notes')}
+					type="button"
+					class="btn btn-sm btn-outline btn-primary"
+				>
+					{#if dish?.ingredients?.length > 0}
+						Edit
+					{:else}
+						Add
+					{/if}
+				</button>
+			</div>
 		</div>
 	</div>
 {:else}
@@ -161,6 +152,7 @@
 		</div>
 	</div>
 {/if}
+<button on:click={() => (activeModalId = 'debug')} type="button">👩‍💻</button>
 <Modal bind:isModalOpen={activeModalId}>
 	{#if activeModalId === 'profile'}
 		<DishProfileForm
@@ -175,5 +167,7 @@
 		<DishIngredientsForm action="?/update" {form} {errors} {newIngredient} {enhance} />
 	{:else if activeModalId === 'notes'}
 		<DishNotesForm action="?/update" {form} {errors} {constraints} {enhance} />
+	{:else if activeModalId === 'debug'}
+		<SuperDebug data={$form} />
 	{/if}
 </Modal>

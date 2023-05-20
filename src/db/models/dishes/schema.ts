@@ -24,7 +24,8 @@ export const dishes_fields = {
 	instructions: z
 		.string()
 		.min(3, 'Instructions must be at least 3 characters long.')
-		.max(500, 'Instructions must not exceed 500 characters.'),
+		.max(500, 'Instructions must not exceed 500 characters.')
+		.optional(),
 	cuisine: z
 		.string()
 		.min(1, 'Please enter a cuisine.')

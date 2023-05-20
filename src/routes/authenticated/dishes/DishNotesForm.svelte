@@ -7,7 +7,12 @@
 	export let submitText = 'submit';
 </script>
 
-<form method="POST" {action} use:enhance class="bg-base-300 shadow-md rounded px-8 pt-6 pb-8 mb-4">
+<form
+	method="POST"
+	{action}
+	use:enhance
+	class="bg-base-300 shadow-md rounded-2xl px-8 pt-6 pb-8 mb-4"
+>
 	<div class="mb-4">
 		<label class="block text-primary text-sm font-bold mb-2" for="instructions">Instructions</label>
 		<textarea
