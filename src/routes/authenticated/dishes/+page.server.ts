@@ -3,16 +3,14 @@ import { dishes } from '$db/models/dishes/collection';
 import { Dishes } from '$db/models/dishes/actions';
 import { fail } from '@sveltejs/kit';
 import { superValidate } from 'sveltekit-superforms/server';
-import { dishes_schema } from '$db/models/dishes/schema';
 import { fix_pojo } from '$utilities/fix_pojo';
-
-// See https://zod.dev/?id=primitives for schema syntax
-const schema = dishes_schema;
+import { new_dish_schema } from '$db/models/dishes/schema';
 
 export const load = (async (event) => {
 	const all_dishes = await dishes.find({}, { sort: { order: 1 } }).toArray();
 	// Server API:
-	const form = await superValidate(event, schema);
+	// See https://zod.dev/?id=primitives for schema syntax
+	const form = await superValidate(event, new_dish_schema);
 
 	// Always return { form } in load and form actions.
 	return {

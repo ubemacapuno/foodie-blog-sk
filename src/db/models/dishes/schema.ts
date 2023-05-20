@@ -24,7 +24,10 @@ export const dishes_schema = z.object(dishes_fields);
 export const new_dish_schema = dishes_schema.omit({
 	_id: true,
 	date_added: true,
-	date_updated: true
+	date_updated: true,
+	ingredients: true,
+	instructions: true,
+	notes: true
 });
 export const updated_dishes_schema = dishes_schema.omit({
 	date_added: true

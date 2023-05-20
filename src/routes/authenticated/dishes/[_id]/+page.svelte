@@ -50,6 +50,7 @@
 	let isEditModalOpen = false;
 
 	$: ({ dish } = data);
+	$: console.log('DISH');
 </script>
 
 {#if dish}
@@ -63,7 +64,7 @@
 			</h3>
 			<label for="rating" class="block text-sm font-bold mb-2">Rating:</label>
 			<div class="rating">
-				{#each Array.from({ length: 5 }).map((_, i) => i + 1) as rating}
+				{#each Array.from({ length: 5 }).map((_, i) => i + 1) || [] as rating}
 					<input
 						type="radio"
 						id={`rating_${rating}`}
@@ -75,15 +76,21 @@
 					/>
 				{/each}
 			</div>
-			<p>Ingredients:</p>
-			<ul class="pl-6 list-disc">
-				{#each dish.ingredients as ingredient}
-					<li>{ingredient}</li>
-				{/each}
-			</ul>
-			<p>Instructions: {dish.instructions}</p>
 			<p>Cuisine: {dish.cuisine}</p>
-			<p>Notes: {dish.notes}</p>
+			{#if dish.ingredients}
+				<p>Ingredients:</p>
+				<ul class="pl-6 list-disc">
+					{#each dish.ingredients || [] as ingredient}
+						<li>{ingredient}</li>
+					{/each}
+				</ul>
+			{/if}
+			{#if dish.instructions}
+				<p>Instructions: {dish.instructions}</p>
+			{/if}
+			{#if dish.notes}
+				<p>Notes: {dish.notes}</p>
+			{/if}
 			<p>Added {formatDate(dish.date_added)}</p>
 			{#if dish?.date_updated !== dish?.date_added}
 				<p class="text-secondary">

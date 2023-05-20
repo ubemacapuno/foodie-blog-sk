@@ -5,6 +5,7 @@
 	import { slide, fly } from 'svelte/transition';
 	import Switch from '$lib/components/Switch.svelte';
 	import { getSuperOptions } from '$lib/forms/superforms';
+	import DishProfileForm from './DishProfileForm.svelte';
 
 	export let data: PageData;
 
@@ -45,7 +46,8 @@
 <div class="flex justify-center items-center flex-col">
 	<h1 class="text-3xl my-2">Add A Dish:</h1>
 	<div class="w-full max-w-xs">
-		<form
+		<DishProfileForm {form} {errors} {constraints} {newIngredient} {enhance} />
+		<!-- <form
 			method="POST"
 			action="?/create"
 			use:enhance
@@ -182,7 +184,7 @@
 					>Submit</button
 				>
 			</div>
-		</form>
+		</form> -->
 		<div class="py-2 flex justify-between content-center">
 			<span class={showDebug ? 'text-warning' : ''}>Form Debugger</span>
 			{#if showDebug}
