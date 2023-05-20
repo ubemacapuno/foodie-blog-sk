@@ -1,0 +1,12 @@
+{
+	"cSpell.words": [
+		"accreditations",
+		"autoimport",
+		"bson",
+		"datetime",
+		"superform",
+		"superforms",
+		"uniqueid"
+	],
+	"svelte.plugin.svelte.compilerWarnings": { "missing-declaration": "ignore" }
+}

@@ -12,15 +12,16 @@
 	let newIngredient = '';
 
 	// Client API:
-	const { form, errors, constraints, enhance } = superForm(data.form, {
-		/**
-		 * Spreading getSuperOptions() allows us to sync up our toast messages from the flash library.
-		 * @see https://superforms.vercel.app/flash-messages
-		 */
-		...getSuperOptions(),
-		// This is a requirement when the schema contains nested objects:
-		dataType: 'json'
-	});
+	const form = superForm(companyForm, { ...getSuperOptions(), dataType: 'json' });
+	// const { form, errors, constraints, enhance } = superForm(data.form, {
+	// 	/**
+	// 	 * Spreading getSuperOptions() allows us to sync up our toast messages from the flash library.
+	// 	 * @see https://superforms.vercel.app/flash-messages
+	// 	 */
+	// 	...getSuperOptions(),
+	// 	// This is a requirement when the schema contains nested objects:
+	// 	dataType: 'json'
+	// });
 
 	function addIngredient() {
 		if (newIngredient.trim() !== '') {
@@ -45,7 +46,7 @@
 <div class="flex justify-center items-center flex-col">
 	<h1 class="text-3xl my-2">Add A Dish:</h1>
 	<div class="w-full max-w-xs">
-		<form
+		<!-- <form
 			method="POST"
 			action="?/create"
 			use:enhance
@@ -182,7 +183,7 @@
 					>Submit</button
 				>
 			</div>
-		</form>
+		</form> -->
 		<div class="py-2 flex justify-between content-center">
 			<span class={showDebug ? 'text-warning' : ''}>Form Debugger</span>
 			{#if showDebug}
