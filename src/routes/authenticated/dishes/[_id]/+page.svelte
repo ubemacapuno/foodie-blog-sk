@@ -8,6 +8,7 @@
 	import DishIngredientsForm from '../DishIngredientsForm.svelte';
 	import DishNotesForm from '../DishNotesForm.svelte';
 	import DishProfileForm from '../DishProfileForm.svelte';
+	import EmptyState from '$lib/components/EmptyState.svelte';
 
 	export let data: PageData;
 
@@ -80,7 +81,9 @@
 						<button
 							on:click={() => (activeModalId = 'profile')}
 							type="button"
-							class="btn btn-sm btn-outline btn-primary">Edit</button
+							class="btn btn-sm btn-primary"
+						>
+							Update</button
 						>
 					</div>
 				</form>
@@ -101,15 +104,17 @@
 						<li>{ingredient}</li>
 					{/each}
 				</ul>
+			{:else}
+				<EmptyState content="There are no ingredients." />
 			{/if}
 			<div class="flex justify-between">
 				<button
 					on:click={() => (activeModalId = 'ingredients')}
 					type="button"
-					class="btn btn-sm btn-outline btn-primary"
+					class="btn btn-sm btn-primary"
 				>
 					{#if dish?.ingredients?.length > 0}
-						Edit
+						Update
 					{:else}
 						Add
 					{/if}
@@ -123,22 +128,22 @@
 			{#if dish?.instructions?.length > 0}
 				<p>{dish?.instructions}</p>
 			{:else}
-				<p>Empty</p>
+				<EmptyState content="There are no instructions." />
 			{/if}
 			<h3 class="card-title text-lg text-primary">Notes</h3>
 			{#if dish?.notes?.length > 0}
 				<p>{dish?.notes}</p>
 			{:else}
-				<p>Empty</p>
+				<EmptyState content="There are no notes." />
 			{/if}
 			<div class="flex justify-between">
 				<button
 					on:click={() => (activeModalId = 'notes')}
 					type="button"
-					class="btn btn-sm btn-outline btn-primary"
+					class="btn btn-sm btn-primary"
 				>
-					{#if dish?.ingredients?.length > 0}
-						Edit
+					{#if dish?.ingredients?.length > 0 || dish?.notes?.length > 0}
+						Update
 					{:else}
 						Add
 					{/if}
