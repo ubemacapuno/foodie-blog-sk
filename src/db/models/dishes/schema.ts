@@ -25,12 +25,13 @@ export const dishes_fields = {
 		.string()
 		.min(3, 'Instructions must be at least 3 characters long.')
 		.max(500, 'Instructions must not exceed 500 characters.')
+		.nullable()
 		.optional(),
 	cuisine: z
 		.string()
 		.min(1, 'Please enter a cuisine.')
 		.max(100, 'Please use less than 100 characters.'),
-	notes: z.string().max(500, 'Notes must not exceed 500 characters.').optional()
+	notes: z.string().max(500, 'Notes must not exceed 500 characters.').nullable().optional()
 };
 export const dishes_schema = z.object(dishes_fields);
 export const new_dish_schema = dishes_schema.omit({
