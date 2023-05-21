@@ -22,7 +22,9 @@
 		 * Spreading getSuperOptions() allows us to sync up our toast messages from the flash library.
 		 * @see https://superforms.vercel.app/flash-messages
 		 */
-		...getSuperOptions(),
+		...getSuperOptions(() => {
+			activeModalId = undefined;
+		}),
 		// This is a requirement when the schema contains nested objects:
 		dataType: 'json'
 	});
@@ -152,7 +154,11 @@
 		</div>
 	</div>
 {/if}
-<button on:click={() => (activeModalId = 'debug')} type="button">👩‍💻</button>
+<button
+	class="btn btn-sm btn-outline btn-accent"
+	on:click={() => (activeModalId = 'debug')}
+	type="button">👩‍💻 Debugger</button
+>
 <Modal bind:isModalOpen={activeModalId}>
 	{#if activeModalId === 'profile'}
 		<DishProfileForm

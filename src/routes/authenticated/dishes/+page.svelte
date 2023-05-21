@@ -3,6 +3,7 @@
 	import { superForm } from 'sveltekit-superforms/client';
 	import { getSuperOptions } from '$lib/forms/superforms';
 	import DishProfileForm from './DishProfileForm.svelte';
+	import DebugSwitch from '$lib/components/DebugSwitch.svelte';
 
 	export let data: PageData;
 
@@ -25,6 +26,8 @@
 		<DishProfileForm action="?/create" {form} {errors} {constraints} {enhance} />
 	</div>
 </div>
+
+<DebugSwitch form={$form} />
 
 {#each dishes as dish}
 	<div class="my-4 card w-80 bg-base-300 shadow-xl text-primary self-center">

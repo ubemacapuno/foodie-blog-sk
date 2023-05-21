@@ -1,7 +1,5 @@
 <script lang="ts">
-	import { slide, fly } from 'svelte/transition';
-	import Switch from '$lib/components/Switch.svelte';
-	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
+	import DebugSwitch from '$lib/components/DebugSwitch.svelte';
 
 	export let form;
 	export let action: string;
@@ -94,16 +92,4 @@
 		class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
 		>{submitText}</button
 	>
-	<div class="py-2 flex justify-between content-center">
-		<span class={showDebug ? 'text-warning' : ''}>Debug</span>
-		{#if showDebug}
-			<span transition:fly={{ y: 200, duration: 200 }}>👩‍💻</span>
-		{/if}
-		<Switch bind:checked={showDebug} />
-	</div>
-	{#if showDebug}
-		<div transition:slide|local class="mb-7 px-1">
-			<SuperDebug data={$form} />
-		</div>
-	{/if}
 </form>
