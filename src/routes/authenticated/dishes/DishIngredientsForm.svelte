@@ -50,13 +50,11 @@
 							{ingredient}
 						</li>
 					</ul>
-					{#if $form?.ingredients.length > 1}
-						<button
-							type="button"
-							on:click|preventDefault={(event) => removeIngredient(event, index)}
-							class="ml-2 btn btn-error btn-xs">🗑️</button
-						>
-					{/if}
+					<button
+						type="button"
+						on:click|preventDefault={(event) => removeIngredient(event, index)}
+						class="ml-2 btn btn-error btn-xs">🗑️</button
+					>
 				</div>
 			{/each}
 		</div>

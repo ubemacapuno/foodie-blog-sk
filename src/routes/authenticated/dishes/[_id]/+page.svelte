@@ -8,6 +8,8 @@
 	import DishIngredientsForm from '../DishIngredientsForm.svelte';
 	import DishNotesForm from '../DishNotesForm.svelte';
 	import DishProfileForm from '../DishProfileForm.svelte';
+	import EmptyState from '$lib/components/EmptyState.svelte';
+	import ConfirmDeleteButton from '$lib/components/ConfirmDeleteButton.svelte';
 
 	export let data: PageData;
 
@@ -80,36 +82,41 @@
 						<button
 							on:click={() => (activeModalId = 'profile')}
 							type="button"
-							class="btn btn-sm btn-outline btn-primary">Edit</button
+							class="btn btn-sm btn-primary"
+						>
+							Update</button
 						>
 					</div>
 				</form>
 
-				<form method="POST" action="?/delete" use:enhance>
+				<!-- <form method="POST" action="?/delete" use:enhance>
 					<input type="hidden" name="_id" value={$form._id} />
 					<button type="submit" class="btn btn-sm btn-outline btn-error">Delete</button>
-				</form>
+				</form> -->
+				<ConfirmDeleteButton action="?/delete" _id={$form._id}>Delete</ConfirmDeleteButton>
 			</div>
 		</div>
 	</div>
 	<div class="my-4 card w-80 bg-base-300 self-center">
 		<div class="card-body p-3">
 			<h3 class="card-title text-lg text-primary">Ingredients</h3>
-			{#if dish?.ingredients}
+			{#if dish?.ingredients?.length > 0}
 				<ul class="pl-6 list-disc">
-					{#each dish?.ingredients?.length > 0 ? dish.ingredients : [] as ingredient}
+					{#each dish?.ingredients || [] as ingredient}
 						<li>{ingredient}</li>
 					{/each}
 				</ul>
+			{:else}
+				<EmptyState content="There are no ingredients." />
 			{/if}
 			<div class="flex justify-between">
 				<button
 					on:click={() => (activeModalId = 'ingredients')}
 					type="button"
-					class="btn btn-sm btn-outline btn-primary"
+					class="btn btn-sm btn-primary"
 				>
 					{#if dish?.ingredients?.length > 0}
-						Edit
+						Update
 					{:else}
 						Add
 					{/if}
@@ -123,22 +130,22 @@
 			{#if dish?.instructions?.length > 0}
 				<p>{dish?.instructions}</p>
 			{:else}
-				<p>Empty</p>
+				<EmptyState content="There are no instructions." />
 			{/if}
 			<h3 class="card-title text-lg text-primary">Notes</h3>
 			{#if dish?.notes?.length > 0}
 				<p>{dish?.notes}</p>
 			{:else}
-				<p>Empty</p>
+				<EmptyState content="There are no notes." />
 			{/if}
 			<div class="flex justify-between">
 				<button
 					on:click={() => (activeModalId = 'notes')}
 					type="button"
-					class="btn btn-sm btn-outline btn-primary"
+					class="btn btn-sm btn-primary"
 				>
-					{#if dish?.ingredients?.length > 0}
-						Edit
+					{#if dish?.ingredients?.length > 0 || dish?.notes?.length > 0}
+						Update
 					{:else}
 						Add
 					{/if}

@@ -18,21 +18,25 @@
 {#if isModalOpen}
 	<Portal target="body">
 		<div transition:fly={{ opacity: 0, y: 50 }} class="modal-wrapper" {style}>
-			{#if isCloseButtonShowing || title}
-				{#if title}
-					<h4 class="text-lg">
-						{title}
-					</h4>
-				{/if}
-				{#if isCloseButtonShowing}
-					<button class="btn-close" on:click={closeModal} aria-label="Close Modal Box">×</button>
-				{/if}
-			{/if}
-			<div class="p-1 card-body bg-base-200">
-				<slot />
+			<div class="card bg-neutral text-neutral-content">
+				<div class="card-body items-center text-center">
+					{#if isCloseButtonShowing || title}
+						{#if title}
+							<h2 class="card-title">
+								{title}
+							</h2>
+						{/if}
+						{#if isCloseButtonShowing}
+							<button class="btn-close" on:click={closeModal} aria-label="Close Modal Box">×</button
+							>
+						{/if}
+					{/if}
+					<div class="p-0 card-body bg-base-200">
+						<slot />
+					</div>
+				</div>
 			</div>
 		</div>
-
 		<div
 			on:click={closeModal}
 			transition:fade

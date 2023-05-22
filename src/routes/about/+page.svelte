@@ -12,7 +12,7 @@
 	<div class="card-body">
 		<h1 class="text-3xl font-bold">
 			About <span class="text-accent">Foodie</span><span class="lowercase text-base-content"
-				>Blog</span
+				>Blog 🍪</span
 			>
 		</h1>
 
