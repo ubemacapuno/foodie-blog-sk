@@ -58,7 +58,8 @@
 				</div>
 			{/each}
 		</div>
-		{#if $errors.ingredients}<span class="text-error">{JSON.stringify($errors.ingredients)}</span
+		{#if $errors.ingredients && $form?.ingedients?.length > 0}<span class="text-error"
+				>{JSON.stringify($errors.ingredients)}</span
 			>{/if}
 	</div>
 

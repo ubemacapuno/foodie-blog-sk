@@ -8,7 +8,6 @@
 	import DishIngredientsForm from '../DishIngredientsForm.svelte';
 	import DishNotesForm from '../DishNotesForm.svelte';
 	import DishProfileForm from '../DishProfileForm.svelte';
-	import EmptyState from '$lib/components/EmptyState.svelte';
 	import ConfirmDeleteButton from '$lib/components/ConfirmDeleteButton.svelte';
 
 	export let data: PageData;
@@ -128,13 +127,13 @@
 		<div class="card-body p-3">
 			<h3 class="card-title text-lg text-primary">Instructions</h3>
 			{#if dish?.instructions?.length > 0}
-				<p>{dish?.instructions}</p>
+				<p>{@html dish?.instructions}</p>
 			{:else}
 				<EmptyState content="There are no instructions." />
 			{/if}
 			<h3 class="card-title text-lg text-primary">Notes</h3>
 			{#if dish?.notes?.length > 0}
-				<p>{dish?.notes}</p>
+				<p>{@html dish?.notes}</p>
 			{:else}
 				<EmptyState content="There are no notes." />
 			{/if}
@@ -144,7 +143,7 @@
 					type="button"
 					class="btn btn-sm btn-primary"
 				>
-					{#if dish?.ingredients?.length > 0 || dish?.notes?.length > 0}
+					{#if dish?.ingredients?.length > 0 && dish?.notes?.length > 0}
 						Update
 					{:else}
 						Add

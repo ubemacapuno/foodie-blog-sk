@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let content = 'Nothing here.';
+	export let content = 'No data here.';
 	export let accent: string = 'text-info';
 </script>
 
