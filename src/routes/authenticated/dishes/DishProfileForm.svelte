@@ -6,6 +6,7 @@
 	export let errors;
 	export let constraints;
 	export let enhance;
+	export let delayed;
 	export let submitText = 'submit';
 
 	let showDebug = false;
@@ -92,4 +93,5 @@
 		class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
 		>{submitText}</button
 	>
+	{#if $delayed}<span class="delayed">Working...</span>{/if}
 </form>

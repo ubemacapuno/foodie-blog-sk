@@ -21,7 +21,7 @@
 </script>
 
 <div class="flex justify-center items-center flex-col">
-	<h1 class="text-3xl my-2">Add A Dish:</h1>
+	<h1 class="text-3xl text-primary my-2">Add A Dish:</h1>
 	<div class="w-full max-w-xs">
 		<DishProfileForm action="?/create" {form} {errors} {constraints} {enhance} />
 	</div>
@@ -29,6 +29,7 @@
 
 <DebugSwitch form={$form} />
 
+<h2 class="text-2xl text-primary my-2">Dishes:</h2>
 {#each dishes as dish}
 	<div class="my-4 card w-80 bg-base-300 shadow-xl text-primary self-center">
 		<div class="card-body">
@@ -38,4 +39,6 @@
 			</div>
 		</div>
 	</div>
+{:else}
+	<EmptyState content="There are currently 0 dishes." />
 {/each}

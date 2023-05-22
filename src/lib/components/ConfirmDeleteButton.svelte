@@ -37,12 +37,16 @@
 			<input type="hidden" name="_id" value={_id} />
 			<button
 				class="btn btn-sm btn-outline btn-secondary"
-				on:click={() => {
+				on:click|preventDefault={() => {
 					isConfirmActive = false;
 				}}
 			>
 				Cancel
 			</button>
+			<!-- 
+				 preventDefault is a Svelte modifier which calls event.preventDefault() before running the handler. In this case, it will prevent the form from being submitted when you click the "Cancel" button, thus preventing the dish from being deleted.
+				 @see docs https://svelte.dev/tutorial/event-modifiers
+			-->
 			<button
 				type="submit"
 				class="btn btn-sm btn-outline btn-error"
