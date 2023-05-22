@@ -5,11 +5,7 @@ import autoImport from 'sveltekit-autoimport';
 export default defineConfig({
 	plugins: [
 		autoImport({
-			components: ['./src/elements'],
-
-			module: {
-				svelte: ['onMount']
-			}
+			components: ['./src/elements']
 		}),
 		sveltekit()
 	]
