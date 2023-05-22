@@ -3,6 +3,7 @@
 	import Button from '$elements/Button.svelte';
 	import { superForm } from 'sveltekit-superforms/client';
 	import { getSuperOptions } from '$lib/forms/superforms';
+	import ConfirmDeleteModal from './ConfirmDeleteModal.svelte';
 
 	// Modal Props
 	export let isConfirmActive = false;
@@ -19,31 +20,34 @@
 	const { enhance, submitting, delayed } = superForm(_id, getSuperOptions());
 </script>
 
-<Button
-	accent="warning"
-	iconName="delete"
+<button
 	on:click={() => {
 		isConfirmActive = true;
 	}}
 	{disabled}
+	class="btn btn-sm btn-outline btn-error"
 >
 	<slot />
-</Button>
+</button>
 
-<Modal bind:isModalOpen={isConfirmActive} {title} maxWidth="28rem">
-	<div class="padding">
+<ConfirmDeleteModal bind:isModalOpen={isConfirmActive} {title}>
+	<div class="bg-neutral">
 		<p>{@html description}</p>
 		<form method="POST" {action} use:enhance>
 			<input type="hidden" name="_id" value={_id} />
-			<Button
-				outline="btn-outline"
+			<button
+				class="btn btn-sm btn-outline btn-secondary"
 				on:click={() => {
 					isConfirmActive = false;
 				}}
 			>
 				Cancel
-			</Button>
-			<Button type="submit" accent="warning" loading={$submitting || $delayed}>Delete</Button>
+			</button>
+			<button
+				type="submit"
+				class="btn btn-sm btn-outline btn-error"
+				loading={$submitting || $delayed}>Delete</button
+			>
 		</form>
 	</div>
-</Modal>
+</ConfirmDeleteModal>

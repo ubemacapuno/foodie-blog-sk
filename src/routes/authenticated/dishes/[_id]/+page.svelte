@@ -9,6 +9,7 @@
 	import DishNotesForm from '../DishNotesForm.svelte';
 	import DishProfileForm from '../DishProfileForm.svelte';
 	import EmptyState from '$lib/components/EmptyState.svelte';
+	import ConfirmDeleteButton from '$lib/components/ConfirmDeleteButton.svelte';
 
 	export let data: PageData;
 
@@ -88,19 +89,20 @@
 					</div>
 				</form>
 
-				<form method="POST" action="?/delete" use:enhance>
+				<!-- <form method="POST" action="?/delete" use:enhance>
 					<input type="hidden" name="_id" value={$form._id} />
 					<button type="submit" class="btn btn-sm btn-outline btn-error">Delete</button>
-				</form>
+				</form> -->
+				<ConfirmDeleteButton action="?/delete" _id={$form._id}>Delete</ConfirmDeleteButton>
 			</div>
 		</div>
 	</div>
 	<div class="my-4 card w-80 bg-base-300 self-center">
 		<div class="card-body p-3">
 			<h3 class="card-title text-lg text-primary">Ingredients</h3>
-			{#if dish?.ingredients}
+			{#if dish?.ingredients?.length > 0}
 				<ul class="pl-6 list-disc">
-					{#each dish?.ingredients?.length > 0 ? dish.ingredients : [] as ingredient}
+					{#each dish?.ingredients || [] as ingredient}
 						<li>{ingredient}</li>
 					{/each}
 				</ul>
