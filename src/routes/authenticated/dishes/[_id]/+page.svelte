@@ -8,7 +8,6 @@
 	import DishIngredientsForm from '../DishIngredientsForm.svelte';
 	import DishNotesForm from '../DishNotesForm.svelte';
 	import DishProfileForm from '../DishProfileForm.svelte';
-	// import EmptyState from '$elements/EmptyState.svelte';
 	import ConfirmDeleteButton from '$lib/components/ConfirmDeleteButton.svelte';
 
 	export let data: PageData;
