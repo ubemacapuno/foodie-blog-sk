@@ -12,15 +12,15 @@ export const dishes_fields = {
 	date_added: requiredString,
 	date_updated: requiredString,
 	rating: z.string().nonempty().default('5'),
-	serving_size: z.number().positive().max(9999).optional(),
-	prep_time: z.number().positive().max(9999).optional(),
-	cook_time: z.number().positive().max(9999).optional(),
-	calories: z.number().positive().max(9999).optional(),
+	serving_size: z.number().positive().max(9999).nullable().optional(),
+	prep_time: z.number().positive().max(9999).nullable().optional(),
+	cook_time: z.number().positive().max(9999).nullable().optional(),
+	calories: z.number().positive().max(9999).nullable().optional(),
 	ingredients: z
 		.array(
 			z
 				.string()
-				.min(3, 'Ingredient must be at least 1 character long.')
+				.min(2, 'Ingredient must be at least 2 characters long.')
 				.max(200, 'Single ingredient must be 200 or less characters.')
 		)
 		.max(100, 'Please use less than 100 ingredients.'),
