@@ -36,7 +36,7 @@
 		"svelte-preprocess": "^4.10.7",
 		"sveltekit-autoimport": "^1.6.10",
 		"sveltekit-flash-message": "^0.11.3",
-		"sveltekit-superforms": "^0.6.16",
+		"sveltekit-superforms": "^0.8.7",
 		"tailwindcss": "^3.3.1",
 		"tslib": "^2.4.1",
 		"typescript": "^5.0.4",

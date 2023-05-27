@@ -9,6 +9,7 @@
 	import DishNotesForm from '../DishNotesForm.svelte';
 	import DishProfileForm from '../DishProfileForm.svelte';
 	import ConfirmDeleteButton from '$lib/components/ConfirmDeleteButton.svelte';
+	import DishNumbersForm from '../DishNumbersForm.svelte';
 
 	export let data: PageData;
 
@@ -76,7 +77,6 @@
 							*Updated {formatDate(dish.date_updated)}
 						</p>
 					{/if}
-
 					<div class="flex justify-between">
 						<form>
 							<div class="flex justify-between">
@@ -89,10 +89,65 @@
 								>
 							</div>
 						</form>
-						<ConfirmDeleteButton action="?/delete" _id={$form._id}>Delete</ConfirmDeleteButton>
+						<ConfirmDeleteButton
+							description="Are you sure you want to delete {dish.name}?"
+							action="?/delete"
+							_id={$form._id}>Delete</ConfirmDeleteButton
+						>
 					</div>
 				</div>
 			</div>
+
+			<div class="my-4 card w-80 bg-base-300 self-center">
+				<div class="card-body p-3">
+					<div>
+						{#if dish?.prep_time}
+							Prep Time: {dish?.prep_time} min
+						{:else}
+							<EmptyState content="Preparation time not yet provided." />
+						{/if}
+					</div>
+
+					<div>
+						{#if dish?.cook_time}
+							Cook Time: {dish?.cook_time} min
+						{:else}
+							<EmptyState content="Cooking time not yet provided." />
+						{/if}
+					</div>
+
+					<div>
+						{#if dish?.serving_size}
+							Serving size: {dish?.serving_size}
+						{:else}
+							<EmptyState content="Serving size not specified." />
+						{/if}
+					</div>
+
+					<div>
+						{#if dish?.calories}
+							Calories per serving: {dish?.calories} kcal
+						{:else}
+							<EmptyState content="Calorie count is currently unknown." />
+						{/if}
+					</div>
+
+					<div class="flex justify-between">
+						<button
+							on:click={() => (activeModalId = 'numbers')}
+							type="button"
+							class="btn btn-sm btn-primary"
+						>
+							{#if dish?.prep_time && dish?.cook_time && dish?.calories}
+								Update
+							{:else}
+								Add
+							{/if}
+						</button>
+					</div>
+				</div>
+			</div>
+
 			<div class="my-4 card w-80 bg-base-300 self-center">
 				<div class="card-body p-3">
 					<h3 class="card-title text-lg text-primary">Ingredients</h3>
@@ -179,6 +234,8 @@
 		<DishIngredientsForm action="?/update" {form} {errors} {newIngredient} {enhance} />
 	{:else if activeModalId === 'notes'}
 		<DishNotesForm action="?/update" {form} {errors} {constraints} {enhance} />
+	{:else if activeModalId === 'numbers'}
+		<DishNumbersForm action="?/update" {form} {errors} {constraints} {enhance} />
 	{:else if activeModalId === 'debug'}
 		<SuperDebug data={$form} />
 	{/if}

@@ -8,19 +8,19 @@ const requiredString = z.string().min(1, REQUIRED_FILED);
 // Validation schema for dishes
 export const dishes_fields = {
 	_id: z.string().min(1),
-	name: z.string().min(3),
+	name: z.string().min(3).max(50, 'Please use less than 50 characters.'),
 	date_added: requiredString,
 	date_updated: requiredString,
 	rating: z.string().nonempty().default('5'),
-	serving_size: z.number().positive(),
-	prep_time: z.number().positive().max(9999),
-	cook_time: z.number().positive().max(9999),
-	calories: z.number().positive().max(9999),
+	serving_size: z.number().positive().max(9999).nullable().optional(),
+	prep_time: z.number().positive().max(9999).nullable().optional(),
+	cook_time: z.number().positive().max(9999).nullable().optional(),
+	calories: z.number().positive().max(9999).nullable().optional(),
 	ingredients: z
 		.array(
 			z
 				.string()
-				.min(1, 'Ingredient must be at least 1 character long.')
+				.min(2, 'Ingredient must be at least 2 characters long.')
 				.max(200, 'Single ingredient must be 200 or less characters.')
 		)
 		.max(100, 'Please use less than 100 ingredients.'),
@@ -32,7 +32,7 @@ export const dishes_fields = {
 	cuisine: z
 		.string()
 		.min(1, 'Please enter a cuisine.')
-		.max(100, 'Please use less than 100 characters.'),
+		.max(50, 'Please use less than 50 characters.'),
 	notes: z.string().max(5000, 'Notes must not exceed 5000 characters.').nullable().optional()
 };
 export const dishes_schema = z.object(dishes_fields);
@@ -42,7 +42,10 @@ export const new_dish_schema = dishes_schema.omit({
 	date_updated: true,
 	ingredients: true,
 	instructions: true,
-	notes: true
+	notes: true,
+	serving_size: true,
+	prep_time: true,
+	cook_time: true
 });
 export const updated_dishes_schema = dishes_schema.omit({
 	date_added: true
