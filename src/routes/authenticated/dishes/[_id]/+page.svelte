@@ -89,7 +89,11 @@
 								>
 							</div>
 						</form>
-						<ConfirmDeleteButton action="?/delete" _id={$form._id}>Delete</ConfirmDeleteButton>
+						<ConfirmDeleteButton
+							description="Are you sure you want to delete {dish.name}?"
+							action="?/delete"
+							_id={$form._id}>Delete</ConfirmDeleteButton
+						>
 					</div>
 				</div>
 			</div>
@@ -98,7 +102,7 @@
 				<div class="card-body p-3">
 					<div>
 						{#if dish?.prep_time}
-							Prep Time: {dish?.prep_time}min
+							Prep Time: {dish?.prep_time} min
 						{:else}
 							<EmptyState content="Preparation time not yet provided." />
 						{/if}
@@ -106,7 +110,7 @@
 
 					<div>
 						{#if dish?.cook_time}
-							Cook Time: {dish?.cook_time}min
+							Cook Time: {dish?.cook_time} min
 						{:else}
 							<EmptyState content="Cooking time not yet provided." />
 						{/if}
@@ -122,7 +126,7 @@
 
 					<div>
 						{#if dish?.calories}
-							Calories per serving: {dish?.calories}
+							Calories per serving: {dish?.calories} kcal
 						{:else}
 							<EmptyState content="Calorie count is currently unknown." />
 						{/if}

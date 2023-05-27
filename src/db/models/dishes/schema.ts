@@ -8,7 +8,7 @@ const requiredString = z.string().min(1, REQUIRED_FILED);
 // Validation schema for dishes
 export const dishes_fields = {
 	_id: z.string().min(1),
-	name: z.string().min(3),
+	name: z.string().min(3).max(50, 'Please use less than 50 characters.'),
 	date_added: requiredString,
 	date_updated: requiredString,
 	rating: z.string().nonempty().default('5'),
@@ -32,7 +32,7 @@ export const dishes_fields = {
 	cuisine: z
 		.string()
 		.min(1, 'Please enter a cuisine.')
-		.max(100, 'Please use less than 100 characters.'),
+		.max(50, 'Please use less than 50 characters.'),
 	notes: z.string().max(5000, 'Notes must not exceed 5000 characters.').nullable().optional()
 };
 export const dishes_schema = z.object(dishes_fields);
