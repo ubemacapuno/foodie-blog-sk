@@ -112,8 +112,8 @@ devDependencies:
     specifier: ^0.11.3
     version: 0.11.3(@sveltejs/kit@1.14.0)(svelte@3.57.0)
   sveltekit-superforms:
-    specifier: ^0.6.16
-    version: 0.6.16(@sveltejs/kit@1.14.0)(svelte@3.57.0)(zod@3.21.4)
+    specifier: ^0.8.7
+    version: 0.8.7(@sveltejs/kit@1.14.0)(svelte@3.57.0)(zod@3.21.4)
   tailwindcss:
     specifier: ^3.3.1
     version: 3.3.2
@@ -3669,8 +3669,8 @@ packages:
       svelte: 3.57.0
     dev: true
 
-  /sveltekit-superforms@0.6.16(@sveltejs/kit@1.14.0)(svelte@3.57.0)(zod@3.21.4):
-    resolution: {integrity: sha512-rFAe6A/inHvChjO+TPKbrQmaVuG/d6tp8TX45X5b9O3GqEZWWfWUbGzrMv+W4Egyf2EWDfGAxzy0vcafOVgz6Q==}
+  /sveltekit-superforms@0.8.7(@sveltejs/kit@1.14.0)(svelte@3.57.0)(zod@3.21.4):
+    resolution: {integrity: sha512-0aFK31TNz4AM3N7dzL99QUXlVF2O+W/TNVU+M41VVaAKtJKFNasbv8GNLd5wrhN7UWN6kNJnt4MlZBPISkIQ6w==}
     peerDependencies:
       '@sveltejs/kit': 1.x
       svelte: 3.x

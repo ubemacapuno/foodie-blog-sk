@@ -12,15 +12,15 @@ export const dishes_fields = {
 	date_added: requiredString,
 	date_updated: requiredString,
 	rating: z.string().nonempty().default('5'),
-	serving_size: z.number().positive(),
-	prep_time: z.number().positive().max(9999),
-	cook_time: z.number().positive().max(9999),
-	calories: z.number().positive().max(9999),
+	serving_size: z.number().positive().max(9999).optional(),
+	prep_time: z.number().positive().max(9999).optional(),
+	cook_time: z.number().positive().max(9999).optional(),
+	calories: z.number().positive().max(9999).optional(),
 	ingredients: z
 		.array(
 			z
 				.string()
-				.min(1, 'Ingredient must be at least 1 character long.')
+				.min(3, 'Ingredient must be at least 1 character long.')
 				.max(200, 'Single ingredient must be 200 or less characters.')
 		)
 		.max(100, 'Please use less than 100 ingredients.'),
@@ -42,7 +42,10 @@ export const new_dish_schema = dishes_schema.omit({
 	date_updated: true,
 	ingredients: true,
 	instructions: true,
-	notes: true
+	notes: true,
+	serving_size: true,
+	prep_time: true,
+	cook_time: true
 });
 export const updated_dishes_schema = dishes_schema.omit({
 	date_added: true
