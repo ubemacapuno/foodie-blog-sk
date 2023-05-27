@@ -45,16 +45,16 @@
 		<div>
 			{#each $form?.ingredients || [] as ingredient, index}
 				<div class="flex items-center mt-2">
-					<ul class="pl-5 list-disc">
-						<li>
-							{ingredient}
-						</li>
-					</ul>
 					<button
 						type="button"
 						on:click|preventDefault={(event) => removeIngredient(event, index)}
 						class="ml-2 btn btn-error btn-xs">🗑️</button
 					>
+					<ul class="pl-5">
+						<li>
+							{ingredient}
+						</li>
+					</ul>
 				</div>
 			{/each}
 		</div>
