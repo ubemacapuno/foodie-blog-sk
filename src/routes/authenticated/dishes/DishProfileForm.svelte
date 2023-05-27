@@ -6,7 +6,7 @@
 	export let errors;
 	export let constraints;
 	export let enhance;
-	export let delayed;
+	export let delayed = null;
 	export let submitText = 'submit';
 
 	let showDebug = false;
