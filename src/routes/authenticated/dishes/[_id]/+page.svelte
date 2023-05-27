@@ -48,107 +48,107 @@
 	<div class="flex">
 		<a href="/authenticated/dishes" class="btn btn-outline btn-secondary btn-sm">←</a>
 	</div>
-	<div class="my-4 card w-80 bg-base-300 self-center">
-		<div class="card-body p-3">
-			<h3 class="card-title text-2xl text-primary">
-				{dish.name}
-			</h3>
-			<label for="rating" class="block text-sm font-bold mb-2">Rating:</label>
-			<div class="rating">
-				{#each Array.from({ length: 5 }).map((_, i) => i + 1) || [] as rating}
-					<input
-						type="radio"
-						id={`rating_${rating}`}
-						name="rating"
-						value={rating}
-						checked={Number(dish.rating) === rating}
-						disabled
-						class="mask mask-star-2 bg-orange-400 cursor-default"
-					/>
-				{/each}
-			</div>
-			<p>Cuisine: {dish.cuisine}</p>
-			<p>Added {formatDate(dish.date_added)}</p>
-			{#if dish?.date_updated !== dish?.date_added}
-				<p class="text-secondary">
-					*Updated {formatDate(dish.date_updated)}
-				</p>
-			{/if}
+	<div class="flex-container">
+		<div>
+			<div class="my-4 card w-80 bg-base-300 self-center">
+				<div class="card-body p-3">
+					<h3 class="card-title text-2xl text-primary">
+						{dish.name}
+					</h3>
+					<label for="rating" class="block text-sm font-bold mb-2">Rating:</label>
+					<div class="rating">
+						{#each Array.from({ length: 5 }).map((_, i) => i + 1) || [] as rating}
+							<input
+								type="radio"
+								id={`rating_${rating}`}
+								name="rating"
+								value={rating}
+								checked={Number(dish.rating) === rating}
+								disabled
+								class="mask mask-star-2 bg-orange-400 cursor-default"
+							/>
+						{/each}
+					</div>
+					<p>Cuisine: {dish.cuisine}</p>
+					<p>Added {formatDate(dish.date_added)}</p>
+					{#if dish?.date_updated !== dish?.date_added}
+						<p class="text-secondary">
+							*Updated {formatDate(dish.date_updated)}
+						</p>
+					{/if}
 
-			<div class="flex justify-between">
-				<form>
+					<div class="flex justify-between">
+						<form>
+							<div class="flex justify-between">
+								<button
+									on:click={() => (activeModalId = 'profile')}
+									type="button"
+									class="btn btn-sm btn-primary"
+								>
+									Update</button
+								>
+							</div>
+						</form>
+						<ConfirmDeleteButton action="?/delete" _id={$form._id}>Delete</ConfirmDeleteButton>
+					</div>
+				</div>
+			</div>
+			<div class="my-4 card w-80 bg-base-300 self-center">
+				<div class="card-body p-3">
+					<h3 class="card-title text-lg text-primary">Ingredients</h3>
+					{#if dish?.ingredients?.length > 0}
+						<ul class="pl-6 list-disc">
+							{#each dish?.ingredients || [] as ingredient}
+								<li>{ingredient}</li>
+							{/each}
+						</ul>
+					{:else}
+						<EmptyState content="There are no ingredients." />
+					{/if}
 					<div class="flex justify-between">
 						<button
-							on:click={() => (activeModalId = 'profile')}
+							on:click={() => (activeModalId = 'ingredients')}
 							type="button"
 							class="btn btn-sm btn-primary"
 						>
-							Update</button
-						>
+							{#if dish?.ingredients?.length > 0}
+								Update
+							{:else}
+								Add
+							{/if}
+						</button>
 					</div>
-				</form>
+				</div>
+			</div>
+		</div>
 
-				<!-- <form method="POST" action="?/delete" use:enhance>
-					<input type="hidden" name="_id" value={$form._id} />
-					<button type="submit" class="btn btn-sm btn-outline btn-error">Delete</button>
-				</form> -->
-				<ConfirmDeleteButton action="?/delete" _id={$form._id}>Delete</ConfirmDeleteButton>
-			</div>
-		</div>
-	</div>
-	<div class="my-4 card w-80 bg-base-300 self-center">
-		<div class="card-body p-3">
-			<h3 class="card-title text-lg text-primary">Ingredients</h3>
-			{#if dish?.ingredients?.length > 0}
-				<ul class="pl-6 list-disc">
-					{#each dish?.ingredients || [] as ingredient}
-						<li>{ingredient}</li>
-					{/each}
-				</ul>
-			{:else}
-				<EmptyState content="There are no ingredients." />
-			{/if}
-			<div class="flex justify-between">
-				<button
-					on:click={() => (activeModalId = 'ingredients')}
-					type="button"
-					class="btn btn-sm btn-primary"
-				>
-					{#if dish?.ingredients?.length > 0}
-						Update
-					{:else}
-						Add
-					{/if}
-				</button>
-			</div>
-		</div>
-	</div>
-	<div class="my-4 card w-80 bg-base-300 self-center">
-		<div class="card-body p-3">
-			<h3 class="card-title text-lg text-primary">Instructions</h3>
-			{#if dish?.instructions?.length > 0}
-				<p>{@html dish?.instructions}</p>
-			{:else}
-				<EmptyState content="There are no instructions." />
-			{/if}
-			<h3 class="card-title text-lg text-primary">Notes</h3>
-			{#if dish?.notes?.length > 0}
-				<p>{@html dish?.notes}</p>
-			{:else}
-				<EmptyState content="There are no notes." />
-			{/if}
-			<div class="flex justify-between">
-				<button
-					on:click={() => (activeModalId = 'notes')}
-					type="button"
-					class="btn btn-sm btn-primary"
-				>
-					{#if dish?.ingredients?.length > 0 && dish?.notes?.length > 0}
-						Update
-					{:else}
-						Add
-					{/if}
-				</button>
+		<div class="my-4 card w-80 bg-base-300 self-start">
+			<div class="card-body p-3">
+				<h3 class="card-title text-lg text-primary">Instructions</h3>
+				{#if dish?.instructions?.length > 0}
+					<p>{@html dish?.instructions}</p>
+				{:else}
+					<EmptyState content="There are no instructions." />
+				{/if}
+				<h3 class="card-title text-lg text-primary">Notes</h3>
+				{#if dish?.notes?.length > 0}
+					<p>{@html dish?.notes}</p>
+				{:else}
+					<EmptyState content="There are no notes." />
+				{/if}
+				<div class="flex justify-between">
+					<button
+						on:click={() => (activeModalId = 'notes')}
+						type="button"
+						class="btn btn-sm btn-primary"
+					>
+						{#if dish?.ingredients?.length > 0 && dish?.notes?.length > 0}
+							Update
+						{:else}
+							Add
+						{/if}
+					</button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -183,3 +183,21 @@
 		<SuperDebug data={$form} />
 	{/if}
 </Modal>
+
+<style>
+	.flex-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	@media (min-width: 768px) {
+		/* CSS rules to apply when screen width is 768 pixels or higher */
+		.flex-container {
+			display: flex;
+			flex-direction: row;
+			align-items: start;
+			gap: 1rem;
+		}
+	}
+</style>

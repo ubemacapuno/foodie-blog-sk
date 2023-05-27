@@ -12,6 +12,10 @@ export const dishes_fields = {
 	date_added: requiredString,
 	date_updated: requiredString,
 	rating: z.string().nonempty().default('5'),
+	serving_size: z.number().positive(),
+	prep_time: z.number().positive().max(9999),
+	cook_time: z.number().positive().max(9999),
+	calories: z.number().positive().max(9999),
 	ingredients: z
 		.array(
 			z
