@@ -36,17 +36,15 @@ export const dishes_fields = {
 	notes: z.string().max(5000, 'Notes must not exceed 5000 characters.').nullable().optional()
 };
 export const dishes_schema = z.object(dishes_fields);
-export const new_dish_schema = dishes_schema.omit({
-	_id: true,
-	date_added: true,
-	date_updated: true,
-	ingredients: true,
-	instructions: true,
-	notes: true,
-	serving_size: true,
-	prep_time: true,
-	cook_time: true
+export const new_dish_schema = z.object({
+	name: z.string().min(3).max(50, 'Please use less than 50 characters.'),
+	rating: z.string().nonempty().default('5'),
+	cuisine: z
+		.string()
+		.min(1, 'Please enter a cuisine.')
+		.max(50, 'Please use less than 50 characters.')
 });
+
 export const updated_dishes_schema = dishes_schema.omit({
 	date_added: true
 });
