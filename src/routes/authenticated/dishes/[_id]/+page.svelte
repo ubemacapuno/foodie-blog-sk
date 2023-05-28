@@ -42,7 +42,6 @@
 	}
 
 	$: ({ dish } = data);
-	$: console.log('DISH', data);
 </script>
 
 {#if dish}
