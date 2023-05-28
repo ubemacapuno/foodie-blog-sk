@@ -1,8 +1,3 @@
-<script>
-	import { signIn } from '@auth/sveltekit/client';
-	import { page } from '$app/stores';
-</script>
-
 <svelte:head>
 	<title>About</title>
 	<meta name="description" content="About this app" />
@@ -41,11 +36,7 @@
 			> application, which was developed using Embedded JavaScript (EJS), Node (Express), and MongoDB.
 		</p>
 		<!-- <a href="/" class="my-6 btn btn-primary">Dashboard</a> -->
-		{#if !$page.data.session}
-			<h1 class="text-xl text-warning font-bold">Please sign in!</h1>
-			<button class="my-6 btn btn-primary" on:click={() => signIn('github')}>Sign in</button>
-		{:else}
-			<a href="/" class="my-6 btn btn-primary">Dashboard</a>
-		{/if}
+
+		<a href="/" class="my-6 btn btn-primary">Dashboard</a>
 	</div>
 </div>

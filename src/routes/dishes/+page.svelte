@@ -35,7 +35,7 @@
 		<div class="card-body">
 			<h3 class="card-title">{dish.name}</h3>
 			<div class="card-actions justify-end">
-				<a href="/authenticated/dishes/{dish?._id}" class="btn btn-primary">View</a>
+				<a href="/dishes/{dish?._id}" class="btn btn-primary">View</a>
 			</div>
 		</div>
 	</div>

@@ -46,7 +46,7 @@
 
 {#if dish}
 	<div class="flex">
-		<a href="/authenticated/dishes" class="btn btn-outline btn-secondary btn-sm">←</a>
+		<a href="/dishes" class="btn btn-outline btn-secondary btn-sm">←</a>
 	</div>
 	<div class="flex-container">
 		<div>
@@ -210,7 +210,7 @@
 	<div class="card w-72 bg-base-300 shadow-xl">
 		<div class="card-body">
 			<strong class="text-warning text-3xl">Oops! Dish not found.</strong>
-			<a class="mt-5 btn btn-secondary" href="authenticated/dishes">Back to dishes</a>
+			<a class="mt-5 btn btn-secondary" href="/dishes">Back to dishes</a>
 		</div>
 	</div>
 {/if}

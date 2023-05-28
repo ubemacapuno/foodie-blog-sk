@@ -47,7 +47,7 @@ export const Dishes: Actions = {
 		// Redirect to _id page with a toast message
 		throw redirect(
 			303,
-			`/authenticated/dishes/${created_path.insertedId}`,
+			`/dishes/${created_path.insertedId}`,
 			{
 				message: getSuccessMessage('dish', 'created'),
 				status: 'success',
@@ -110,7 +110,7 @@ export const Dishes: Actions = {
 
 		throw redirect(
 			303,
-			`/authenticated/dishes`,
+			`/dishes`,
 			{
 				message: getSuccessMessage('dish', 'deleted'),
 				status: 'success',
