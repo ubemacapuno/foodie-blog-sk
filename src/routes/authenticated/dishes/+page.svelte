@@ -6,6 +6,7 @@
 	import DebugSwitch from '$lib/components/DebugSwitch.svelte';
 
 	export let data: PageData;
+	$: ({ dishes } = data);
 
 	// Client API:
 	const { form, errors, constraints, enhance } = superForm(data.form, {
@@ -17,7 +18,6 @@
 		// This is a requirement when the schema contains nested objects:
 		dataType: 'json'
 	});
-	$: ({ dishes } = data);
 </script>
 
 <div class="flex justify-center items-center flex-col">

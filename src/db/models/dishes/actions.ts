@@ -19,15 +19,15 @@ import {
 	getSuccessMessage
 } from '$constants/forms';
 
-// TODO: Finish setting up validation so that we don't show success on empty form submissions
 export const Dishes: Actions = {
 	create: async function (event) {
-		// TODO: Auth Check for action
-		// if (!isAuthorized(event.locals.user)) return fail(403, { message: AUTH_ERROR_MESSAGE })
-
+		const session = await event.locals.getSession();
 		// Setup Form (remove _id from schema for validation)
 		const form = await superValidate(event, new_dish_schema);
-		console.log('POST', form);
+		// Check if session exists
+		if (!session) {
+			return message(form, AUTH_ERROR_MESSAGE);
+		}
 
 		// Check if form is valid
 		if (!form.valid) {
@@ -35,6 +35,7 @@ export const Dishes: Actions = {
 		}
 
 		// Add user form data server-side
+		form.data.created_by_user_email = session?.user?.email;
 		form.data.date_added = new Date().toISOString();
 		form.data.date_updated = new Date().toISOString();
 
@@ -43,6 +44,7 @@ export const Dishes: Actions = {
 
 		// Insert into database
 		const created_path = <InsertOneResult>await dishes.insertOne(insert_data).catch(log_error);
+		console.log('FORM (create)', form);
 
 		// Redirect to _id page with a toast message
 		throw redirect(
@@ -60,8 +62,27 @@ export const Dishes: Actions = {
 
 	update: async function (event) {
 		// if (!isAuthorized(event.locals.user)) return fail(403, { message: AUTH_ERROR_MESSAGE })
-
+		const session = await event.locals.getSession();
 		const form = await superValidate(event, dishes_schema);
+
+		// Check if session exists
+		if (!session) {
+			return message(form, AUTH_ERROR_MESSAGE);
+		}
+
+		if (session?.user?.email !== form.data.created_by_user_email) {
+			throw redirect(
+				302,
+				`/authenticated/dishes/${form.data._id}`,
+				{
+					message: 'Cannot update this dish as it was not created by you.',
+					status: 'error',
+					// Add id so the toast gets assigned an id
+					id: uniqueId()
+				},
+				event
+			);
+		}
 
 		if (!form.valid) {
 			return message(form, CHECK_FORM_MESSAGE);
@@ -69,44 +90,45 @@ export const Dishes: Actions = {
 
 		// Update date_updated
 		form.data.date_updated = new Date().toISOString();
+		form.data.updated_by_user_email = session?.user?.email;
 
 		await dishes
 			.findOneAndUpdate({ _id: form.data._id }, { $set: form.data }, { returnDocument: 'after' })
 			.catch(log_error);
+		console.log('FORM (update)', form);
 
 		// Send a toast message along with form data
 		return message(form, getSuccessMessage('dish', 'updated'));
 	},
 
-	//TODO: Separate form action for ingredients
-	// updateIngredients: async function (event) {
-	// 	// if (!isAuthorized(event.locals.user)) return fail(403, { message: AUTH_ERROR_MESSAGE })
-
-	// 	const form = await superValidate(event, dishes_schema);
-
-	// 	if (!form.valid) {
-	// 		return message(form, CHECK_FORM_MESSAGE);
-	// 	}
-
-	// 	// Update date_updated
-	// 	form.data.date_updated = new Date().toISOString();
-
-	// 	await dishes
-	// 		.findOneAndUpdate({ _id: form.data._id }, { $set: form.data }, { returnDocument: 'after' })
-	// 		.catch(log_error);
-
-	// 	// Send a toast message along with form data
-	// 	return message(form, getSuccessMessage('dish', 'updated'));
-	// },
-
 	delete: async function (event) {
-		// if (!has_role(event.locals, 'admin')) return fail(401)
-
+		const session = await event.locals.getSession();
 		const form = await superValidate(event, dishes_schema);
+
+		// Check if session exists
+		if (!session) {
+			return message(form, AUTH_ERROR_MESSAGE);
+		}
+
+		// TODO: Setup a check so users can only delete their own dishes
+		// if (session?.user?.email !== form.data.created_by_user_email) {
+		// 	throw redirect(
+		// 		302,
+		// 		`/authenticated/dishes/${form.data._id}`,
+		// 		{
+		// 			message: `Cannot delete this dish as it was not created by you.`,
+		// 			status: 'error',
+		// 			// Add id so the toast gets assigned an id
+		// 			id: uniqueId()
+		// 		},
+		// 		event
+		// 	);
+		// }
 
 		if (!form.data._id) return fail(400, { message: DEFAULT_FORM_ERROR });
 
 		await dishes.deleteOne({ _id: form.data._id }).catch(log_error);
+		console.log('FORM (delete)', form);
 
 		throw redirect(
 			303,
