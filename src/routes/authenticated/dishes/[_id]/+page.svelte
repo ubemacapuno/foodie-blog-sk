@@ -178,7 +178,7 @@
 					<div class="flex justify-between">
 						{#if enableButton}
 							<button
-								on:click={() => (activeModalId = 'numbers')}
+								on:click={() => (activeModalId = 'ingredients')}
 								type="button"
 								class="btn btn-sm btn-primary"
 							>
@@ -207,7 +207,7 @@
 				<div class="flex justify-between">
 					{#if enableButton}
 						<button
-							on:click={() => (activeModalId = 'numbers')}
+							on:click={() => (activeModalId = 'notes')}
 							type="button"
 							class="btn btn-sm btn-primary"
 						>
