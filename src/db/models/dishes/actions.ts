@@ -38,7 +38,6 @@ export const Dishes: Actions = {
 		form.data.created_by_user_email = session?.user?.email;
 		form.data.date_added = new Date().toISOString();
 		form.data.date_updated = new Date().toISOString();
-		console.log('EVENT', event.locals.getSession);
 
 		// Add new _id to form data
 		const insert_data = prepare_data_for_insert<Dish>(form.data);
