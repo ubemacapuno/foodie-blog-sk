@@ -26,9 +26,9 @@
 		</p>
 
 		<p class="pt-6 pb-3 text-left">
-			FoodieBlog is a full-stack application (in development) that allows users record and save
-			recipes. There will also be a feature to rate/review dishes from restaurants so that you have
-			a record of dishes you've already tried.
+			FoodieBlog is a full-stack application that allows users to record and save recipes. There
+			will also be a feature to rate/review dishes from restaurants so that you have a record of
+			dishes you've already tried.
 		</p>
 		<p class="py-3 text-left">
 			I'm tired of going to the same ad-infested website to look up recipes, so I decided to make
@@ -40,7 +40,6 @@
 				href="https://github.com/ubemacapuno/foodie-blog">original FoodieBlog</a
 			> application, which was developed using Embedded JavaScript (EJS), Node (Express), and MongoDB.
 		</p>
-		<!-- <a href="/" class="my-6 btn btn-primary">Dashboard</a> -->
 		{#if !$page.data.session}
 			<h1 class="text-xl text-warning font-bold">Please sign in!</h1>
 			<button class="my-6 btn btn-primary" on:click={() => signIn('github')}>Sign in</button>

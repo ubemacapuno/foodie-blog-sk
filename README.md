@@ -1,12 +1,12 @@
 ## Foodie Blog
 
-<p>This is a SvelteKit app for saving and rating recipes! Work in process . . .</p>
+<p>This is a SvelteKit app for saving and rating recipes!</p>
 
 ## How It's Made:
 
 **Tech used:**
 
-SvelteKit, TypeScript, MongoDB, Superforms library
+SvelteKit, TypeScript, MongoDB, Superforms/Zod
 
 ## Install the dependencies either using NPM/Yarn/PNPM:
 

@@ -12,4 +12,5 @@
 
 <div class="flex justify-center items-center flex-col">
 	<h1 class="text-3xl my-2">Homepage</h1>
+	<p class="text-base">(Coming soon)</p>
 </div>
