@@ -30,6 +30,7 @@
 		// This is a requirement when the schema contains nested objects:
 		dataType: 'json'
 	});
+	const userEmail = data.session?.user?.email;
 
 	function formatDate(dateString: string) {
 		const date = new Date(dateString);
@@ -39,6 +40,19 @@
 		 * @see https://date-fns.org/v2.30.0/docs/format
 		 */
 		return format(date, 'Pp');
+	}
+
+	// TODO: conditionally set "add" or "update" for button text
+	let updateButtonText = '';
+	let enableButton = false;
+
+	$: {
+		if (userEmail === dish?.created_by_user_email) {
+			updateButtonText = 'update';
+			enableButton = true;
+		} else {
+			enableButton = false;
+		}
 	}
 
 	$: ({ dish } = data);
@@ -72,27 +86,31 @@
 					<p>Cuisine: {dish.cuisine}</p>
 					<p>Added {formatDate(dish.date_added)}</p>
 					{#if dish?.date_updated !== dish?.date_added}
-						<p class="text-secondary">
+						<p class="text-accent text-xs">
 							*Updated {formatDate(dish.date_updated)}
 						</p>
 					{/if}
 					<div class="flex justify-between">
 						<form>
 							<div class="flex justify-between">
-								<button
-									on:click={() => (activeModalId = 'profile')}
-									type="button"
-									class="btn btn-sm btn-primary"
-								>
-									Update</button
-								>
+								{#if enableButton}
+									<button
+										on:click={() => (activeModalId = 'profile')}
+										type="button"
+										class="btn btn-sm btn-primary"
+									>
+										{updateButtonText}</button
+									>
+								{/if}
 							</div>
 						</form>
-						<ConfirmDeleteButton
-							description="Are you sure you want to delete {dish.name}?"
-							action="?/delete"
-							_id={$form._id}>Delete</ConfirmDeleteButton
-						>
+						{#if enableButton}
+							<ConfirmDeleteButton
+								description="Are you sure you want to delete {dish.name}?"
+								action="?/delete"
+								_id={$form._id}>Delete</ConfirmDeleteButton
+							>
+						{/if}
 					</div>
 				</div>
 			</div>
@@ -132,17 +150,15 @@
 					</div>
 
 					<div class="flex justify-between">
-						<button
-							on:click={() => (activeModalId = 'numbers')}
-							type="button"
-							class="btn btn-sm btn-primary"
-						>
-							{#if dish?.prep_time && dish?.cook_time && dish?.calories}
-								Update
-							{:else}
-								Add
-							{/if}
-						</button>
+						{#if enableButton}
+							<button
+								on:click={() => (activeModalId = 'numbers')}
+								type="button"
+								class="btn btn-sm btn-primary"
+							>
+								{updateButtonText}
+							</button>
+						{/if}
 					</div>
 				</div>
 			</div>
@@ -160,17 +176,15 @@
 						<EmptyState content="There are no ingredients." />
 					{/if}
 					<div class="flex justify-between">
-						<button
-							on:click={() => (activeModalId = 'ingredients')}
-							type="button"
-							class="btn btn-sm btn-primary"
-						>
-							{#if dish?.ingredients?.length > 0}
-								Update
-							{:else}
-								Add
-							{/if}
-						</button>
+						{#if enableButton}
+							<button
+								on:click={() => (activeModalId = 'numbers')}
+								type="button"
+								class="btn btn-sm btn-primary"
+							>
+								{updateButtonText}
+							</button>
+						{/if}
 					</div>
 				</div>
 			</div>
@@ -191,17 +205,15 @@
 					<EmptyState content="There are no notes." />
 				{/if}
 				<div class="flex justify-between">
-					<button
-						on:click={() => (activeModalId = 'notes')}
-						type="button"
-						class="btn btn-sm btn-primary"
-					>
-						{#if dish?.ingredients?.length > 0 && dish?.notes?.length > 0}
-							Update
-						{:else}
-							Add
-						{/if}
-					</button>
+					{#if enableButton}
+						<button
+							on:click={() => (activeModalId = 'numbers')}
+							type="button"
+							class="btn btn-sm btn-primary"
+						>
+							{updateButtonText}
+						</button>
+					{/if}
 				</div>
 			</div>
 		</div>

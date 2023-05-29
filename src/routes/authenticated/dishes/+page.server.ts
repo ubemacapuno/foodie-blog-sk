@@ -1,7 +1,6 @@
 import type { Actions, PageServerLoad } from './$types';
 import { dishes } from '$db/models/dishes/collection';
 import { Dishes } from '$db/models/dishes/actions';
-import { fail } from '@sveltejs/kit';
 import { superValidate } from 'sveltekit-superforms/server';
 import { fix_pojo } from '$utilities/fix_pojo';
 import { new_dish_schema } from '$db/models/dishes/schema';

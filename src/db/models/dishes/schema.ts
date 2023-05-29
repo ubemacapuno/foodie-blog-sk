@@ -15,6 +15,8 @@ export const dishes_fields = {
 	serving_size: z.number().positive().max(9999).nullable().optional(),
 	prep_time: z.number().positive().max(9999).nullable().optional(),
 	cook_time: z.number().positive().max(9999).nullable().optional(),
+	created_by_user_email: z.string().email(),
+	updated_by_user_email: z.string().email(),
 	calories: z.number().positive().max(9999).nullable().optional(),
 	ingredients: z
 		.array(

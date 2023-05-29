@@ -1,6 +1,4 @@
 <script lang="ts">
-	import DebugSwitch from '$lib/components/DebugSwitch.svelte';
-
 	export let form;
 	export let action: string;
 	export let errors;
@@ -8,8 +6,6 @@
 	export let enhance;
 	export let delayed = null;
 	export let submitText = 'submit';
-
-	let showDebug = false;
 </script>
 
 <form

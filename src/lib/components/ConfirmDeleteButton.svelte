@@ -1,6 +1,4 @@
 <script lang="ts">
-	import Modal from './Modal.svelte';
-	import Button from '$elements/Button.svelte';
 	import { superForm } from 'sveltekit-superforms/client';
 	import { getSuperOptions } from '$lib/forms/superforms';
 	import ConfirmDeleteModal from './ConfirmDeleteModal.svelte';
