@@ -1,6 +1,7 @@
 <script>
 	import { signIn } from '@auth/sveltekit/client';
 	import { page } from '$app/stores';
+	import LoginButton from '$lib/components/LoginButton.svelte';
 </script>
 
 <svelte:head>
@@ -42,7 +43,7 @@
 		</p>
 		{#if !$page.data.session}
 			<h1 class="text-xl text-warning font-bold">Please sign in!</h1>
-			<button class="my-6 btn btn-primary" on:click={() => signIn('github')}>Sign in</button>
+			<LoginButton>Sign In</LoginButton>
 		{:else}
 			<a href="/" class="my-6 btn btn-primary">Dashboard</a>
 		{/if}
