@@ -30,7 +30,7 @@
 
 <ConfirmDeleteModal bind:isModalOpen={isConfirmActive} {title}>
 	<div class="bg-neutral">
-		<p>{@html description}</p>
+		<p>{description}</p>
 		<form method="POST" {action} use:enhance>
 			<input type="hidden" name="_id" value={_id} />
 			<button
