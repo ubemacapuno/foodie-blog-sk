@@ -54,6 +54,7 @@
 		"lodash.uniqueid": "^4.0.1",
 		"mongodb": "^4.12.1",
 		"omit-deep": "^0.3.0",
+		"svelte-markdown": "^0.2.3",
 		"zod": "^3.20.2",
 		"zod-to-json-schema": "^3.20.1"
 	}
