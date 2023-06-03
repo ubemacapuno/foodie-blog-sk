@@ -1,6 +1,4 @@
 <script lang="ts">
-	import Modal from './Modal.svelte';
-	import Button from '$elements/Button.svelte';
 	import { superForm } from 'sveltekit-superforms/client';
 	import { getSuperOptions } from '$lib/forms/superforms';
 	import ConfirmDeleteModal from './ConfirmDeleteModal.svelte';
@@ -32,7 +30,7 @@
 
 <ConfirmDeleteModal bind:isModalOpen={isConfirmActive} {title}>
 	<div class="bg-neutral">
-		<p>{@html description}</p>
+		<p>{description}</p>
 		<form method="POST" {action} use:enhance>
 			<input type="hidden" name="_id" value={_id} />
 			<button

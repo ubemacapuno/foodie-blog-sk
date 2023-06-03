@@ -10,6 +10,7 @@
 	import DishProfileForm from '../DishProfileForm.svelte';
 	import ConfirmDeleteButton from '$lib/components/ConfirmDeleteButton.svelte';
 	import DishNumbersForm from '../DishNumbersForm.svelte';
+	import SvelteMarkdown from 'svelte-markdown';
 
 	export let data: PageData;
 
@@ -180,13 +181,13 @@
 			<div class="card-body p-3">
 				<h3 class="card-title text-lg text-primary">Instructions</h3>
 				{#if dish?.instructions?.length > 0}
-					<p>{@html dish?.instructions}</p>
+					<SvelteMarkdown source={dish?.instructions} />
 				{:else}
 					<EmptyState content="There are no instructions." />
 				{/if}
 				<h3 class="card-title text-lg text-primary">Notes</h3>
 				{#if dish?.notes?.length > 0}
-					<p>{@html dish?.notes}</p>
+					<SvelteMarkdown source={dish?.notes} />
 				{:else}
 					<EmptyState content="There are no notes." />
 				{/if}
