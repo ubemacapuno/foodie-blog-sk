@@ -22,7 +22,7 @@
 				<div class="card-body items-center text-center">
 					{#if isCloseButtonShowing || title}
 						{#if title}
-							<h2 class="card-title text-primary">
+							<h2 class="card-title">
 								{title}
 							</h2>
 						{/if}

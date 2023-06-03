@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { signIn, signOut } from '@auth/sveltekit/client';
+	import LoginButton from '$lib/components/LoginButton.svelte';
+	import { signOut } from '@auth/sveltekit/client';
 </script>
 
 <header>
@@ -82,10 +83,7 @@
 					on:click={() => signOut()}>Logout</button
 				>
 			{:else}
-				<button
-					class="btn btn-sm btn-outline btn-primary link no-underline"
-					on:click={() => signIn('github')}>Login</button
-				>
+				<LoginButton>Login</LoginButton>
 			{/if}
 		</div>
 	</div>
