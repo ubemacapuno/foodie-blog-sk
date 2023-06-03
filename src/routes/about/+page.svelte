@@ -1,5 +1,4 @@
 <script>
-	import { signIn } from '@auth/sveltekit/client';
 	import { page } from '$app/stores';
 	import LoginButton from '$lib/components/LoginButton.svelte';
 </script>
