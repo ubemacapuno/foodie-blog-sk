@@ -4,7 +4,7 @@
 	export let errors;
 	export let constraints;
 	export let enhance;
-	export let submitText = 'submit';
+	export let submitText = 'update';
 </script>
 
 <form
@@ -16,7 +16,7 @@
 	<div class="mb-4">
 		<label class="block text-primary text-sm font-bold mb-2" for="instructions">Instructions</label>
 		<textarea
-			class="textarea textarea-bordered textarea-md w-full"
+			class="textarea textarea-bordered textarea-md w-full h-72"
 			placeholder="Instructions"
 			name="instructions"
 			data-invalid={$errors.instructions}
@@ -27,7 +27,7 @@
 	<div class="mb-4">
 		<label class="block text-primary text-sm font-bold mb-2" for="notes">Notes</label>
 		<textarea
-			class="textarea textarea-bordered textarea-md w-full"
+			class="textarea textarea-bordered textarea-md w-full h-72"
 			placeholder="Additional notes"
 			name="notes"
 			data-invalid={$errors.notes}
@@ -35,9 +35,5 @@
 			{...$constraints.notes}
 		/>
 	</div>
-	<button
-		type="submit"
-		class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-		>{submitText}</button
-	>
+	<button type="submit" class="btn btn-sm btn-primary">{submitText}</button>
 </form>

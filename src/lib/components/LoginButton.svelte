@@ -48,7 +48,7 @@
 			our platform.
 		</p>
 		<div class="form-control py-5">
-			<label class="cursor-pointer label flex flex-row items-center justify-start gap-x-24">
+			<label class="cursor-pointer label flex flex-row justify-center gap-x-10">
 				<span class="label-text text-accent">I Agree</span>
 				<input
 					type="checkbox"
@@ -58,20 +58,27 @@
 			</label>
 		</div>
 
-		<button
-			class="btn btn-sm btn-secondary"
-			on:click|preventDefault={() => {
-				isConfirmActive = false;
-			}}
-		>
-			Decline
-		</button>
-		<!-- 
-				 preventDefault is a Svelte modifier which calls event.preventDefault() before running the handler. In this case, it will prevent the form from being submitted when you click the "Cancel" button, thus preventing the dish from being deleted.
-				 @see docs https://svelte.dev/tutorial/event-modifiers
-			-->
-		<button type="submit" class="btn btn-sm btn-error" {disabled} on:click={() => signIn('github')}>
-			Accept
-		</button>
+		<div class="flex flex-row justify-center gap-x-2">
+			<button
+				class="btn btn-sm btn-secondary"
+				on:click|preventDefault={() => {
+					isConfirmActive = false;
+				}}
+			>
+				Decline
+			</button>
+			<!-- 
+					 preventDefault is a Svelte modifier which calls event.preventDefault() before running the handler. In this case, it will prevent the form from being submitted when you click the "Cancel" button, thus preventing the dish from being deleted.
+					 @see docs https://svelte.dev/tutorial/event-modifiers
+				-->
+			<button
+				type="submit"
+				class="btn btn-sm btn-error"
+				{disabled}
+				on:click={() => signIn('github')}
+			>
+				Accept
+			</button>
+		</div>
 	</div>
 </ConfirmDeleteModal>

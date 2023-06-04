@@ -39,8 +39,9 @@
 			placeholder="Add ingredients"
 			bind:value={newIngredient}
 		/>
-		<button on:click|preventDefault={addIngredient} class="btn-primary btn py-1 px-2 mt-2"
-			>Add</button
+		<button
+			on:click|preventDefault={addIngredient}
+			class="btn btn-sm btn-secondary btn-outline py-1 px-2 mt-2">Add</button
 		>
 		<div>
 			{#each $form?.ingredients || [] as ingredient, index}
@@ -63,9 +64,5 @@
 			>{/if}
 	</div>
 
-	<button
-		type="submit"
-		class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-		>{submitText}</button
-	>
+	<button type="submit" class="btn btn-sm btn-primary">{submitText}</button>
 </form>

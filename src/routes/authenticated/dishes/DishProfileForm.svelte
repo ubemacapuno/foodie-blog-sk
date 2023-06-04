@@ -84,10 +84,6 @@
 			{...$constraints.cuisine}
 		/>
 	</div>
-	<button
-		type="submit"
-		class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-		>{submitText}</button
-	>
+	<button type="submit" class="btn btn-sm btn-primary">{submitText}</button>
 	{#if $delayed}<span class="delayed">Working...</span>{/if}
 </form>
