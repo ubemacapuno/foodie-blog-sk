@@ -29,13 +29,27 @@
 
 <DebugSwitch form={$form} />
 
-<h2 class="text-2xl text-primary my-2">Dishes:</h2>
+<h2 class="text-2xl text-primary my-2">My Dishes:</h2>
 {#each dishes as dish}
 	<div class="my-4 card w-80 bg-base-300 shadow-xl text-primary self-center">
 		<div class="card-body">
 			<h3 class="card-title">{dish.name}</h3>
+			<p class="text-sm text-secondary">{dish.cuisine}</p>
+			<div class="rating">
+				{#each Array.from({ length: Number(dish.rating) }).map((_, i) => i + 1) || [] as rating}
+					<input
+						type="radio"
+						id={`rating_${rating}`}
+						name="rating"
+						value={rating}
+						checked={Number(dish.rating) === rating}
+						disabled
+						class="mask mask-star-2 bg-orange-400 cursor-default"
+					/>
+				{/each}
+			</div>
 			<div class="card-actions justify-end">
-				<a href="/authenticated/dishes/{dish?._id}" class="btn btn-primary">View</a>
+				<a href="/authenticated/dishes/{dish?._id}" class="btn btn-secondary">View</a>
 			</div>
 		</div>
 	</div>
