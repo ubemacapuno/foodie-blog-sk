@@ -75,7 +75,7 @@ export const Dishes: Actions = {
 				302,
 				`/authenticated/dishes/${form.data._id}`,
 				{
-					message: 'Cannot update this dish as it was not created by you.',
+					message: `Cannot update this dish. Session email doesn't match eamil created by user.`,
 					status: 'error',
 					// Add id so the toast gets assigned an id
 					id: uniqueId()
@@ -111,19 +111,19 @@ export const Dishes: Actions = {
 		}
 
 		// TODO: Setup a check so users can only delete their own dishes
-		// if (session?.user?.email !== form.data.created_by_user_email) {
-		// 	throw redirect(
-		// 		302,
-		// 		`/authenticated/dishes/${form.data._id}`,
-		// 		{
-		// 			message: `Cannot delete this dish as it was not created by you.`,
-		// 			status: 'error',
-		// 			// Add id so the toast gets assigned an id
-		// 			id: uniqueId()
-		// 		},
-		// 		event
-		// 	);
-		// }
+		if (session?.user?.email !== form.data.created_by_user_email) {
+			throw redirect(
+				302,
+				`/authenticated/dishes/${form.data._id}`,
+				{
+					message: `Cannot delete this dish. Session email doesn't match email created by user.`,
+					status: 'error',
+					// Add id so the toast gets assigned an id
+					id: uniqueId()
+				},
+				event
+			);
+		}
 
 		if (!form.data._id) return fail(400, { message: DEFAULT_FORM_ERROR });
 
