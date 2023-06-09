@@ -29,19 +29,25 @@
 					class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box border-2 border-base-content w-52 bg-bg-base-300"
 				>
 					<li>
-						<a class:active={$page.url.pathname === '/'} class="text-accent" href="/">Home</a>
+						<a
+							class:active={$page.url.pathname === '/'}
+							class:text-accent={$page.url.pathname === '/'}
+							href="/">Home</a
+						>
 					</li>
 					<li>
 						<a
 							class:active={$page.url.pathname.match(/^\/authenticated\/dishes\/?[0-9a-fA-F]*$/)}
-							class="text-accent"
+							class:text-accent={$page.url.pathname.match(
+								/^\/authenticated\/dishes\/?[0-9a-fA-F]*$/
+							)}
 							href="/authenticated/dishes">Dishes</a
 						>
 					</li>
 					<li>
 						<a
 							class:active={$page.url.pathname.match(/^\/about\/?[0-9a-fA-F]*$/)}
-							class="text-accent"
+							class:text-accent={$page.url.pathname.match(/^\/about\/?[0-9a-fA-F]*$/)}
 							href="/about">About</a
 						>
 					</li>
@@ -55,19 +61,23 @@
 		<div class="desktop">
 			<ul class="menu menu-horizontal px-1">
 				<li>
-					<a class:active={$page.url.pathname === '/'} class="text-accent" href="/">Home</a>
+					<a
+						class:active={$page.url.pathname === '/'}
+						class:text-accent={$page.url.pathname === '/'}
+						href="/">Home</a
+					>
 				</li>
 				<li>
 					<a
 						class:active={$page.url.pathname.match(/^\/authenticated\/dishes\/?[0-9a-fA-F]*$/)}
-						class="text-accent"
+						class:text-accent={$page.url.pathname.match(/^\/authenticated\/dishes\/?[0-9a-fA-F]*$/)}
 						href="/authenticated/dishes">Dishes</a
 					>
 				</li>
 				<li>
 					<a
 						class:active={$page.url.pathname.match(/^\/about\/?[0-9a-fA-F]*$/)}
-						class="text-accent"
+						class:text-accent={$page.url.pathname.match(/^\/about\/?[0-9a-fA-F]*$/)}
 						href="/about">About</a
 					>
 				</li>
