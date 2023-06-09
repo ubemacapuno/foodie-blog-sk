@@ -12,7 +12,7 @@
 	method="POST"
 	{action}
 	use:enhance
-	class="bg-base-300 shadow-md rounded-2xl px-8 pt-6 pb-8 mb-4"
+	class="bg-neutral shadow-md rounded-2xl px-8 pt-6 pb-8 mb-4"
 >
 	<input type="hidden" name="_id" bind:value={$form._id} />
 	<div class="mb-4">
@@ -20,7 +20,7 @@
 		<input
 			type="text"
 			name="name"
-			class="input input-bordered w-full max-w-xs"
+			class="bg-base-100 input input-bordered w-full max-w-xs"
 			data-invalid={$errors.name}
 			bind:value={$form.name}
 			{...$constraints.name}

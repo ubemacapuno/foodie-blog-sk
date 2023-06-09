@@ -65,7 +65,7 @@
 	</div>
 	<div class="flex-container">
 		<div>
-			<div class="my-4 card w-80 bg-base-300 self-center">
+			<div class="my-4 card w-80 bg-neutral self-center">
 				<div class="card-body p-3">
 					<h3 class="card-title text-2xl text-primary">
 						{dish.name}
@@ -116,7 +116,7 @@
 				</div>
 			</div>
 
-			<div class="my-4 card w-80 bg-base-300 self-center">
+			<div class="my-4 card w-80 bg-neutral self-center">
 				<div class="card-body p-3">
 					<div>
 						{#if dish?.prep_time}
@@ -164,7 +164,7 @@
 				</div>
 			</div>
 
-			<div class="my-4 card w-80 bg-base-300 self-center">
+			<div class="my-4 card w-80 bg-neutral self-center">
 				<div class="card-body p-3">
 					<h3 class="card-title text-lg text-primary">Ingredients</h3>
 					{#if dish?.ingredients?.length > 0}
@@ -191,7 +191,7 @@
 			</div>
 		</div>
 
-		<div class="my-4 card w-80 bg-base-300 self-start">
+		<div class="my-4 card w-80 bg-neutral self-start">
 			<div class="card-body p-3">
 				<h3 class="card-title text-lg text-primary">Instructions</h3>
 				{#if dish?.instructions?.length > 0}
@@ -220,7 +220,7 @@
 		</div>
 	</div>
 {:else}
-	<div class="card w-72 bg-base-300 shadow-xl">
+	<div class="card w-72 bg-neutral shadow-xl">
 		<div class="card-body">
 			<strong class="text-warning text-3xl">Oops! Dish not found.</strong>
 			<a class="mt-5 btn btn-secondary" href="authenticated/dishes">Back to dishes</a>

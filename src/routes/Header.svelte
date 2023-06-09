@@ -5,7 +5,7 @@
 </script>
 
 <header>
-	<div class="navbar bg-base-300" style="display: flex; justify-content: space-between;">
+	<div class="navbar bg-neutral" style="display: flex; justify-content: space-between;">
 		<div class="mobile">
 			<div class="dropdown">
 				<label tabindex="0" class="btn btn-ghost btn-circle">
@@ -29,45 +29,55 @@
 					class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box border-2 border-base-content w-52 bg-bg-base-300"
 				>
 					<li>
-						<a class:active={$page.url.pathname === '/'} class="text-accent" href="/">Home</a>
+						<a
+							class:active={$page.url.pathname === '/'}
+							class:text-accent={$page.url.pathname === '/'}
+							href="/">Home</a
+						>
 					</li>
 					<li>
 						<a
 							class:active={$page.url.pathname.match(/^\/authenticated\/dishes\/?[0-9a-fA-F]*$/)}
-							class="text-accent"
+							class:text-accent={$page.url.pathname.match(
+								/^\/authenticated\/dishes\/?[0-9a-fA-F]*$/
+							)}
 							href="/authenticated/dishes">Dishes</a
 						>
 					</li>
 					<li>
 						<a
 							class:active={$page.url.pathname.match(/^\/about\/?[0-9a-fA-F]*$/)}
-							class="text-accent"
+							class:text-accent={$page.url.pathname.match(/^\/about\/?[0-9a-fA-F]*$/)}
 							href="/about">About</a
 						>
 					</li>
 				</ul>
 			</div>
 		</div>
-		<a href="/" class="btn btn-ghost normal-case text-xl">
+		<a href="/" class="font-bold normal-case text-xl">
 			<span class="text-primary">Foodie</span>
 			<span class="lowercase text-base-content">blog 🍪</span>
 		</a>
 		<div class="desktop">
 			<ul class="menu menu-horizontal px-1">
 				<li>
-					<a class:active={$page.url.pathname === '/'} class="text-accent" href="/">Home</a>
+					<a
+						class:active={$page.url.pathname === '/'}
+						class:text-accent={$page.url.pathname === '/'}
+						href="/">Home</a
+					>
 				</li>
 				<li>
 					<a
 						class:active={$page.url.pathname.match(/^\/authenticated\/dishes\/?[0-9a-fA-F]*$/)}
-						class="text-accent"
+						class:text-accent={$page.url.pathname.match(/^\/authenticated\/dishes\/?[0-9a-fA-F]*$/)}
 						href="/authenticated/dishes">Dishes</a
 					>
 				</li>
 				<li>
 					<a
 						class:active={$page.url.pathname.match(/^\/about\/?[0-9a-fA-F]*$/)}
-						class="text-accent"
+						class:text-accent={$page.url.pathname.match(/^\/about\/?[0-9a-fA-F]*$/)}
 						href="/about">About</a
 					>
 				</li>

@@ -28,7 +28,7 @@
 					<button class="btn-close" on:click={closeModal} aria-label="Close Modal Box">×</button>
 				{/if}
 			{/if}
-			<div class="p-1 card-body bg-base-200">
+			<div class="p-1 card-body">
 				<slot />
 			</div>
 		</div>
