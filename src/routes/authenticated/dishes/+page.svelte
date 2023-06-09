@@ -20,8 +20,8 @@
 	});
 </script>
 
-<div class="flex justify-center items-center flex-col">
-	<h1 class="text-3xl text-primary my-2">Add A Dish:</h1>
+<div class="flex justify-center items-center flex-col font-bold">
+	<h1 class="text-3xl text-accent my-2">Add A Dish</h1>
 	<div class="w-full max-w-xs">
 		<DishProfileForm action="?/create" {form} {errors} {constraints} {enhance} />
 	</div>
@@ -29,9 +29,9 @@
 
 <DebugSwitch form={$form} />
 
-<h2 class="text-2xl text-primary my-2">My Dishes:</h2>
+<h2 class="text-2xl text-accent font-bold my-2">My Dishes</h2>
 {#each dishes as dish}
-	<div class="my-4 card w-80 bg-base-300 shadow-xl text-primary self-center">
+	<div class="my-4 card w-80 bg-neutral shadow-xl text-primary self-center">
 		<div class="card-body">
 			<h3 class="card-title">{dish.name}</h3>
 			<p class="text-sm text-secondary">{dish.cuisine}</p>

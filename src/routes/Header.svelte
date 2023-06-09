@@ -5,7 +5,7 @@
 </script>
 
 <header>
-	<div class="navbar bg-base-300" style="display: flex; justify-content: space-between;">
+	<div class="navbar bg-neutral" style="display: flex; justify-content: space-between;">
 		<div class="mobile">
 			<div class="dropdown">
 				<label tabindex="0" class="btn btn-ghost btn-circle">
@@ -48,7 +48,7 @@
 				</ul>
 			</div>
 		</div>
-		<a href="/" class="btn btn-ghost normal-case text-xl">
+		<a href="/" class="font-bold normal-case text-xl">
 			<span class="text-primary">Foodie</span>
 			<span class="lowercase text-base-content">blog 🍪</span>
 		</a>
