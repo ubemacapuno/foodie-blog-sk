@@ -102,7 +102,7 @@ export const Dishes: Actions = {
 	},
 
 	delete: async function (event) {
-		console.log('EVENT', event);
+		// console.log('EVENT', event);
 		const session = await event.locals.getSession();
 		const form = await superValidate(event, dishes_schema);
 
