@@ -44,7 +44,7 @@
 			<h1 class="text-xl text-warning font-bold">Please sign in!</h1>
 			<LoginButton>Sign In</LoginButton>
 		{:else}
-			<a href="/" class="my-6 btn btn-primary">Dashboard</a>
+			<a href="/authenticated/dashboard" class="my-6 btn btn-primary">Dashboard</a>
 		{/if}
 	</div>
 </div>
