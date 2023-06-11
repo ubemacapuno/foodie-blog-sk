@@ -18,7 +18,7 @@
 </script>
 
 <div class="stats stats-vertical shadow">
-	<h1 class="text-3xl my-2">Home - Coming Soon!</h1>
+	<h1 class="text-3xl my-2">Home</h1>
 
 	<div class="stat">
 		<div class="text-primary stat-title">Total Dishes</div>
