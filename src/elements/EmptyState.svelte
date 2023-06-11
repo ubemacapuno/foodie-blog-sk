@@ -6,7 +6,7 @@
 </script>
 
 {#if isLoading}
-	<div class="btn loading">{loadingMessage}</div>
+	<div class="loading loading-dots loading-lg text-primary">{loadingMessage}</div>
 {:else}
 	<div class="flex content-centers justify-center space-x-2 {accent}">
 		<svg

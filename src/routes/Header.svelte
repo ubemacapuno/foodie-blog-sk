@@ -54,7 +54,7 @@
 				</ul>
 			</div>
 		</div>
-		<a href="/" class="font-bold normal-case text-xl">
+		<a href="/" class="font-bold normal-case text-md">
 			<span class="text-primary">Foodie</span>
 			<span class="lowercase text-base-content">blog 🍪</span>
 		</a>
