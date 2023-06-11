@@ -11,6 +11,23 @@
 </script>
 
 <div class="flex justify-center items-center flex-col">
-	<h1 class="text-3xl my-2">Homepage</h1>
-	<p class="text-base">(Coming soon)</p>
+	<h1 class="text-3xl my-2">Home - Coming Soon!</h1>
+	<div class="stats bg-neutral text-primary-content">
+		<div class="stat">
+			<div class="stat-title">Account balance</div>
+			<div class="stat-value text-accent">$89,400</div>
+			<div class="stat-actions">
+				<button class="btn btn-sm btn-primary">Add funds</button>
+			</div>
+		</div>
+
+		<div class="stat">
+			<div class="stat-title">Current balance</div>
+			<div class="stat-value text-accent">$89,400</div>
+			<div class="stat-actions">
+				<button class="btn btn-sm btn-secondary">Withdrawal</button>
+				<button class="btn btn-sm btn-secondary">deposit</button>
+			</div>
+		</div>
+	</div>
 </div>
