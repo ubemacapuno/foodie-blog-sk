@@ -4,7 +4,7 @@ import { message, superValidate } from 'sveltekit-superforms/server';
 import uniqueId from 'lodash.uniqueid';
 import {
 	// has_role,
-	get_form_data_object,
+	// get_form_data_object,
 	prepare_data_for_insert,
 	type Actions
 } from '$db/actions';
@@ -102,6 +102,7 @@ export const Dishes: Actions = {
 	},
 
 	delete: async function (event) {
+		// console.log('EVENT', event);
 		const session = await event.locals.getSession();
 		const form = await superValidate(event, dishes_schema);
 
@@ -111,19 +112,23 @@ export const Dishes: Actions = {
 		}
 
 		// TODO: Setup a check so users can only delete their own dishes
-		if (session?.user?.email !== form.data.created_by_user_email) {
-			throw redirect(
-				302,
-				`/authenticated/dishes/${form.data._id}`,
-				{
-					message: `Cannot delete this dish. Session email doesn't match email created by user.`,
-					status: 'error',
-					// Add id so the toast gets assigned an id
-					id: uniqueId()
-				},
-				event
-			);
-		}
+		// console.log('DELETE CHECK - session', session?.user?.email, form.data.created_by_user_email);
+		// console.log('DELETE CHECK - form', form.data);
+		// console.log('DELETE CHECK - form', form.data.created_by_user_email);
+
+		// if (session?.user?.email !== form.data.created_by_user_email) {
+		// 	throw redirect(
+		// 		302,
+		// 		`/authenticated/dishes/${form.data._id}`,
+		// 		{
+		// 			message: `Cannot delete this dish. Session email doesn't match email created by user.`,
+		// 			status: 'error',
+		// 			// Add id so the toast gets assigned an id
+		// 			id: uniqueId()
+		// 		},
+		// 		event
+		// 	);
+		// }
 
 		if (!form.data._id) return fail(400, { message: DEFAULT_FORM_ERROR });
 
