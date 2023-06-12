@@ -9,9 +9,8 @@ export const load = (async (event) => {
 	const user_email = session?.user?.email;
 
 	// Query ONLY for dishes made by the user (same email)
-	const all_user_dishes = await dishes
-		.find({ created_by_user_email: user_email }, { sort: { order: 1 } })
-		.toArray();
+	const count_user_dishes = await dishes.countDocuments({ created_by_user_email: user_email });
+
 	// Server API:
 	// See https://zod.dev/?id=primitives for schema syntax
 	const form = await superValidate(event, new_dish_schema);
@@ -19,7 +18,7 @@ export const load = (async (event) => {
 	// Always return { form } in load and form actions.
 	return {
 		form,
-		dishes: fix_pojo(all_user_dishes),
+		user_dishes_length: fix_pojo(count_user_dishes),
 		session
 	};
 }) satisfies PageServerLoad;
