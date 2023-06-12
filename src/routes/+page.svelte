@@ -1,13 +1,16 @@
 <script lang="ts">
+	import type { PageData } from './$types';
 	import { format } from 'date-fns';
 	import { page } from '$app/stores';
 	import LoginButton from '$lib/components/LoginButton.svelte';
 
 	// Stats props:
-	export let totalDishes: Number | String;
 	export let totalUsers: Number | String;
 	export let featuredDish: String;
 	export let cuisine: String;
+	export let data: PageData;
+
+	$: ({ count_all_dishes } = data);
 
 	const currentDateFormatted = format(new Date(), 'PP');
 </script>
@@ -17,7 +20,7 @@
 		<h1 class="text-xl my-2">Stats coming soon!</h1>
 		<div class="stat">
 			<div class="text-primary stat-title">Total Dishes</div>
-			<div class="stat-value text-primary">{totalDishes || '-'}</div>
+			<div class="stat-value text-primary">{count_all_dishes || '-'}</div>
 			<div class="stat-desc">Mar 25, 2023 - {currentDateFormatted}</div>
 		</div>
 

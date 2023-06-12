@@ -2,15 +2,14 @@
 	import type { PageData } from './$types';
 	import { avatarLetters } from '$utilities/helpers';
 
+	export let data: PageData;
+
 	//TODO: Make a store or something
 	let avatarInitials = 'Me';
 	//TODO: Stat Props
-	let totalDishes: Number | String;
 
-	$: ({ user_dishes_length, session } = data);
+	$: ({ user_dishes_length, session, count_all_dishes } = data);
 	$: if (session?.user?.name) avatarInitials = avatarLetters(String(session.user.name));
-
-	export let data: PageData;
 </script>
 
 <div class="bg-neutral shadow-xl mx-1 rounded-2xl">
@@ -42,7 +41,7 @@
 			<div class="stats bg-neutral text-primary-content my-5">
 				<div class="stat">
 					<div class="stat-title">Total Dishes</div>
-					<div class="stat-value text-primary">{totalDishes || '-'}</div>
+					<div class="stat-value text-primary">{count_all_dishes || '-'}</div>
 					<div class="stat-actions">
 						<button disabled class="btn btn-sm btn-primary">View</button>
 					</div>

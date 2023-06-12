@@ -2,7 +2,6 @@ import type { PageServerLoad } from './$types';
 import { dishes } from '$db/models/dishes/collection';
 import { Dishes } from '$db/models/dishes/actions';
 import { superValidate } from 'sveltekit-superforms/server';
-import { fix_pojo } from '$utilities/fix_pojo';
 import { new_dish_schema } from '$db/models/dishes/schema';
 
 export const load = (async (event) => {
@@ -20,7 +19,7 @@ export const load = (async (event) => {
 	// Always return { form } in load and form actions.
 	return {
 		form,
-		dishes: fix_pojo(all_user_dishes)
+		dishes: all_user_dishes
 	};
 }) satisfies PageServerLoad;
 

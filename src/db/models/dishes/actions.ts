@@ -133,6 +133,7 @@ export const Dishes: Actions = {
 		if (!form.data._id) return fail(400, { message: DEFAULT_FORM_ERROR });
 
 		await dishes.deleteOne({ _id: form.data._id }).catch(log_error);
+
 		console.log('FORM (delete)', form);
 
 		throw redirect(
