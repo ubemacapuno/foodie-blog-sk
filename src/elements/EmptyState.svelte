@@ -2,11 +2,10 @@
 	export let content = 'No data here.';
 	export let accent: string = 'text-info';
 	export let isLoading = false;
-	export let loadingMessage = 'Loading...';
 </script>
 
 {#if isLoading}
-	<div class="loading loading-dots loading-lg text-primary">{loadingMessage}</div>
+	<span class="loading loading-dots loading-lg text-primary" />
 {:else}
 	<div class="flex content-centers justify-center space-x-2 {accent}">
 		<svg
