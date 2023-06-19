@@ -3,10 +3,8 @@
 
 	export let isAlertShowing: string | boolean | undefined = true;
 	export let description = '';
-	export let onClose = () => {};
 
 	function closeAlert() {
-		onClose();
 		isAlertShowing = false;
 	}
 </script>
