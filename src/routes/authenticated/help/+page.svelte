@@ -56,13 +56,7 @@
 	}
 </script>
 
-<p class="text-xs italic text-warning max-w-xl mx-2 my-2">
-	* This application utilizes a paid OpenAI API account with limited usage. Please be aware that
-	there may be occasional delays or disruptions due to API usage limitations. This page is also in
-	development and you may encounter errors!
-</p>
-
-<div class="bg-neutral card max-w-3xl shadow-xl mx-1">
+<div class="bg-neutral-focus card max-w-3xl shadow-xl mx-1">
 	<div class="flex flex-col py-4 w-full px-2 items-start gap-2">
 		<div>
 			<h1 class="text-2xl font-bold w-full text-center text-primary">Virtual Assistant</h1>
@@ -75,18 +69,18 @@
 				>
 			</p>
 		</div>
-		<div class="h-[500px] w-full bg-base-300 rounded-md p-4 overflow-y-auto flex flex-col gap-4">
+		<div class="h-[500px] w-full bg-neutral rounded-md p-4 overflow-y-auto flex flex-col gap-4">
 			<div class="flex flex-col gap-2">
 				{#if $page?.data?.session?.user?.name}
 					<ChatMessage
 						type="assistant"
 						message="Hi {$page?.data?.session?.user
-							?.name}! I am a Virtual Assistant for FoodieBlog🍪. Ask me anything!"
+							?.name}! I am your Virtual Assistant for FoodieBlog. Ask me anything!"
 					/>
 				{:else}
 					<ChatMessage
 						type="assistant"
-						message="Hello! I am a Virtual Assistant for FoodieBlog🍪. Ask me anything!"
+						message="Hello! I am a Virtual Assistant for FoodieBlog. Ask me anything!"
 					/>
 				{/if}
 				{#each chatMessages as message}
@@ -97,14 +91,14 @@
 				{/if}
 				{#if isLoading}
 					<ChatMessage type="assistant" message="">
-						<EmptyState {isLoading} message="Typing . . ." />
+						<EmptyState {isLoading} loadingMessage="Typing . . ." />
 					</ChatMessage>
 				{/if}
 			</div>
 			<div class="" bind:this={scrollToDiv} />
 		</div>
 		<form
-			class="flex w-full rounded-md gap-4 bg-base-300 p-4"
+			class="flex w-full rounded-md gap-4 bg-neutral-focus p-4"
 			on:submit|preventDefault={() => handleSubmit()}
 		>
 			<input type="text" class="input input-bordered w-full" bind:value={query} />

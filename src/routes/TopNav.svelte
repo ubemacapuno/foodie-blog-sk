@@ -2,6 +2,7 @@
 	import { page } from '$app/stores';
 	import LoginButton from '$lib/components/LoginButton.svelte';
 	import { signOut } from '@auth/sveltekit/client';
+	import Alert from '$lib/components/Alert.svelte';
 </script>
 
 <header>
@@ -45,6 +46,15 @@
 								href="/authenticated/dishes">Dishes</a
 							>
 						</li>
+						<li>
+							<a
+								class:active={$page.url.pathname.match(/^\/authenticated\/help\/?[0-9a-fA-F]*$/)}
+								class:text-accent={$page.url.pathname.match(
+									/^\/authenticated\/help\/?[0-9a-fA-F]*$/
+								)}
+								href="/authenticated/help">Help</a
+							>
+						</li>
 					{/if}
 					<li>
 						<a
@@ -77,6 +87,13 @@
 								/^\/authenticated\/dishes\/?[0-9a-fA-F]*$/
 							)}
 							href="/authenticated/dishes">Dishes</a
+						>
+					</li>
+					<li>
+						<a
+							class:active={$page.url.pathname.match(/^\/authenticated\/help\/?[0-9a-fA-F]*$/)}
+							class:text-accent={$page.url.pathname.match(/^\/authenticated\/help\/?[0-9a-fA-F]*$/)}
+							href="/authenticated/help">Help</a
 						>
 					</li>
 				{/if}
@@ -112,6 +129,13 @@
 			{/if}
 		</div>
 	</div>
+	{#if $page.url.pathname === '/authenticated/help'}
+		<slot name="alert">
+			<Alert
+				description="The virtual assistant may have occasional delays due to API usage, as well as function timeout limitations of 10 seconds."
+			/>
+		</slot>
+	{/if}
 </header>
 
 <style lang="postcss">

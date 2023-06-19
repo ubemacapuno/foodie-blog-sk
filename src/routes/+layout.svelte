@@ -1,7 +1,7 @@
 <script>
 	import ToastMessage from './ToastMessage.svelte';
 	import '../app.css';
-	import Header from './Header.svelte';
+	import TopNav from './TopNav.svelte';
 	import Footer from './Footer.svelte';
 	import { navigating } from '$app/stores';
 	import { loading } from '$lib/stores/loading';
@@ -21,7 +21,7 @@
 </script>
 
 <div class="flex flex-col min-h-screen relative">
-	<Header />
+	<TopNav />
 	<div class="flex justify-center">
 		<div class="max-w-3xl mx-1 pt-4">
 			{#if $loading.status === 'LOADING'}
