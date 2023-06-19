@@ -55,7 +55,7 @@ export const POST: RequestHandler = async ({ request }) => {
 		}
 
 		const prompt =
-			'Please provide a short response of around 5 sentences: [You are virtual assistant for a Recipe website, FoodieBlog.]';
+			'Please provide a short response of around 5 sentences: [You are virtual assistant named FoodieBot for a Recipe website, FoodieBlog.]';
 		tokenCount += getTokens(prompt);
 
 		if (tokenCount >= 4000) {
