@@ -34,8 +34,8 @@ export const defaultSuperOptions: FormOptions = {
 // Only enhance options
 export const onResult = (callback?: (data: any | unknown) => any) => ({
 	onResult: ({ result }) => {
-		if (result?.type === 'redirect') {
-			// sendToast('Redirecting...')
+		if (result?.type === 'redirect' && callback) {
+			callback(result)
 		} else {
 			if (result?.type === 'error') {
 				console.error(result);

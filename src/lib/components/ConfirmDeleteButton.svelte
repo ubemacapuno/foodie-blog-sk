@@ -4,7 +4,7 @@
 	import ConfirmDeleteModal from './ConfirmDeleteModal.svelte';
 
 	// Modal Props
-	export let isConfirmActive = false;
+	export let isModalOpen = false;
 	export let title = 'Confirm Delete';
 	export let description = 'Are you sure you want to delete this?';
 
@@ -15,12 +15,17 @@
 	// Button props
 	export let disabled = false;
 
-	const { enhance, submitting, delayed } = superForm(_id, getSuperOptions());
+	const { enhance, submitting, delayed } = superForm(
+		_id,
+		getSuperOptions(() => {
+			isModalOpen = false;
+		})
+	);
 </script>
 
 <button
 	on:click={() => {
-		isConfirmActive = true;
+		isModalOpen = true;
 	}}
 	{disabled}
 	class="btn btn-sm btn-outline btn-error"
@@ -28,7 +33,7 @@
 	<slot />
 </button>
 
-<ConfirmDeleteModal bind:isModalOpen={isConfirmActive} {title}>
+<ConfirmDeleteModal bind:isModalOpen {title}>
 	<div class="bg-neutral">
 		<p>{description}</p>
 		<form method="POST" {action} use:enhance>
@@ -36,7 +41,7 @@
 			<button
 				class="btn btn-sm btn-outline btn-secondary"
 				on:click|preventDefault={() => {
-					isConfirmActive = false;
+					isModalOpen = false;
 				}}
 			>
 				Cancel
@@ -45,10 +50,10 @@
 				 preventDefault is a Svelte modifier which calls event.preventDefault() before running the handler. In this case, it will prevent the form from being submitted when you click the "Cancel" button, thus preventing the dish from being deleted.
 				 @see docs https://svelte.dev/tutorial/event-modifiers
 			-->
-			<button
+			<Button
 				type="submit"
 				class="btn btn-sm btn-outline btn-error"
-				loading={$submitting || $delayed}>Delete</button
+				loading={$submitting || $delayed}>Delete</Button
 			>
 		</form>
 	</div>
