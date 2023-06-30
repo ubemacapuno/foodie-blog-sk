@@ -129,13 +129,7 @@
 			{/if}
 		</div>
 	</div>
-	{#if $page.url.pathname === '/authenticated/help'}
-		<slot name="alert">
-			<Alert
-				description="The virtual assistant may have occasional delays due to API usage, as well as function timeout limitations of 10 seconds."
-			/>
-		</slot>
-	{/if}
+	<slot name="alert" />
 </header>
 
 <style lang="postcss">
