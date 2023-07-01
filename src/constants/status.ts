@@ -1,11 +1,11 @@
-import type { Status } from '$elements/element-types';
+import type { Status } from '$elements/element-types'
 
 // Accent is the way we map our colors and icons site-wide
 type StatusMap = {
 	[StatusKey in Status]: {
-		accent: Status;
-	};
-};
+		accent: Status
+	}
+}
 
 export const STATUS: StatusMap = {
 	info: {
@@ -20,4 +20,4 @@ export const STATUS: StatusMap = {
 	success: {
 		accent: 'success'
 	}
-};
+}
