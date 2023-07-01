@@ -1,9 +1,7 @@
 import { zod_to_jsonschema } from '$utilities/zod_to_jsonschema';
 import { z } from 'zod';
 import { zodToJsonSchema } from 'zod-to-json-schema';
-
-const REQUIRED_FILED = 'This field is required';
-const requiredString = z.string().min(1, REQUIRED_FILED);
+import { requiredString } from '$utilities/zod_helpers';
 
 // Validation schema for dishes
 export const dishes_fields = {

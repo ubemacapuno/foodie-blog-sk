@@ -48,6 +48,17 @@
 						</li>
 						<li>
 							<a
+								class:active={$page.url.pathname.match(
+									/^\/authenticated\/restaurants\/?[0-9a-fA-F]*$/
+								)}
+								class:text-accent={$page.url.pathname.match(
+									/^\/authenticated\/restaurants\/?[0-9a-fA-F]*$/
+								)}
+								href="/authenticated/restaurants">Restaurants</a
+							>
+						</li>
+						<li>
+							<a
 								class:active={$page.url.pathname.match(/^\/authenticated\/help\/?[0-9a-fA-F]*$/)}
 								class:text-accent={$page.url.pathname.match(
 									/^\/authenticated\/help\/?[0-9a-fA-F]*$/
@@ -65,12 +76,20 @@
 					</li>
 				</ul>
 			</div>
+			<div class="flex flex-row flex-nowrap">
+				<a href="/" class="font-bold normal-case text-md logo_link">
+					<span class="text-primary">Foodie</span>
+					<span class="lowercase text-base-content">blog 🍪</span>
+				</a>
+			</div>
 		</div>
-		<a href="/" class="font-bold normal-case text-md">
-			<span class="text-primary">Foodie</span>
-			<span class="lowercase text-base-content">blog 🍪</span>
-		</a>
 		<div class="desktop">
+			<div class="flex flex-row flex-nowrap">
+				<a href="/" class="font-bold normal-case text-md logo_link">
+					<span class="text-primary">Foodie</span>
+					<span class="lowercase text-base-content">blog 🍪</span>
+				</a>
+			</div>
 			<ul class="menu menu-horizontal px-1">
 				{#if $page.data.session}
 					<li>
@@ -87,6 +106,17 @@
 								/^\/authenticated\/dishes\/?[0-9a-fA-F]*$/
 							)}
 							href="/authenticated/dishes">Dishes</a
+						>
+					</li>
+					<li>
+						<a
+							class:active={$page.url.pathname.match(
+								/^\/authenticated\/restaurants\/?[0-9a-fA-F]*$/
+							)}
+							class:text-accent={$page.url.pathname.match(
+								/^\/authenticated\/restaurants\/?[0-9a-fA-F]*$/
+							)}
+							href="/authenticated/restaurants">Restaurants</a
 						>
 					</li>
 					<li>
@@ -115,7 +145,7 @@
 				</li>
 			</ul>
 		</div>
-		<div class="navbar-end">
+		<div>
 			{#if $page.data.session}
 				{#if $page.data.session.user?.image}
 					<span style="background-image: url('{$page.data.session.user.image}')" class="avatar" />
@@ -129,6 +159,7 @@
 			{/if}
 		</div>
 	</div>
+	<!-- Alert slot -->
 	{#if $page.url.pathname === '/authenticated/help'}
 		<slot name="alert">
 			<Alert
@@ -136,9 +167,17 @@
 			/>
 		</slot>
 	{/if}
+	{#if $page.url.pathname === '/authenticated/restaurants'}
+		<slot name="alert">
+			<Alert accent="info" description="🛠️ This page is under construction. Check back later!" />
+		</slot>
+	{/if}
 </header>
 
 <style lang="postcss">
+	.flex-row > a {
+		flex-shrink: 0;
+	}
 	.mobile {
 		display: none;
 	}
@@ -155,5 +194,9 @@
 		.mobile .btn.btn-ghost {
 			margin-left: 1rem;
 		}
+	}
+
+	.logo_link {
+		white-space: nowrap;
 	}
 </style>
