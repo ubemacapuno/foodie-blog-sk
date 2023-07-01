@@ -1,10 +1,12 @@
 <script>
+	import { page } from '$app/stores';
 	import ToastMessage from './ToastMessage.svelte';
 	import '../app.css';
 	import TopNav from './TopNav.svelte';
 	import Footer from './Footer.svelte';
 	import { navigating } from '$app/stores';
 	import { loading } from '$lib/stores/loading';
+	import Alert from '$lib/components/Alert.svelte';
 
 	let isLoading = true;
 
@@ -21,7 +23,15 @@
 </script>
 
 <div class="flex flex-col min-h-screen relative">
-	<TopNav />
+	<TopNav>
+		<div slot="alert">
+			{#if $page.url.pathname === '/authenticated/help'}
+				<Alert
+					description="The virtual assistant may have occasional delays due to API usage, as well as function timeout limitations of 10 seconds."
+				/>
+			{/if}
+		</div>
+	</TopNav>
 	<div class="flex justify-center">
 		<div class="max-w-3xl mx-1 pt-4">
 			{#if $loading.status === 'LOADING'}
