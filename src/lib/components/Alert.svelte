@@ -1,13 +1,13 @@
 <script lang="ts">
-	import type { Status } from '$elements/element-types';
-	import { fly } from 'svelte/transition';
+	import type { Status } from '$elements/element-types'
+	import { fly } from 'svelte/transition'
 
-	export let isAlertShowing: string | boolean | undefined = true;
-	export let accent: Status = 'warning';
-	export let description = '';
+	export let isAlertShowing: string | boolean | undefined = true
+	export let accent: Status = 'warning'
+	export let description = ''
 
 	function closeAlert() {
-		isAlertShowing = false;
+		isAlertShowing = false
 	}
 </script>
 
