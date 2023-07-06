@@ -1,23 +1,23 @@
 <script lang="ts">
-	import ConfirmDeleteModal from './ConfirmDeleteModal.svelte';
-	import { signIn } from '@auth/sveltekit/client';
+	import ConfirmDeleteModal from './ConfirmDeleteModal.svelte'
+	import { signIn } from '@auth/sveltekit/client'
 
 	// Modal Props
-	export let isConfirmActive = false;
+	export let isConfirmActive = false
 	// Form props
 	// Button props
-	export let disabled = false;
+	export let disabled = false
 
-	const title = 'We Value Your Privacy';
+	const title = 'We Value Your Privacy'
 
-	let isCheckboxChecked = false;
+	let isCheckboxChecked = false
 
-	$: disabled = !isCheckboxChecked;
+	$: disabled = !isCheckboxChecked
 </script>
 
 <button
 	on:click={() => {
-		isConfirmActive = true;
+		isConfirmActive = true
 	}}
 	class="btn btn-sm btn-primary link no-underline"
 >
@@ -31,23 +31,22 @@
 			when you create dishes on our platform.
 		</p>
 		<br />
-		<p>We assure you that your email address will be used solely for the purpose of:</p>
-		<br />
-		<ul class="list-disc list-inside">
-			<li>Linking the dishes you create to your account so you can edit or delete them.</li>
-		</ul>
+		<p>
+			We assure you that your email address will be used solely for the purpose of linking the
+			dishes you create to your account so you can edit or delete them.
+		</p>
 		<br />
 		<p>
 			We respect your privacy and we're committed to protecting it. Your email address will not be
-			shared with any third parties without your explicit consent and you can always choose to
-			remove your email from our system.
+			shared with any third parties, and you can always choose to remove your email from our system.
 		</p>
+		<br />
 		<p>
 			By checking the "I Agree" checkbox, you are providing us with your consent to use your email
 			address for the above purposes. If you don't agree, you may not be able to create dishes on
 			our platform.
 		</p>
-		<div class="form-control py-5">
+		<div class="form-control pt-2 pb-4">
 			<label class="cursor-pointer label flex flex-row justify-center gap-x-10">
 				<span class="label-text text-accent">I Agree</span>
 				<input
@@ -62,7 +61,7 @@
 			<button
 				class="btn btn-sm btn-secondary"
 				on:click|preventDefault={() => {
-					isConfirmActive = false;
+					isConfirmActive = false
 				}}
 			>
 				Decline

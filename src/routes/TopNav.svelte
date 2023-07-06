@@ -7,7 +7,7 @@
 
 <header>
 	<div class="navbar bg-neutral" style="display: flex; justify-content: space-between;">
-		<div class="mobile z-10">
+		<div class="mx-0 mobile z-10">
 			<div class="dropdown">
 				<label tabindex="0" class="btn btn-ghost btn-circle">
 					<svg
@@ -76,20 +76,16 @@
 					</li>
 				</ul>
 			</div>
-			<div class="flex flex-row flex-nowrap">
-				<a href="/" class="font-bold normal-case text-md logo_link">
-					<span class="text-primary">Foodie</span>
-					<span class="lowercase text-base-content">blog 🍪</span>
-				</a>
-			</div>
+			<a href="/" class="flex flex-row flex-nowrap font-bold normal-case text-md logo_link">
+				<span class="text-primary">Foodie</span>
+				<span class="lowercase text-base-content">blog 🍪</span>
+			</a>
 		</div>
 		<div class="desktop">
-			<div class="flex flex-row flex-nowrap">
-				<a href="/" class="font-bold normal-case text-md logo_link">
-					<span class="text-primary">Foodie</span>
-					<span class="lowercase text-base-content">blog 🍪</span>
-				</a>
-			</div>
+			<a href="/" class="flex flex-row flex-nowrap font-bold normal-case text-md logo_link">
+				<span class="text-primary">Foodie</span>
+				<span class="lowercase text-base-content">blog 🍪</span>
+			</a>
 			<ul class="menu menu-horizontal px-1">
 				{#if $page.data.session}
 					<li>
@@ -169,8 +165,8 @@
 </header>
 
 <style lang="postcss">
-	.flex-row > a {
-		flex-shrink: 0;
+	.btn.btn-ghost {
+		margin: 0 !important;
 	}
 	.mobile {
 		display: none;

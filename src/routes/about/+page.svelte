@@ -1,6 +1,6 @@
 <script>
-	import { page } from '$app/stores';
-	import LoginButton from '$lib/components/LoginButton.svelte';
+	import { page } from '$app/stores'
+	import LoginButton from '$lib/components/LoginButton.svelte'
 </script>
 
 <svelte:head>
