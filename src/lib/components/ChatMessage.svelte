@@ -1,28 +1,28 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-	import { avatarLetters } from '$utilities/helpers';
-	import type { ChatCompletionRequestMessageRoleEnum } from 'openai';
-	export let type: ChatCompletionRequestMessageRoleEnum;
-	export let message: string;
-	import { sendToast } from '$stores/toast';
+	import { page } from '$app/stores'
+	import { avatarLetters } from '$utilities/helpers'
+	import type { ChatCompletionRequestMessageRoleEnum } from 'openai'
+	export let type: ChatCompletionRequestMessageRoleEnum
+	export let message: string
+	import { sendToast } from '$stores/toast'
 
-	const avatarInitials = avatarLetters(String($page.data.session?.user?.name));
+	const avatarInitials = avatarLetters(String($page.data.session?.user?.name))
 
 	// Function to copy text to the clipboard
 	async function copyToClipboard() {
 		try {
-			await navigator.clipboard.writeText(message);
-			console.log('Text copied to clipboard');
-			sendToast('Text copied to clipboard', 'success');
+			await navigator.clipboard.writeText(message)
+			console.log('Text copied to clipboard')
+			sendToast('Text copied to clipboard', 'success')
 		} catch (err) {
-			console.log('Failed to copy text: ', err);
-			sendToast('Failed to copy text', 'error');
+			console.log('Failed to copy text: ', err)
+			sendToast('Failed to copy text', 'error')
 		}
 	}
 </script>
 
 <div class="chat {type === 'user' ? 'chat-end' : 'chat-start'} justify-end">
-	<div class="chat-image avatar online">
+	<div class="chat-image avatar online z-0">
 		{#if type === 'user'}
 			<div class="avatar online placeholder">
 				<div class="bg-neutral-focus text-neutral-content rounded-full w-10">
