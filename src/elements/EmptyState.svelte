@@ -1,13 +1,13 @@
 <script lang="ts">
-	export let content = 'No data here.';
-	export let accent: string = 'text-info';
-	export let isLoading = false;
+	export let content = 'No data here.'
+	export let accent: string = 'text-info'
+	export let isLoading = false
 </script>
 
 {#if isLoading}
 	<span class="loading loading-dots loading-lg text-primary" />
 {:else}
-	<div class="flex content-centers justify-center space-x-2 {accent}">
+	<div class="flex flex-col items-center justify-center gap-2 {accent}">
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			fill="none"
@@ -21,5 +21,6 @@
 			/>
 		</svg>
 		<p>{content}</p>
+		<slot />
 	</div>
 {/if}
