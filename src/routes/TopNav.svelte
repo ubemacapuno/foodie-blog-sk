@@ -157,7 +157,7 @@
 	</div>
 	{#if $page.url.pathname === '/authenticated/help'}
 		<Alert
-			description="The virtual assistant may have occasional delays due to API usage, as well as function timeout limitations of 10 seconds."
+			description="The virtual assistant may have occasional delays due to API usage and serverless function timeout limitations of 10 seconds."
 		/>
 	{:else if $page.url.pathname === '/authenticated/restaurants'}
 		<Alert accent="info" description="🛠️ This page is under construction. Check back later!" />
