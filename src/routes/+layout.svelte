@@ -18,7 +18,7 @@
 			if ($loading.status === 'NAVIGATING') {
 				$loading.status = 'LOADING'
 			}
-		}, 2000)
+		}, 100)
 	}
 </script>
 
@@ -26,13 +26,8 @@
 	<TopNav />
 	<div class="flex justify-center">
 		<div class="max-w-3xl mx-1 pt-4">
-			{#if $loading.status === 'LOADING'}
-				<div class="empty_state_wrapper">
-					<EmptyState {isLoading} />
-				</div>
-			{:else}
-				<slot />
-			{/if}
+			<EmptyState {isLoading} />
+			<slot />
 		</div>
 	</div>
 	<div class="mt-10">

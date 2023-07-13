@@ -5,7 +5,9 @@
 </script>
 
 {#if isLoading}
-	<span class="loading loading-dots loading-lg text-primary" />
+	<div class="fixed inset-0 flex items-center justify-center z-50 pointer-events-none gap-5">
+		<span class="loading loading-dots loading-lg text-warning" />
+	</div>
 {:else}
 	<div class="flex flex-col items-center justify-center gap-2 {accent}">
 		<svg
