@@ -26,7 +26,9 @@
 	<TopNav />
 	<div class="flex justify-center">
 		<div class="max-w-3xl mx-1 pt-4">
-			<EmptyState {isLoading} />
+			{#if $loading.status === 'LOADING'}
+				<EmptyState {isLoading} />
+			{/if}
 			<slot />
 		</div>
 	</div>
