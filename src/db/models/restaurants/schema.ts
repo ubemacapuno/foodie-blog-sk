@@ -19,7 +19,8 @@ export const restaurants_dishes_schema = z.object(restaurant_dishes_fields)
 // Validation schema for restaurant
 export const restaurants_fields = {
 	_id: z.string().min(1),
-	restaurant_name: z.string().min(1, REQUIRED_FIELD),
+	name: z.string().min(1, REQUIRED_FIELD),
+	rating: z.string().nonempty().default('5'),
 	dishes: z.array(restaurants_dishes_schema).max(100, 'Please use less than 100 dishes.'),
 	date_added: requiredString,
 	date_updated: requiredString,
@@ -30,8 +31,8 @@ export const restaurants_fields = {
 export const restaurants_schema = z.object(restaurants_fields)
 
 export const new_restaurant_schema = z.object({
-	restaurant_name: z.string().min(1, REQUIRED_FIELD),
-	dishes: z.array(restaurants_dishes_schema)
+	name: z.string().min(1, REQUIRED_FIELD),
+	rating: z.string().nonempty().default('5')
 })
 
 export const updated_restaurants_schema = restaurants_schema.omit({

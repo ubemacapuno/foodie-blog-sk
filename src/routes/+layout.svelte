@@ -18,7 +18,7 @@
 			if ($loading.status === 'NAVIGATING') {
 				$loading.status = 'LOADING'
 			}
-		}, 100)
+		}, 5000)
 	}
 </script>
 

@@ -1,23 +1,25 @@
 <script lang="ts">
-	import type { PageData } from './$types';
-	import { getSuperOptions } from '$lib/forms/superforms';
-	import { superForm } from 'sveltekit-superforms/client';
-	import Modal from '$lib/components/Modal.svelte';
-	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte';
-	import { format } from 'date-fns';
-	import DishIngredientsForm from '../DishIngredientsForm.svelte';
-	import DishNotesForm from '../DishNotesForm.svelte';
-	import DishProfileForm from '../DishProfileForm.svelte';
-	import ConfirmDeleteButton from '$lib/components/ConfirmDeleteButton.svelte';
-	import DishNumbersForm from '../DishNumbersForm.svelte';
-	import SvelteMarkdown from 'svelte-markdown';
+	import type { PageData } from './$types'
+	import { getSuperOptions } from '$lib/forms/superforms'
+	import { superForm } from 'sveltekit-superforms/client'
+	import Modal from '$lib/components/Modal.svelte'
+	import SuperDebug from 'sveltekit-superforms/client/SuperDebug.svelte'
+	import DishIngredientsForm from '../DishIngredientsForm.svelte'
+	import DishNotesForm from '../DishNotesForm.svelte'
+	import DishProfileForm from '../DishProfileForm.svelte'
+	import ConfirmDeleteButton from '$lib/components/ConfirmDeleteButton.svelte'
+	import DishNumbersForm from '../DishNumbersForm.svelte'
+	import SvelteMarkdown from 'svelte-markdown'
+	import { formatDate } from '$utilities/helpers'
+	import type { ActiveModalId } from '$lib/forms/form-types'
 
-	export let data: PageData;
+	export let data: PageData
 
-	type ActiveModalId = 'profile' | 'ingredients' | 'notes' | 'debug' | undefined;
-
-	let activeModalId: string | ActiveModalId = undefined;
-	let newIngredient = '';
+	let activeModalId: string | ActiveModalId = undefined
+	let newIngredient = ''
+	// TODO: conditionally set "add" or "update" for button text
+	let updateButtonText = ''
+	let enableButton = false
 
 	// Client API:
 	const { form, errors, constraints, enhance } = superForm(data.form, {
@@ -26,37 +28,23 @@
 		 * @see https://superforms.vercel.app/flash-messages
 		 */
 		...getSuperOptions(() => {
-			activeModalId = undefined;
+			activeModalId = undefined
 		}),
 		// This is a requirement when the schema contains nested objects:
 		dataType: 'json'
-	});
-	const userEmail = data.session?.user?.email;
-
-	function formatDate(dateString: string) {
-		const date = new Date(dateString);
-		/**
-		 * "P" is long localized date
-		 * "p" is long localized time
-		 * @see https://date-fns.org/v2.30.0/docs/format
-		 */
-		return format(date, 'Pp');
-	}
-
-	// TODO: conditionally set "add" or "update" for button text
-	let updateButtonText = '';
-	let enableButton = false;
+	})
+	const userEmail = data.session?.user?.email
 
 	$: {
 		if (userEmail === dish?.created_by_user_email) {
-			updateButtonText = 'update';
-			enableButton = true;
+			updateButtonText = 'update'
+			enableButton = true
 		} else {
-			enableButton = false;
+			enableButton = false
 		}
 	}
 
-	$: ({ dish } = data);
+	$: ({ dish } = data)
 </script>
 
 {#if dish}
