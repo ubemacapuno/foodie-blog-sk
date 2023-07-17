@@ -37,6 +37,16 @@
 		</p>
 		<br />
 		<p>
+			Please note that currently we only support
+			<a
+				class="link text-primary"
+				target="_blank"
+				rel="noopener"
+				href="https://docs.github.com/en/apps/oauth-apps">GitHub OAuth</a
+			> for the authentication process.
+		</p>
+		<br />
+		<p>
 			We respect your privacy and we're committed to protecting it. Your email address will not be
 			shared with any third parties, and you can always choose to remove your email from our system.
 		</p>
