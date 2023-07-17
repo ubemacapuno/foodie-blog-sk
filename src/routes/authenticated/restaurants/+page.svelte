@@ -53,5 +53,5 @@
 		</div>
 	</div>
 {:else}
-	<EmptyState content="There are currently 0 dishes." />
+	<EmptyState content="There are currently 0 restaurants." />
 {/each}

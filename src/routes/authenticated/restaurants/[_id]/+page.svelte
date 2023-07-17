@@ -5,6 +5,8 @@
 	import { superForm } from 'sveltekit-superforms/client'
 	import ConfirmDeleteButton from '$lib/components/ConfirmDeleteButton.svelte'
 	import type { ActiveModalId } from '$lib/forms/form-types'
+	import RestaurantProfileForm from '../RestaurantProfileForm.svelte'
+	import Modal from '$lib/components/Modal.svelte'
 
 	export let data: PageData
 
@@ -67,7 +69,6 @@
 								on:click={() => (activeModalId = 'profile')}
 								type="button"
 								class="btn btn-sm btn-primary"
-								disabled
 							>
 								{updateButtonText}</button
 							>
@@ -85,3 +86,15 @@
 		</div>
 	</div>
 </div>
+<Modal bind:isModalOpen={activeModalId}>
+	{#if activeModalId === 'profile'}
+		<RestaurantProfileForm
+			submitText="Update"
+			action="?/update"
+			{form}
+			{errors}
+			{constraints}
+			{enhance}
+		/>
+	{/if}
+</Modal>
