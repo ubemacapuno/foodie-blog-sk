@@ -1,18 +1,18 @@
 <script lang="ts">
-	import type { PageData } from './$types';
-	import { format } from 'date-fns';
-	import { page } from '$app/stores';
-	import LoginButton from '$lib/components/LoginButton.svelte';
+	import type { PageData } from './$types'
+	import { format } from 'date-fns'
+	import { page } from '$app/stores'
+	import LoginButton from '$lib/components/LoginButton.svelte'
 
-	// Stats props:
-	export let totalUsers: Number | String;
-	export let featuredDish: String;
-	export let cuisine: String;
-	export let data: PageData;
+	// TODO - create stats props:
+	export let totalUsers: Number | String = ''
+	export let featuredDish: String = ''
+	export let cuisine: String = ''
+	export let data: PageData
 
-	$: ({ count_all_dishes } = data);
+	$: ({ count_all_dishes } = data)
 
-	const currentDateFormatted = format(new Date(), 'PP');
+	const currentDateFormatted = format(new Date(), 'PP')
 </script>
 
 <div class="flex flex-col gap-5">
