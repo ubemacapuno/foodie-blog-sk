@@ -52,6 +52,20 @@
 			<h3 class="card-title text-2xl text-primary">
 				{restaurant.name}
 			</h3>
+			<label for="rating" class="block text-sm font-bold mb-2">Rating:</label>
+			<div class="rating">
+				{#each Array.from({ length: 5 }).map((_, i) => i + 1) || [] as rating}
+					<input
+						type="radio"
+						id={`rating_${rating}`}
+						name="rating"
+						value={rating}
+						checked={Number(dish.rating) === rating}
+						disabled
+						class="mask mask-star-2 bg-orange-400 cursor-default"
+					/>
+				{/each}
+			</div>
 			<p>Added {formatDate(restaurant.date_added)}</p>
 			<p class="text-info">
 				***Planning to add a feature for adding restaurant dishes with notes and ratings!
