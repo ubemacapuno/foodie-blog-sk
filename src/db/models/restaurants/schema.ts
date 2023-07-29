@@ -3,25 +3,24 @@ import { z } from 'zod'
 import { zodToJsonSchema } from 'zod-to-json-schema'
 import { REQUIRED_FIELD, requiredString } from '$utilities/zod_helpers'
 
-// Validation schema for dishes
-export const restaurant_dishes_fields = {
-	name: z.string().min(1, REQUIRED_FIELD),
-	rating: z.string().nonempty().default('5'),
-	description: z
-		.string()
-		.max(1000, 'Description must not exceed 1000 characters.')
-		.nullable()
-		.optional(),
-	notes: z.string().max(1000, 'Notes must not exceed 1000 characters.').nullable().optional()
-}
-export const restaurants_dishes_schema = z.object(restaurant_dishes_fields)
-
 // Validation schema for restaurant
 export const restaurants_fields = {
 	_id: z.string().min(1),
 	name: z.string().min(1, REQUIRED_FIELD),
 	rating: z.string().nonempty().default('5'),
-	dishes: z.array(restaurants_dishes_schema).max(100, 'Please use less than 100 dishes.'),
+	dishes: z
+		.object({
+			name: z.string().min(1, REQUIRED_FIELD),
+			rating: z.string().nonempty().default('5'),
+			description: z
+				.string()
+				.max(1000, 'Description must not exceed 1000 characters.')
+				.nullable()
+				.optional(),
+			notes: z.string().max(1000, 'Notes must not exceed 1000 characters.').nullable().optional()
+		})
+		.array()
+		.default([]),
 	date_added: requiredString,
 	date_updated: requiredString,
 	created_by_user_email: z.string().email(),
