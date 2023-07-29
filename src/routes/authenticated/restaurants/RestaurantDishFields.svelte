@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { initialDish } from '$constants/restaurants'
-	import { toTitleCase } from '$utilities/transform'
+	import Input from '$lib/forms/Input.svelte'
 
 	export let form
 
@@ -33,15 +33,13 @@
 		<!-- Need Flex component here -->
 		<button name="close" on:click={() => removeRestaurantDish(index)} />
 	{/if}
-
-	<Input {form} field="emails[{index}].email" type="email" placeholder="name@company.com" />
-	<Select
-		field="emails[{index}].type"
+	<Input {form} field="dishes[{index}].name" type="text" placeholder="Italian Beef" />
+	<Input {form} field="dishes[{index}].rating" type="text" placeholder="5" />
+	<Input
 		{form}
-		placeholder="Select Email Type"
-		options={[...company_email_array.map((type) => ({ value: type, label: toTitleCase(type) }))]}
+		field="dishes[{index}].description"
+		type="textarea"
+		placeholder="Enter description of dish..."
 	/>
-	{#if $sForm.emails[index].type === 'other'}
-		<Input label="Other Type" {form} field="emails[{index}].other_type" placeholder="Other Type" />
-	{/if}
+	<Input {form} field="dishes[{index}].notes" type="textarea" placeholder="Enter dish notes..." />
 {/each}

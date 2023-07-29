@@ -1,4 +1,6 @@
 <script lang="ts">
+	import RestaurantDishFields from './RestaurantDishFields.svelte'
+
 	export let form
 	export let action: string
 	export let errors
