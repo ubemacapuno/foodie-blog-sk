@@ -1,37 +1,37 @@
-import { start_mongo } from '$db/mongo';
-import { SvelteKitAuth } from '@auth/sveltekit';
-import GitHub from '@auth/core/providers/github';
-import { GITHUB_ID, GITHUB_SECRET } from '$env/static/private';
-import { redirect, type Handle } from '@sveltejs/kit';
-import { sequence } from '@sveltejs/kit/hooks';
+import { start_mongo } from '$db/mongo'
+import { SvelteKitAuth } from '@auth/sveltekit'
+import GitHub from '@auth/core/providers/github'
+import { GITHUB_ID, GITHUB_SECRET } from '$env/static/private'
+import { redirect, type Handle } from '@sveltejs/kit'
+import { sequence } from '@sveltejs/kit/hooks'
 
 async function authorization({ event, resolve }) {
 	// Protect any routes under /authenticated
 	if (event.url.pathname.startsWith('/authenticated')) {
-		const session = await event.locals.getSession();
+		const session = await event.locals.getSession()
 		if (!session) {
-			throw redirect(303, '/auth');
+			throw redirect(303, '/')
 		}
 	}
 
 	// If the request is still here, just proceed as normally
-	return resolve(event);
+	return resolve(event)
 }
 
-start_mongo();
+start_mongo()
 
 const logger: Handle = async ({ event, resolve }) => {
-	const requestStartTime = Date.now();
-	const response = await resolve(event);
+	const requestStartTime = Date.now()
+	const response = await resolve(event)
 
-	let speed = `🐢`;
+	let speed = `🐢`
 
 	if (Date.now() - requestStartTime < 500) {
-		speed = `🐇`;
+		speed = `🐇`
 	}
 
 	if (Date.now() - requestStartTime < 70) {
-		speed = `🚀`;
+		speed = `🚀`
 	}
 
 	console.log(
@@ -40,9 +40,9 @@ const logger: Handle = async ({ event, resolve }) => {
 		).getMinutes()}.${new Date(requestStartTime).getSeconds()} ${event.request.method} ${
 			response.status
 		} ${event.url.pathname} (${Date.now() - requestStartTime}ms)`
-	);
-	return response;
-};
+	)
+	return response
+}
 
 // First handle authentication, then authorization
 // Each function acts as a middleware, receiving the request handle
@@ -53,4 +53,4 @@ export const handle: Handle = sequence(
 	}),
 	authorization,
 	logger
-);
+)
