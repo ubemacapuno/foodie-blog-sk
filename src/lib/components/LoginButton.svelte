@@ -27,35 +27,30 @@
 <ConfirmDeleteModal bind:isModalOpen={isConfirmActive} {title}>
 	<div class="bg-neutral text-left">
 		<p>
-			In order to enhance your experience and to enable certain features, we need your email address
-			when you create dishes on our platform.
-		</p>
-		<br />
-		<p>
-			We assure you that your email address will be used solely for the purpose of linking the
-			dishes you create to your account so you can edit or delete them.
-		</p>
-		<br />
-		<p>
-			Please note that currently we only support
+			To enhance your experience on our platform, we use your
 			<a
 				class="link text-primary"
 				target="_blank"
 				rel="noopener"
 				href="https://docs.github.com/en/apps/oauth-apps">GitHub OAuth</a
-			> for the authentication process.
+			> information for authentication.
 		</p>
 		<br />
 		<p>
-			We respect your privacy and we're committed to protecting it. Your email address will not be
-			shared with any third parties, and you can always choose to remove your email from our system.
+			This helps link the dishes you create to your account, enabling edits and deletions. We assure
+			you of the utmost privacy: your OAuth information will not be shared with third parties and is
+			only used for account-related activities.
 		</p>
 		<br />
 		<p>
-			By checking the "I Agree" checkbox, you are providing us with your consent to use your email
-			address for the above purposes. If you don't agree, you may not be able to create dishes on
-			our platform.
+			By agreeing, you consent to the use of your <a
+				class="link text-primary"
+				target="_blank"
+				rel="noopener"
+				href="https://docs.github.com/en/apps/oauth-apps">GitHub OAuth</a
+			> information for these purposes.
 		</p>
+		<br />
 		<div class="form-control pt-2 pb-4">
 			<label class="cursor-pointer label flex flex-row justify-center gap-x-10">
 				<span class="label-text text-accent">I Agree</span>

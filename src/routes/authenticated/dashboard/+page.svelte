@@ -8,13 +8,7 @@
 	let avatarInitials = 'Me'
 	//TODO: Stat Props
 
-	$: ({
-		user_dishes_length,
-		session,
-		count_all_dishes,
-		count_all_restaurants,
-		user_restaurants_length
-	} = data)
+	$: ({ user_dishes_length, session, user_restaurants_length } = data)
 	$: if (session?.user?.name) avatarInitials = avatarLetters(String(session.user.name))
 </script>
 
@@ -45,14 +39,6 @@
 			</div>
 
 			<div class="stats bg-neutral text-primary-content stats-vertical">
-				<div class="stat">
-					<div class="stat-title">Total Dishes</div>
-					<div class="stat-value text-primary">{count_all_dishes || '-'}</div>
-				</div>
-				<div class="stat">
-					<div class="stat-title">Total Restaurants</div>
-					<div class="stat-value text-primary">{count_all_restaurants || '-'}</div>
-				</div>
 				<div class="stat">
 					<div class="stat-title">
 						<a href="/authenticated/dishes" class="link link-secondary">Your Dishes</a>
