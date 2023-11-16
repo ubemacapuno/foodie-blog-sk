@@ -1,3 +1,9 @@
+/*
+  Import viewerjs CSS to render the image viewer
+  see docs @ https://github.com/fengyuanchen/viewerjs/blob/main/README.md
+*/
+@import 'viewerjs/dist/viewer.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

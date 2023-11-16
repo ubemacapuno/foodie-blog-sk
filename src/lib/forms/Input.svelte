@@ -1,6 +1,6 @@
 <script lang="ts">
 	// TODO make an input wrapper component ?
-	import type { FieldPath, UnwrapEffects } from 'sveltekit-superforms'
+	import type { UnwrapEffects } from 'sveltekit-superforms'
 	import type { SuperForm } from 'sveltekit-superforms/client'
 	import { formFieldProxy } from 'sveltekit-superforms/client'
 	import type { z, AnyZodObject } from 'zod'
@@ -8,7 +8,7 @@
 	type T = $$Generic<AnyZodObject>
 
 	export let form: SuperForm<UnwrapEffects<T>, unknown>
-	export let field: keyof z.infer<T> | FieldPath<z.infer<T>> | string
+	export let field: keyof z.infer<T> | string
 
 	export let type: 'text' | 'password' | 'number' | 'textarea' = 'text'
 	export let rows = 5

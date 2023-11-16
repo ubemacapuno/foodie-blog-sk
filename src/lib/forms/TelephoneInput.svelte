@@ -1,46 +1,46 @@
 <script lang="ts">
-	import DropdownMenu from '$lib/components/DropdownMenu.svelte';
-	import MenuItem from '$lib/components/MenuItem.svelte';
-	import { TelInput, normalizedCountries, isSelected } from 'svelte-tel-input';
-	import type { FieldPath, UnwrapEffects } from 'sveltekit-superforms';
-	import type { SuperForm } from 'sveltekit-superforms/client';
-	import { formFieldProxy } from 'sveltekit-superforms/client';
-	import type { z, AnyZodObject } from 'zod';
+	import DropdownMenu from '$lib/components/DropdownMenu.svelte'
+	import MenuItem from '$lib/components/MenuItem.svelte'
+	import { TelInput, normalizedCountries, isSelected } from 'svelte-tel-input'
+	import type { UnwrapEffects } from 'sveltekit-superforms'
+	import type { SuperForm } from 'sveltekit-superforms/client'
+	import { formFieldProxy } from 'sveltekit-superforms/client'
+	import type { z, AnyZodObject } from 'zod'
 
-	type T = $$Generic<AnyZodObject>;
+	type T = $$Generic<AnyZodObject>
 
-	export let form: SuperForm<UnwrapEffects<T>, unknown>;
-	export let phoneField: keyof z.infer<T> | FieldPath<z.infer<T>>;
-	export let countryCodeField: keyof z.infer<T> | FieldPath<z.infer<T>>;
+	export let form: SuperForm<UnwrapEffects<T>, unknown>
+	export let phoneField: keyof z.infer<T>
+	export let countryCodeField: keyof z.infer<T>
 
-	const { path, value, errors, constraints } = formFieldProxy(form, phoneField);
-	const { tainted } = form;
+	const { path, value, errors, constraints } = formFieldProxy(form, phoneField)
+	const { tainted } = form
 
 	const {
 		value: ccValue,
 		errors: ccErrors,
 		constraints: ccConstraints
-	} = formFieldProxy(form, countryCodeField);
+	} = formFieldProxy(form, countryCodeField)
 
-	let searchText = '';
+	let searchText = ''
 
 	$: selectedCountryDialCode =
-		normalizedCountries.find((el) => el.iso2 === $ccValue)?.dialCode || null;
+		normalizedCountries.find((el) => el.iso2 === $ccValue)?.dialCode || null
 
 	// Define top countries
-	const topCountries = ['US', 'MX', 'CA', 'CN', 'TW'];
+	const topCountries = ['US', 'MX', 'CA', 'CN', 'TW']
 
 	// Split the countries array into top countries and the rest
 	const topCountriesData = normalizedCountries
 		.filter((country) => topCountries.includes(country.iso2))
-		.sort((a, b) => topCountries.indexOf(a.iso2) - topCountries.indexOf(b.iso2));
+		.sort((a, b) => topCountries.indexOf(a.iso2) - topCountries.indexOf(b.iso2))
 
 	const otherCountries = normalizedCountries.filter(
 		(country) => !topCountries.includes(country.iso2)
-	);
+	)
 
 	// Concatenate/spread arrays so top countries come first
-	const countries = [...topCountriesData, ...otherCountries];
+	const countries = [...topCountriesData, ...otherCountries]
 
 	const handleSelect = (val) => {
 		if (
@@ -48,21 +48,21 @@
 			$ccValue === null ||
 			(typeof $ccValue === typeof val && $ccValue !== val)
 		) {
-			$ccValue = val;
+			$ccValue = val
 		}
-	};
+	}
 
 	$: isTainted = () => {
-		if (!$tainted) return false;
+		if (!$tainted) return false
 
-		const dotPath = path.replace(/\[(\d+)\]/g, '.$1');
+		const dotPath = path.replace(/\[(\d+)\]/g, '.$1')
 		// check if the path is in the tainted object
 		return dotPath.split('.').reduce((acc, key) => {
-			if (acc && acc[key]) return acc[key];
-			return false;
-		}, $tainted);
-	};
-	$: console.log('TelephoneInput value:', $value);
+			if (acc && acc[key]) return acc[key]
+			return false
+		}, $tainted)
+	}
+	$: console.log('TelephoneInput value:', $value)
 </script>
 
 <div class="flex flex-row">
@@ -88,8 +88,8 @@
 				/>
 			</div>
 			{#each countries.filter((country) => {
-				if (searchText === '') return true;
-				return country.name.toLowerCase().includes(searchText.toLowerCase());
+				if (searchText === '') return true
+				return country.name.toLowerCase().includes(searchText.toLowerCase())
 			}) as country (country.id)}
 				{@const active = isSelected(country.iso2, $ccValue)}
 				<MenuItem {active} type="button" on:click={() => handleSelect(country.iso2)}>
