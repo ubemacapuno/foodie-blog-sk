@@ -1,3 +1,6 @@
+// Image file types
+export const imageTypes = ['jpeg', 'jpg', 'gif', 'png', 'svg']
+
 // Default options for viewerjs Viewer toolbar
 export const defaultToolbarOptions = {
 	zoomIn: true,

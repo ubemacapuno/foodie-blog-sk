@@ -33,7 +33,8 @@ export const dishes_fields = {
 		.string()
 		.min(1, 'Please enter a cuisine.')
 		.max(50, 'Please use less than 50 characters.'),
-	notes: z.string().max(5000, 'Notes must not exceed 5000 characters.').nullable().optional()
+	notes: z.string().max(5000, 'Notes must not exceed 5000 characters.').nullable().optional(),
+	connected_uploads: z.array(z.string()).default([]) // Upload ID
 }
 export const dishes_schema = z.object(dishes_fields)
 export const new_dish_schema = z.object({

@@ -1,10 +1,12 @@
 <script lang="ts">
-	export let form;
-	export let action: string;
-	export let errors;
-	export let constraints;
-	export let enhance;
-	export let submitText = 'update';
+	import UploadInput from '$lib/forms/UploadInput.svelte'
+
+	export let form
+	export let action: string
+	export let errors
+	export let constraints
+	export let enhance
+	export let submitText = 'update'
 </script>
 
 <form
@@ -34,6 +36,9 @@
 			bind:value={$form.notes}
 			{...$constraints.notes}
 		/>
+	</div>
+	<div class="mb-4">
+		<UploadInput />
 	</div>
 	<button type="submit" class="btn btn-sm btn-primary">{submitText}</button>
 </form>
