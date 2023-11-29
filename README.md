@@ -1,4 +1,6 @@
-## Foodie Blog
+# Foodie Blog
+
+## <a href="https://foodie-blog-sveltekit.vercel.app/">Demo</a>
 
 <p>This SvelteKit application is a unique platform for saving and rating recipes. It combines a MongoDB backend with SvelteKit form actions for recipe management, and features an AI-powered chatbot assistant using OpenAI's API. Authjs is integrated for secure and efficient user authentication.</p>
 
@@ -36,8 +38,8 @@ Open http://127.0.0.1:5173/ to view it in the browser.
 ## Lessons Learned:
 
 - Better understanding of SvelteKit and route-based endpoints
-- Better understanding of incorporating OpenAI APIs
 - Checking authentication using +page.server.ts/+layout.server.ts files
+- Better understanding of incorporating OpenAI APIs
 
 ## Optimizations:
 
