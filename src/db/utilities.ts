@@ -26,3 +26,12 @@ export async function update_index<T extends Document>(indices: string[], model:
 		model.createIndex({ [index]: 1 })
 	})
 }
+
+export async function update_unique_index<T extends Document>(
+	indices: string[],
+	model: Collection<T>
+) {
+	indices.forEach((index) => {
+		model.createIndex({ [index]: 1 }, { unique: true })
+	})
+}
