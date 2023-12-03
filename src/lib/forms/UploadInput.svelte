@@ -2,8 +2,6 @@
 	import { presignAndUploadFile } from '$lib/components/files/helpers'
 	import { toTitleCase } from '$utilities/transform'
 
-	//: Note: if the 'hidden' option is used and we pass slot props to a button element wrapping an avatar then we can use the onFilesChange and onClear functions to update the avatar image, it also must have a 'label' element wrapping it to work properly.
-
 	export let multiple = false
 	export let hidden = false
 	export let label = multiple ? 'Upload files' : 'Upload a file'
