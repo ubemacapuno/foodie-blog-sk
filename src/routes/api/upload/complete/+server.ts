@@ -50,8 +50,8 @@ const handleResize = async (uploadItem: Upload) => {
 			new PutObjectCommand({
 				Bucket: S3_BUCKET,
 				Key: `${uploadItem.upload_id}_${THUMB}`,
-				ContentType: uploadItem.type,
-				ACL: 'public-read'
+				ContentType: uploadItem.type
+				// ACL: 'public-read'  // comment this out if using IAM policies over ACLs
 			}),
 			{
 				expiresIn: 60 // 1 minute

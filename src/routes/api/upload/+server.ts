@@ -25,8 +25,8 @@ export const POST = async ({ request }) => {
 		new PutObjectCommand({
 			Bucket: S3_BUCKET,
 			Key: objectKey,
-			ContentType: type,
-			ACL: 'public-read'
+			ContentType: type
+			// ACL: 'public-read'  // comment this out if using IAM policies over ACLs
 		}),
 		{
 			expiresIn: 60 * 5 // 5 minutes
