@@ -37,9 +37,5 @@
 			{...$constraints.notes}
 		/>
 	</div>
-	<!-- TODO: Un-comment once upload is all working -->
-	<!-- <div class="mb-4">
-		<UploadInput />
-	</div> -->
 	<button type="submit" class="btn btn-sm btn-primary">{submitText}</button>
 </form>

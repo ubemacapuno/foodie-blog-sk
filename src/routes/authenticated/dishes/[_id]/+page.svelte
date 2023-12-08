@@ -179,9 +179,10 @@
 				</div>
 			</div>
 
-			<div class="my-4 card w-80 bg-neutral self-center">
+			<!-- TODO: Don't show on prod. Incororate flagging system instead ? -->
+			<!-- <div class="my-4 card w-80 bg-neutral self-center">
 				<UploadInput />
-			</div>
+			</div> -->
 		</div>
 
 		<div class="my-4 card w-80 bg-neutral self-start">
