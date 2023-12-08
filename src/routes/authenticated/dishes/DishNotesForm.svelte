@@ -1,6 +1,4 @@
 <script lang="ts">
-	import UploadInput from '$lib/forms/UploadInput.svelte'
-
 	export let form
 	export let action: string
 	export let errors

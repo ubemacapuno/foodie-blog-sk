@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   '@auth/core':
     specifier: ^0.7.1
@@ -147,6 +151,9 @@ devDependencies:
   sveltekit-autoimport:
     specifier: ^1.6.10
     version: 1.6.10
+  sveltekit-search-params:
+    specifier: ^1.0.15
+    version: 1.0.16(@sveltejs/kit@1.27.6)(svelte@4.0.1)
   sveltekit-superforms:
     specifier: 1.5.1
     version: 1.5.1(@sveltejs/kit@1.27.6)(svelte@4.0.1)(zod@3.21.4)
@@ -3639,6 +3646,7 @@ packages:
 
   /memory-pager@1.5.0:
     resolution: {integrity: sha512-ZS4Bp4r/Zoeq6+NLJpP+0Zzm0pR8whtGPf1XExKLJBAczGMnSi3It14OiNCStjQjM6NU1okjQGSxgEZN8eBYKg==}
+    requiresBuild: true
     dev: false
     optional: true
 
@@ -4421,6 +4429,7 @@ packages:
 
   /sparse-bitfield@3.0.3:
     resolution: {integrity: sha512-kvzhi7vqKTfkh0PZU+2D2PIllw2ymqJKujUcyPMd9Y75Nv4nPbGJZXNhxsgdQab2BmlDct1YnfQCguEvHr7VsQ==}
+    requiresBuild: true
     dependencies:
       memory-pager: 1.5.0
     dev: false
@@ -4716,6 +4725,16 @@ packages:
       '@sveltejs/kit': 1.27.6(svelte@4.0.1)(vite@4.4.2)
       svelte: 4.0.1
     dev: false
+
+  /sveltekit-search-params@1.0.16(@sveltejs/kit@1.27.6)(svelte@4.0.1):
+    resolution: {integrity: sha512-403qbuXZ7finILAzomln3lyWcRovPuPasrFHL7cZaQaTY6fKxniiweWfwkfuGtXg6RpyZpEp5k2lvxYeEHY/pg==}
+    peerDependencies:
+      '@sveltejs/kit': ^1.0.0
+      svelte: ^3.55.0 || ^4.0.0
+    dependencies:
+      '@sveltejs/kit': 1.27.6(svelte@4.0.1)(vite@4.4.2)
+      svelte: 4.0.1
+    dev: true
 
   /sveltekit-superforms@1.5.1(@sveltejs/kit@1.27.6)(svelte@4.0.1)(zod@3.21.4):
     resolution: {integrity: sha512-OqKzxuL1P29CFiK1CD00JRsvEsRPedvrR0qXmB4uqzXAIjOS+DpLjoEaa6Cnkd4H00fRa2161GcZNeEBue/D3A==}

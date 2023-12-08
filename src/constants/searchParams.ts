@@ -10,3 +10,6 @@ export const FILE_SORT_NAME_ASC = 'name-asc'
 export const FILE_SORT_NAME_DESC = 'name-desc'
 export const FILE_SORT_DATE_ASC = 'date-asc'
 export const FILE_SORT_DATE_DESC = 'date-desc'
+
+// Feature flags
+export const FEATURE_FLAG = 'featureFlag'
