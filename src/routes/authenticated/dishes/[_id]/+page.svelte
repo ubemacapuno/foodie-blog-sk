@@ -12,6 +12,7 @@
 	import SvelteMarkdown from 'svelte-markdown'
 	import { formatDate } from '$utilities/helpers'
 	import type { ActiveModalId } from '$lib/forms/form-types'
+	import UploadInput from '$lib/forms/UploadInput.svelte'
 
 	export let data: PageData
 
@@ -177,6 +178,10 @@
 					</div>
 				</div>
 			</div>
+
+			<div class="my-4 card w-80 bg-neutral self-center">
+				<UploadInput />
+			</div>
 		</div>
 
 		<div class="my-4 card w-80 bg-neutral self-start">
@@ -236,7 +241,7 @@
 		<DishNotesForm action="?/update" {form} {errors} {constraints} {enhance} />
 	{:else if activeModalId === 'numbers'}
 		<DishNumbersForm action="?/update" {form} {errors} {constraints} {enhance} />
-	{:else if activeModalId === 'debug'}
+	{:else if activeModalId === 'uploadImages'}
 		<SuperDebug data={$form} />
 	{/if}
 </Modal>
