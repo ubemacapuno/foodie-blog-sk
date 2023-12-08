@@ -1,6 +1,6 @@
 import { AUTH_ERROR_MESSAGE } from '$constants/forms'
 import { SIZE } from '$constants/searchParams'
-import { uploads } from '$db/models/uploads.ts/collection.js'
+import { uploads } from '$db/models/uploads/collection'
 import { S3_BUCKET } from '$env/static/private'
 import { S3 } from '$lib/s3'
 import { GetObjectCommand } from '@aws-sdk/client-s3'

@@ -1,6 +1,6 @@
 import { prepare_data_for_insert } from '$db/actions'
-import { uploads } from '$db/models/uploads.ts/collection.js'
-import type { NewUpload, Upload } from '$db/models/uploads.ts/schema.js'
+import { uploads } from '$db/models/uploads/collection'
+import type { NewUpload, Upload } from '$db/models/uploads/schema'
 import { S3_BUCKET } from '$env/static/private'
 import { S3 } from '$lib/s3'
 import { slugifyUpload } from '$utilities/transform'
@@ -42,7 +42,15 @@ export const POST = async ({ request }) => {
 		status: 'pending',
 		is_obsolete: false
 	}) as Upload
-	await uploads.insertOne(uploadInsertData)
+
+	await uploads
+		.insertOne(uploadInsertData)
+		.then(() => {
+			console.log('Upload record inserted successfully')
+		})
+		.catch((error) => {
+			console.error('Error inserting upload record:', error)
+		})
 
 	return json({ presignedUrl, objectKey })
 }

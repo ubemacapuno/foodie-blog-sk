@@ -1,12 +1,12 @@
-import { uploads } from '$db/models/uploads.ts/collection.js'
-import type { Upload } from '$db/models/uploads.ts/schema.js'
+import { uploads } from '$db/models/uploads/collection'
+import type { Upload } from '$db/models/uploads/schema'
 import { GetObjectCommand, PutObjectCommand } from '@aws-sdk/client-s3'
 import { json } from '@sveltejs/kit'
 import { S3_BUCKET } from '$env/static/private'
 import { S3 } from '$lib/s3'
 import sharp from 'sharp'
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
-import { THUMB } from '$constants/searchParams.js'
+import { THUMB } from '$constants/searchParams'
 import { isImage } from '$utilities/upload_helper'
 
 export const POST = async ({ request }) => {
