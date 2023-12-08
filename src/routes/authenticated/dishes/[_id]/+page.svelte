@@ -241,7 +241,7 @@
 		<DishNotesForm action="?/update" {form} {errors} {constraints} {enhance} />
 	{:else if activeModalId === 'numbers'}
 		<DishNumbersForm action="?/update" {form} {errors} {constraints} {enhance} />
-	{:else if activeModalId === 'uploadImages'}
+	{:else if activeModalId === 'debug'}
 		<SuperDebug data={$form} />
 	{/if}
 </Modal>
