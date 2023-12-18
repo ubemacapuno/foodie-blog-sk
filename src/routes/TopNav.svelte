@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores'
 	import LoginButton from '$lib/components/LoginButton.svelte'
-	import { signOut } from '@auth/sveltekit/client'
 	import Alert from '$lib/components/Alert.svelte'
 </script>
 

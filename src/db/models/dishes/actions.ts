@@ -21,13 +21,13 @@ import {
 
 export const Dishes: Actions = {
 	create: async function (event) {
-		const session = await event.locals.getSession()
+		// const session = await event.locals.getSession()
 		// Setup Form (remove _id from schema for validation)
 		const form = await superValidate(event, new_dish_schema)
 		// Check if session exists
-		if (!session) {
-			return message(form, AUTH_ERROR_MESSAGE)
-		}
+		// if (!session) {
+		// 	return message(form, AUTH_ERROR_MESSAGE)
+		// }
 
 		// Check if form is valid
 		if (!form.valid) {
@@ -62,27 +62,27 @@ export const Dishes: Actions = {
 
 	update: async function (event) {
 		// if (!isAuthorized(event.locals.user)) return fail(403, { message: AUTH_ERROR_MESSAGE })
-		const session = await event.locals.getSession()
+		// const session = await event.locals.getSession()
 		const form = await superValidate(event, dishes_schema)
 
 		// Check if session exists
-		if (!session) {
-			return message(form, AUTH_ERROR_MESSAGE)
-		}
+		// if (!session) {
+		// 	return message(form, AUTH_ERROR_MESSAGE)
+		// }
 
-		if (session?.user?.email !== form.data.created_by_user_email) {
-			throw redirect(
-				302,
-				`/authenticated/dishes/${form.data._id}`,
-				{
-					message: `Cannot update this dish. Session email doesn't match eamil created by user.`,
-					status: 'error',
-					// Add id so the toast gets assigned an id
-					id: uniqueId()
-				},
-				event
-			)
-		}
+		// if (session?.user?.email !== form.data.created_by_user_email) {
+		// 	throw redirect(
+		// 		302,
+		// 		`/authenticated/dishes/${form.data._id}`,
+		// 		{
+		// 			message: `Cannot update this dish. Session email doesn't match eamil created by user.`,
+		// 			status: 'error',
+		// 			// Add id so the toast gets assigned an id
+		// 			id: uniqueId()
+		// 		},
+		// 		event
+		// 	)
+		// }
 
 		if (!form.valid) {
 			return message(form, CHECK_FORM_MESSAGE)
@@ -103,13 +103,13 @@ export const Dishes: Actions = {
 
 	delete: async function (event) {
 		// console.log('EVENT', event);
-		const session = await event.locals.getSession()
+		// const session = await event.locals.getSession()
 		const form = await superValidate(event, dishes_schema)
 
-		// Check if session exists
-		if (!session) {
-			return message(form, AUTH_ERROR_MESSAGE)
-		}
+		// // Check if session exists
+		// if (!session) {
+		// 	return message(form, AUTH_ERROR_MESSAGE)
+		// }
 
 		// TODO: Setup a check so users can only delete their own dishes
 		// console.log('DELETE CHECK - session', session?.user?.email, form.data.created_by_user_email);

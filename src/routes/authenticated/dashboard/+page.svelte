@@ -1,4 +1,4 @@
-<script lang="ts">
+<!-- <script lang="ts">
 	import type { PageData } from './$types'
 	import { avatarLetters } from '$utilities/helpers'
 
@@ -58,4 +58,5 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> -->
+COMING SOON!

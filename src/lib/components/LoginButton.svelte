@@ -1,6 +1,5 @@
 <script lang="ts">
 	import ConfirmDeleteModal from './ConfirmDeleteModal.svelte'
-	import { signIn } from '@auth/sveltekit/client'
 
 	// Modal Props
 	export let isConfirmActive = false

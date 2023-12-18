@@ -5,13 +5,11 @@ import { superValidate } from 'sveltekit-superforms/server'
 import { new_restaurant_schema } from '$db/models/restaurants/schema'
 
 export const load = (async (event) => {
-	const session = await event.locals.getSession()
-	const user_email = session?.user?.email
+	// const session = await event.locals.getSession()
+	// const user_email = session?.user?.email
 
 	// Query ONLY for dishes made by the user (same email)
-	const all_user_restaurants = await restaurants
-		.find({ created_by_user_email: user_email }, { sort: { order: 1 } })
-		.toArray()
+	const all_user_restaurants = await restaurants.find({}, { sort: { order: 1 } }).toArray()
 	// Server API:
 	// See https://zod.dev/?id=primitives for schema syntax
 	const form = await superValidate(event, new_restaurant_schema)
