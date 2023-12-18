@@ -47,7 +47,7 @@ export const Restaurants: Actions = {
 		console.log('FORM (create)', form)
 
 		// Redirect to _id page with a toast message
-		throw redirect(
+		redirect(
 			303,
 			`/authenticated/restaurants/${created_path.insertedId}`,
 			{
@@ -71,7 +71,7 @@ export const Restaurants: Actions = {
 		}
 
 		if (session?.user?.email !== form.data.created_by_user_email) {
-			throw redirect(
+			redirect(
 				302,
 				`/authenticated/restaurants/${form.data._id}`,
 				{
@@ -119,7 +119,7 @@ export const Restaurants: Actions = {
 
 		console.log('FORM (delete)', form)
 
-		throw redirect(
+		redirect(
 			303,
 			`/authenticated/restaurants`,
 			{

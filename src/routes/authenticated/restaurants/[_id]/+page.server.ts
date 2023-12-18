@@ -10,14 +10,14 @@ const schema = restaurants_schema
 
 export const load = async function ({ params }) {
 	if (!params._id) {
-		throw redirect(302, '/restaurants')
+		redirect(302, '/restaurants');
 	}
 
 	const restaurant = await restaurants.findOne({
 		_id: params._id
 	})
 
-	if (!restaurant) throw error(404, 'Restaurant not found.')
+	if (!restaurant) error(404, 'Restaurant not found.');
 
 	const form = await superValidate(restaurant, schema)
 

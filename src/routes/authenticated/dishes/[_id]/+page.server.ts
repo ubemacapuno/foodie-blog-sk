@@ -10,14 +10,14 @@ const schema = dishes_schema;
 
 export const load = async function ({ params }) {
 	if (!params._id) {
-		throw redirect(302, '/dishes');
+		redirect(302, '/dishes');
 	}
 
 	const dish = await dishes.findOne({
 		_id: params._id
 	});
 
-	if (!dish) throw error(404, 'Dish not found.');
+	if (!dish) error(404, 'Dish not found.');
 
 	const form = await superValidate(dish, schema);
 

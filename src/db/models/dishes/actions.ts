@@ -44,10 +44,9 @@ export const Dishes: Actions = {
 
 		// Insert into database
 		const created_path = <InsertOneResult>await dishes.insertOne(insert_data).catch(log_error)
-		console.log('FORM (create)', form)
 
 		// Redirect to _id page with a toast message
-		throw redirect(
+		redirect(
 			303,
 			`/authenticated/dishes/${created_path.insertedId}`,
 			{
@@ -71,7 +70,7 @@ export const Dishes: Actions = {
 		}
 
 		if (session?.user?.email !== form.data.created_by_user_email) {
-			throw redirect(
+			redirect(
 				302,
 				`/authenticated/dishes/${form.data._id}`,
 				{
@@ -95,7 +94,6 @@ export const Dishes: Actions = {
 		await dishes
 			.findOneAndUpdate({ _id: form.data._id }, { $set: form.data }, { returnDocument: 'after' })
 			.catch(log_error)
-		console.log('FORM (update)', form)
 
 		// Send a toast message along with form data
 		return message(form, getSuccessMessage('dish', 'updated'))
@@ -117,7 +115,7 @@ export const Dishes: Actions = {
 		// console.log('DELETE CHECK - form', form.data.created_by_user_email);
 
 		// if (session?.user?.email !== form.data.created_by_user_email) {
-		// 	throw redirect(
+		// 	redirect(
 		// 		302,
 		// 		`/authenticated/dishes/${form.data._id}`,
 		// 		{
@@ -134,9 +132,7 @@ export const Dishes: Actions = {
 
 		await dishes.deleteOne({ _id: form.data._id }).catch(log_error)
 
-		console.log('FORM (delete)', form)
-
-		throw redirect(
+		redirect(
 			303,
 			`/authenticated/dishes`,
 			{
