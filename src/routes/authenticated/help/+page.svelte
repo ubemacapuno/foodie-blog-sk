@@ -1,62 +1,62 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-	import { sendToast } from '$lib/stores/toast';
-	import ChatMessage from '$lib/components/ChatMessage.svelte';
-	import type { ChatCompletionRequestMessage } from 'openai';
-	import { SSE } from 'sse.js';
-	import EmptyState from '$elements/EmptyState.svelte';
-	let query: string = '';
-	let answer: string = '';
-	let isLoading: boolean = false;
-	let chatMessages: ChatCompletionRequestMessage[] = [];
-	let scrollToDiv: HTMLDivElement;
+	import { page } from '$app/stores'
+	import { sendToast } from '$lib/stores/toast'
+	import ChatMessage from '$lib/components/ChatMessage.svelte'
+	import type { ChatCompletionRequestMessage } from 'openai'
+	import { SSE } from 'sse.js'
+	import EmptyState from '$elements/EmptyState.svelte'
+	let query: string = ''
+	let answer: string = ''
+	let isLoading: boolean = false
+	let chatMessages: ChatCompletionRequestMessage[] = []
+	let scrollToDiv: HTMLDivElement
 	function scrollToBottom() {
 		setTimeout(function () {
-			scrollToDiv.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
-		}, 100);
+			scrollToDiv.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' })
+		}, 100)
 	}
 	const handleSubmit = async () => {
-		isLoading = true;
-		chatMessages = [...chatMessages, { role: 'user', content: query }];
+		isLoading = true
+		chatMessages = [...chatMessages, { role: 'user', content: query }]
 		const eventSource = new SSE('/api/chat', {
 			headers: {
 				'Content-Type': 'application/json'
 			},
 			payload: JSON.stringify({ messages: chatMessages })
-		});
-		query = '';
-		eventSource.addEventListener('error', handleError);
+		})
+		query = ''
+		eventSource.addEventListener('error', handleError)
 		eventSource.addEventListener('message', (e) => {
-			scrollToBottom();
+			scrollToBottom()
 			try {
-				isLoading = false;
+				isLoading = false
 				if (e.data === '[DONE]') {
-					chatMessages = [...chatMessages, { role: 'assistant', content: answer }];
-					answer = '';
-					return;
+					chatMessages = [...chatMessages, { role: 'assistant', content: answer }]
+					answer = ''
+					return
 				}
-				const completionResponse = JSON.parse(e.data);
-				const [{ delta }] = completionResponse.choices;
+				const completionResponse = JSON.parse(e.data)
+				const [{ delta }] = completionResponse.choices
 				if (delta.content) {
-					answer = (answer ?? '') + delta.content;
+					answer = (answer ?? '') + delta.content
 				}
 			} catch (err) {
-				handleError(err);
+				handleError(err)
 			}
-		});
-		eventSource.stream();
-		scrollToBottom();
-	};
+		})
+		eventSource.stream()
+		scrollToBottom()
+	}
 	function handleError<T>(err: T) {
-		isLoading = false;
-		query = '';
-		answer = '';
-		console.error(err);
-		sendToast(`Error processing your request!`, 'error');
+		isLoading = false
+		query = ''
+		answer = ''
+		console.error(err)
+		sendToast(`Error processing your request!`, 'error')
 	}
 </script>
 
-<div class="bg-neutral-focus card max-w-3xl shadow-xl mx-1">
+<div class="bg-[color-mix(in_oklab,oklch(var(--n)),black_7%)] card max-w-3xl shadow-xl mx-1">
 	<div class="flex flex-col py-4 w-full px-2 items-start gap-2">
 		<div>
 			<h1 class="text-2xl font-bold w-full text-center text-primary">Virtual Assistant</h1>
@@ -98,7 +98,7 @@
 			<div class="" bind:this={scrollToDiv} />
 		</div>
 		<form
-			class="flex w-full rounded-md gap-4 bg-neutral-focus p-4"
+			class="flex w-full rounded-md gap-4 bg-[color-mix(in_oklab,oklch(var(--n)),black_7%)] p-4"
 			on:submit|preventDefault={() => handleSubmit()}
 		>
 			<input type="text" class="input input-bordered w-full" bind:value={query} />

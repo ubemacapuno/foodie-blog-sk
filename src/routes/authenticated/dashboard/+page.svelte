@@ -19,12 +19,16 @@
 			<div class="card-body gap-0">
 				<div class="avatar self-center">
 					{#if session?.user?.image}
-						<div class="bg-neutral-focus text-neutral-content rounded-full w-16">
+						<div
+							class="bg-[color-mix(in_oklab,oklch(var(--n)),black_7%)] text-neutral-content rounded-full w-16"
+						>
 							<img src={session?.user?.image} alt="User avatar." />
 						</div>
 					{:else}
 						<div class="avatar placeholder">
-							<div class="bg-neutral-focus text-neutral-content rounded-full w-16">
+							<div
+								class="bg-[color-mix(in_oklab,oklch(var(--n)),black_7%)] text-neutral-content rounded-full w-16"
+							>
 								<span class="text-xl text-primary">{avatarInitials}</span>
 							</div>
 						</div>

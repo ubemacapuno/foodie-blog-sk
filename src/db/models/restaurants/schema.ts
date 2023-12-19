@@ -7,20 +7,8 @@ import { REQUIRED_FIELD, requiredString } from '$utilities/zod_helpers'
 export const restaurants_fields = {
 	_id: z.string().min(1),
 	name: z.string().min(1, REQUIRED_FIELD),
-	rating: z.string().nonempty().default('5'),
-	dishes: z
-		.object({
-			name: z.string().min(1, REQUIRED_FIELD),
-			rating: z.string().nonempty().default('5'),
-			description: z
-				.string()
-				.max(1000, 'Description must not exceed 1000 characters.')
-				.nullable()
-				.optional(),
-			notes: z.string().max(1000, 'Notes must not exceed 1000 characters.').nullable().optional()
-		})
-		.array()
-		.default([]),
+	rating: z.string().default('5'),
+	dishes: z.array(z.string()).optional(), // Array of dishes IDs
 	date_added: requiredString,
 	date_updated: requiredString,
 	created_by_user_email: z.string().email(),
@@ -31,7 +19,7 @@ export const restaurants_schema = z.object(restaurants_fields)
 
 export const new_restaurant_schema = z.object({
 	name: z.string().min(1, REQUIRED_FIELD),
-	rating: z.string().nonempty().default('5')
+	rating: z.string().default('5')
 })
 
 export const updated_restaurants_schema = restaurants_schema.omit({
@@ -43,5 +31,7 @@ export const restaurants_raw_schema_json = zodToJsonSchema(restaurants_schema, {
 })
 
 export const restaurants_json_schema = zod_to_jsonschema(restaurants_raw_schema_json)
+
+/* TODO: Populated Restaurant Schemas */
 
 export type Restaurant = z.infer<typeof restaurants_schema>

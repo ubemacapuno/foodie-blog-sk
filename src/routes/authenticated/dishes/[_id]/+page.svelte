@@ -35,15 +35,15 @@
 		// This is a requirement when the schema contains nested objects:
 		dataType: 'json'
 	})
-	const userEmail = data.session?.user?.email
+	// const userEmail = data.session?.user?.email
 
 	$: {
-		if (userEmail === dish?.created_by_user_email) {
-			updateButtonText = 'update'
-			enableButton = true
-		} else {
-			enableButton = false
-		}
+		// if (userEmail === dish?.created_by_user_email) {
+		// 	updateButtonText = 'update'
+		// 	enableButton = true
+		// } else {
+		enableButton = false
+		// }
 	}
 
 	$: ({ dish } = data)
@@ -261,7 +261,7 @@
 		.flex-container {
 			display: flex;
 			flex-direction: row;
-			align-items: start;
+			align-items: flex-start;
 			gap: 1rem;
 		}
 	}

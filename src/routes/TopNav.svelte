@@ -32,14 +32,14 @@
 					{#if $page.data.session}
 						<li>
 							<a
-								class:active={$page.url.pathname === '/authenticated/dashboard'}
+								class:hover={$page.url.pathname === '/authenticated/dashboard'}
 								class:text-accent={$page.url.pathname === '/authenticated/dashboard'}
 								href="/authenticated/dashboard">Home</a
 							>
 						</li>
 						<li>
 							<a
-								class:active={$page.url.pathname.match(/^\/authenticated\/dishes\/?[0-9a-fA-F]*$/)}
+								class:hover={$page.url.pathname.match(/^\/authenticated\/dishes\/?[0-9a-fA-F]*$/)}
 								class:text-accent={$page.url.pathname.match(
 									/^\/authenticated\/dishes\/?[0-9a-fA-F]*$/
 								)}
@@ -48,7 +48,7 @@
 						</li>
 						<li>
 							<a
-								class:active={$page.url.pathname.match(
+								class:hover={$page.url.pathname.match(
 									/^\/authenticated\/restaurants\/?[0-9a-fA-F]*$/
 								)}
 								class:text-accent={$page.url.pathname.match(
@@ -59,7 +59,7 @@
 						</li>
 						<li>
 							<a
-								class:active={$page.url.pathname.match(/^\/authenticated\/help\/?[0-9a-fA-F]*$/)}
+								class:hover={$page.url.pathname.match(/^\/authenticated\/help\/?[0-9a-fA-F]*$/)}
 								class:text-accent={$page.url.pathname.match(
 									/^\/authenticated\/help\/?[0-9a-fA-F]*$/
 								)}
@@ -69,7 +69,7 @@
 					{/if}
 					<li>
 						<a
-							class:active={$page.url.pathname.match(/^\/about\/?[0-9a-fA-F]*$/)}
+							class:hover={$page.url.pathname.match(/^\/about\/?[0-9a-fA-F]*$/)}
 							class:text-accent={$page.url.pathname.match(/^\/about\/?[0-9a-fA-F]*$/)}
 							href="/about">About</a
 						>
@@ -90,14 +90,14 @@
 				{#if $page.data.session}
 					<li>
 						<a
-							class:active={$page.url.pathname === '/authenticated/dashboard'}
+							class:hover={$page.url.pathname === '/authenticated/dashboard'}
 							class:text-accent={$page.url.pathname === '/authenticated/dashboard'}
 							href="/authenticated/dashboard">Home</a
 						>
 					</li>
 					<li>
 						<a
-							class:active={$page.url.pathname.match(/^\/authenticated\/dishes\/?[0-9a-fA-F]*$/)}
+							class:hover={$page.url.pathname.match(/^\/authenticated\/dishes\/?[0-9a-fA-F]*$/)}
 							class:text-accent={$page.url.pathname.match(
 								/^\/authenticated\/dishes\/?[0-9a-fA-F]*$/
 							)}
@@ -106,7 +106,7 @@
 					</li>
 					<li>
 						<a
-							class:active={$page.url.pathname.match(
+							class:hover={$page.url.pathname.match(
 								/^\/authenticated\/restaurants\/?[0-9a-fA-F]*$/
 							)}
 							class:text-accent={$page.url.pathname.match(
@@ -117,7 +117,7 @@
 					</li>
 					<li>
 						<a
-							class:active={$page.url.pathname.match(/^\/authenticated\/help\/?[0-9a-fA-F]*$/)}
+							class:hover={$page.url.pathname.match(/^\/authenticated\/help\/?[0-9a-fA-F]*$/)}
 							class:text-accent={$page.url.pathname.match(/^\/authenticated\/help\/?[0-9a-fA-F]*$/)}
 							href="/authenticated/help">Help</a
 						>
@@ -126,7 +126,7 @@
 				{#if !$page.data.session}
 					<li>
 						<a
-							class:active={$page.url.pathname === '/'}
+							class:hover={$page.url.pathname === '/'}
 							class:text-accent={$page.url.pathname === '/'}
 							href="/">Home</a
 						>
@@ -134,7 +134,7 @@
 				{/if}
 				<li>
 					<a
-						class:active={$page.url.pathname.match(/^\/about\/?[0-9a-fA-F]*$/)}
+						class:hover={$page.url.pathname.match(/^\/about\/?[0-9a-fA-F]*$/)}
 						class:text-accent={$page.url.pathname.match(/^\/about\/?[0-9a-fA-F]*$/)}
 						href="/about">About</a
 					>
