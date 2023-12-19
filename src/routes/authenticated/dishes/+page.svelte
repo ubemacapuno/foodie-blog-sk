@@ -1,12 +1,12 @@
 <script lang="ts">
-	import type { PageData } from './$types';
-	import { superForm } from 'sveltekit-superforms/client';
-	import { getSuperOptions } from '$lib/forms/superforms';
-	import DishProfileForm from './DishProfileForm.svelte';
-	import DebugSwitch from '$lib/components/DebugSwitch.svelte';
+	import type { PageData } from './$types'
+	import { superForm } from 'sveltekit-superforms/client'
+	import { getSuperOptions } from '$lib/forms/superforms'
+	import DishProfileForm from './DishProfileForm.svelte'
+	import DebugSwitch from '$lib/components/DebugSwitch.svelte'
 
-	export let data: PageData;
-	$: ({ dishes } = data);
+	export let data: PageData
+	$: ({ dishes } = data)
 
 	// Client API:
 	const { form, errors, constraints, enhance } = superForm(data.form, {
@@ -17,7 +17,7 @@
 		...getSuperOptions(),
 		// This is a requirement when the schema contains nested objects:
 		dataType: 'json'
-	});
+	})
 </script>
 
 <div class="flex justify-center items-center flex-col font-bold">
@@ -49,7 +49,7 @@
 				{/each}
 			</div>
 			<div class="card-actions justify-end">
-				<a href="/authenticated/dishes/{dish?._id}" class="btn btn-secondary">View</a>
+				<a href="/authenticated/dishes/{dish?._id}" class="btn uppercase btn-secondary">View</a>
 			</div>
 		</div>
 	</div>

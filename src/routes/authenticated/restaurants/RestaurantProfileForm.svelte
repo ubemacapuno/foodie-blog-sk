@@ -76,6 +76,6 @@
 		{#if $errors.rating}<span class="text-error">{$errors.rating}</span>{/if}
 	</div>
 	<br />
-	<button type="submit" class="btn btn-sm btn-primary">{submitText}</button>
+	<button type="submit" class="btn uppercase btn-sm btn-primary">{submitText}</button>
 	{#if $delayed}<span class="delayed">Working...</span>{/if}
 </form>

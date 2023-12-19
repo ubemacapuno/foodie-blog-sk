@@ -25,7 +25,9 @@
 	<div class="chat-image avatar online z-0">
 		{#if type === 'user'}
 			<div class="avatar online placeholder">
-				<div class="bg-neutral-focus text-neutral-content rounded-full w-10">
+				<div
+					class="bg-[color-mix(in_oklab,oklch(var(--n)),black_7%)]text-neutral-content rounded-full w-10"
+				>
 					{#if $page.data.session?.user?.image}
 						<img src={$page.data.session?.user?.image} alt="User avatar." />
 					{:else}
@@ -34,7 +36,9 @@
 				</div>
 			</div>
 		{:else}
-			<div class="user_avatar_wrapper bg-neutral-focus text-secondary rounded-full w-10">
+			<div
+				class="user_avatar_wrapper bg-[color-mix(in_oklab,oklch(var(--n)),black_7%)] text-secondary rounded-full w-10"
+			>
 				<span class="text-xl">🍪</span>
 			</div>
 		{/if}
@@ -51,7 +55,7 @@
 			{message}
 			<slot />
 			{#if type !== 'user'}
-				<button on:click={copyToClipboard} class="btn btn-xs btn-secondary border-none">
+				<button on:click={copyToClipboard} class="btn uppercase btn-xs btn-secondary border-none">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						class="h-6 w-6"

@@ -9,7 +9,7 @@
 	<div class="navbar bg-neutral" style="display: flex; justify-content: space-between;">
 		<div class="mx-0 mobile z-10">
 			<div class="dropdown">
-				<label tabindex="0" class="btn btn-ghost btn-circle">
+				<label tabindex="0" class="btn uppercase btn-ghost btn-circle">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						class="h-5 w-5"
@@ -147,7 +147,7 @@
 					<span style="background-image: url('{$page.data.session.user.image}')" class="avatar" />
 				{/if}
 				<button
-					class="btn btn-sm btn-outline btn-secondary link no-underline"
+					class="btn uppercase btn-sm btn-outline btn-secondary link no-underline"
 					on:click={() => signOut()}>Logout</button
 				>
 			{:else}

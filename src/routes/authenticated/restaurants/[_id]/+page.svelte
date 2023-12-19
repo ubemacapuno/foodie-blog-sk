@@ -42,7 +42,8 @@
 
 {#if restaurant}
 	<div class="flex">
-		<a href="/authenticated/restaurants" class="btn btn-outline btn-secondary btn-sm">←</a>
+		<a href="/authenticated/restaurants" class="btn uppercase btn-outline btn-secondary btn-sm">←</a
+		>
 	</div>
 {/if}
 <div class="flex-container">
@@ -81,7 +82,7 @@
 							<button
 								on:click={() => (activeModalId = 'profile')}
 								type="button"
-								class="btn btn-sm btn-primary"
+								class="btn uppercase btn-sm btn-primary"
 							>
 								{updateButtonText}</button
 							>

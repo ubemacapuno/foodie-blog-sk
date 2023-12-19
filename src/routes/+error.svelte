@@ -4,5 +4,5 @@
 </script>
 
 <EmptyState accent="text-warning" content={`${$page.status.toString()} ${$page.error?.message}`}>
-	<a class="btn btn-sm btn-primary" href="/">Go Home</a>
+	<a class="btn uppercase btn-sm btn-primary" href="/">Go Home</a>
 </EmptyState>

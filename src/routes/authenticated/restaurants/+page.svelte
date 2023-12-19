@@ -48,7 +48,9 @@
 				{/each}
 			</div>
 			<div class="card-actions justify-end">
-				<a href="/authenticated/restaurants/{restaurant?._id}" class="btn btn-secondary">View</a>
+				<a href="/authenticated/restaurants/{restaurant?._id}" class="btn uppercase btn-secondary"
+					>View</a
+				>
 			</div>
 		</div>
 	</div>

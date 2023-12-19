@@ -19,7 +19,7 @@
 	on:click={() => {
 		isConfirmActive = true
 	}}
-	class="btn btn-sm btn-primary link no-underline"
+	class="btn uppercase btn-sm btn-primary link no-underline"
 >
 	<slot />
 </button>
@@ -64,7 +64,7 @@
 
 		<div class="flex flex-row justify-center gap-x-2">
 			<button
-				class="btn btn-sm btn-secondary"
+				class="btn uppercase btn-sm btn-secondary"
 				on:click|preventDefault={() => {
 					isConfirmActive = false
 				}}
@@ -77,7 +77,7 @@
 				-->
 			<button
 				type="submit"
-				class="btn btn-sm btn-error"
+				class="btn uppercase btn-sm btn-error"
 				{disabled}
 				on:click={() => signIn('github')}
 			>

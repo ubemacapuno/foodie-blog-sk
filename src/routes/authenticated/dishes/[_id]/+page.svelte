@@ -35,15 +35,15 @@
 		// This is a requirement when the schema contains nested objects:
 		dataType: 'json'
 	})
-	// const userEmail = data.session?.user?.email
+	const userEmail = data.session?.user?.email
 
 	$: {
-		// if (userEmail === dish?.created_by_user_email) {
-		// 	updateButtonText = 'update'
-		// 	enableButton = true
-		// } else {
-		enableButton = false
-		// }
+		if (userEmail === dish?.created_by_user_email) {
+			updateButtonText = 'update'
+			enableButton = true
+		} else {
+			enableButton = false
+		}
 	}
 
 	$: ({ dish } = data)
@@ -51,7 +51,7 @@
 
 {#if dish}
 	<div class="flex">
-		<a href="/authenticated/dishes" class="btn btn-outline btn-secondary btn-sm">←</a>
+		<a href="/authenticated/dishes" class="btn uppercase btn-outline btn-secondary btn-sm">←</a>
 	</div>
 	<div class="flex-container">
 		<div>
@@ -88,7 +88,7 @@
 									<button
 										on:click={() => (activeModalId = 'profile')}
 										type="button"
-										class="btn btn-sm btn-primary"
+										class="btn uppercase btn-sm btn-primary"
 									>
 										{updateButtonText}</button
 									>
@@ -145,7 +145,7 @@
 							<button
 								on:click={() => (activeModalId = 'numbers')}
 								type="button"
-								class="btn btn-sm btn-primary"
+								class="btn uppercase btn-sm btn-primary"
 							>
 								{updateButtonText}
 							</button>
@@ -171,7 +171,7 @@
 							<button
 								on:click={() => (activeModalId = 'ingredients')}
 								type="button"
-								class="btn btn-sm btn-primary"
+								class="btn uppercase btn-sm btn-primary"
 							>
 								{updateButtonText}
 							</button>
@@ -206,7 +206,7 @@
 						<button
 							on:click={() => (activeModalId = 'notes')}
 							type="button"
-							class="btn btn-sm btn-primary"
+							class="btn uppercase btn-sm btn-primary"
 						>
 							{updateButtonText}
 						</button>
@@ -219,12 +219,12 @@
 	<div class="card w-72 bg-neutral shadow-xl">
 		<div class="card-body">
 			<strong class="text-warning text-3xl">Oops! Dish not found.</strong>
-			<a class="mt-5 btn btn-secondary" href="authenticated/dishes">Back to dishes</a>
+			<a class="mt-5 btn uppercase btn-secondary" href="authenticated/dishes">Back to dishes</a>
 		</div>
 	</div>
 {/if}
 <button
-	class="btn btn-sm btn-outline btn-accent"
+	class="btn uppercase btn-sm btn-outline btn-accent"
 	on:click={() => (activeModalId = 'debug')}
 	type="button">👩‍💻 Debugger</button
 >

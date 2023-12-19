@@ -25,7 +25,9 @@
 		{#if !$page.data.session}
 			<LoginButton>Sign In</LoginButton>
 		{:else}
-			<a class="btn btn-sm btn-secondary" href="/authenticated/dashboard">User Dashboard</a>
+			<a class="btn uppercase btn-sm btn-secondary" href="/authenticated/dashboard"
+				>User Dashboard</a
+			>
 		{/if}
 	</div>
 </div>

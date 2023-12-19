@@ -1,34 +1,34 @@
 <script lang="ts">
-	import { superForm } from 'sveltekit-superforms/client';
-	import { getSuperOptions } from '$lib/forms/superforms';
-	import ConfirmDeleteModal from './ConfirmDeleteModal.svelte';
+	import { superForm } from 'sveltekit-superforms/client'
+	import { getSuperOptions } from '$lib/forms/superforms'
+	import ConfirmDeleteModal from './ConfirmDeleteModal.svelte'
 
 	// Modal Props
-	export let isModalOpen = false;
-	export let title = 'Confirm Delete';
-	export let description = 'Are you sure you want to delete this?';
+	export let isModalOpen = false
+	export let title = 'Confirm Delete'
+	export let description = 'Are you sure you want to delete this?'
 
 	// Form props
-	export let action: string;
-	export let _id: string; // data _id
+	export let action: string
+	export let _id: string // data _id
 
 	// Button props
-	export let disabled = false;
+	export let disabled = false
 
 	const { enhance, submitting, delayed } = superForm(
 		_id,
 		getSuperOptions(() => {
-			isModalOpen = false;
+			isModalOpen = false
 		})
-	);
+	)
 </script>
 
 <button
 	on:click={() => {
-		isModalOpen = true;
+		isModalOpen = true
 	}}
 	{disabled}
-	class="btn btn-sm btn-outline btn-error"
+	class="btn uppercase btn-sm btn-outline btn-error"
 >
 	<slot />
 </button>
@@ -39,9 +39,9 @@
 		<form method="POST" {action} use:enhance>
 			<input type="hidden" name="_id" value={_id} />
 			<button
-				class="btn btn-sm btn-outline btn-secondary"
+				class="btn uppercase btn-sm btn-outline btn-secondary"
 				on:click|preventDefault={() => {
-					isModalOpen = false;
+					isModalOpen = false
 				}}
 			>
 				Cancel
@@ -52,7 +52,7 @@
 			-->
 			<Button
 				type="submit"
-				class="btn btn-sm btn-outline btn-error"
+				class="btn uppercase btn-sm btn-outline btn-error"
 				loading={$submitting || $delayed}>Delete</Button
 			>
 		</form>

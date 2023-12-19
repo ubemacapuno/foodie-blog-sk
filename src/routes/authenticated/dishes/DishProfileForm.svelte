@@ -1,11 +1,11 @@
 <script lang="ts">
-	export let form;
-	export let action: string;
-	export let errors;
-	export let constraints;
-	export let enhance;
-	export let delayed = null;
-	export let submitText = 'submit';
+	export let form
+	export let action: string
+	export let errors
+	export let constraints
+	export let enhance
+	export let delayed = null
+	export let submitText = 'submit'
 </script>
 
 <form
@@ -84,6 +84,6 @@
 			{...$constraints.cuisine}
 		/>
 	</div>
-	<button type="submit" class="btn btn-sm btn-primary">{submitText}</button>
+	<button type="submit" class="btn uppercase btn-sm btn-primary">{submitText}</button>
 	{#if $delayed}<span class="delayed">Working...</span>{/if}
 </form>

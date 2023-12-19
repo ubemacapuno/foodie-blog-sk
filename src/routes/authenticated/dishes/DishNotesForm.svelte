@@ -35,5 +35,5 @@
 			{...$constraints.notes}
 		/>
 	</div>
-	<button type="submit" class="btn btn-sm btn-primary">{submitText}</button>
+	<button type="submit" class="btn uppercase btn-sm btn-primary">{submitText}</button>
 </form>

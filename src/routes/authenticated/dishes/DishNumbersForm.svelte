@@ -1,10 +1,10 @@
 <script lang="ts">
-	export let form;
-	export let action: string;
-	export let errors;
-	export let constraints;
-	export let enhance;
-	export let submitText = 'update';
+	export let form
+	export let action: string
+	export let errors
+	export let constraints
+	export let enhance
+	export let submitText = 'update'
 </script>
 
 <form
@@ -76,7 +76,7 @@
 	{/if}
 
 	<br />
-	<button type="submit" class="btn btn-sm btn-primary">
+	<button type="submit" class="btn uppercase btn-sm btn-primary">
 		{submitText}
 	</button>
 </form>

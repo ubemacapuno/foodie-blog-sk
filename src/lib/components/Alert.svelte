@@ -16,7 +16,7 @@
 		<div class="flex justify-center alert alert-{accent} p-2 rounded-none">
 			<span>{description}</span>
 			<button
-				class="btn-close btn btn-xs btn-error rounded-full text-white"
+				class="btn-close btn uppercase btn-xs btn-error rounded-full text-white"
 				on:click={closeAlert}
 				aria-label="Close Modal Box">X</button
 			>

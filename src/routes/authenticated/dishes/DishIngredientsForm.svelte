@@ -1,26 +1,26 @@
 <script lang="ts">
-	export let form;
-	export let action: string;
-	export let errors;
-	export let newIngredient;
-	export let enhance;
-	export let submitText = 'submit';
+	export let form
+	export let action: string
+	export let errors
+	export let newIngredient
+	export let enhance
+	export let submitText = 'submit'
 
 	function addIngredient() {
 		if (newIngredient.trim() !== '') {
-			$form.ingredients = [...$form.ingredients, newIngredient];
-			newIngredient = '';
+			$form.ingredients = [...$form.ingredients, newIngredient]
+			newIngredient = ''
 		} else {
-			alert('Ingredient must not be BLANK.');
+			alert('Ingredient must not be BLANK.')
 		}
 	}
 
 	function removeIngredient(event, index) {
 		// stopPropagation prevents form from submitting after deleting items from the ingredient array
 		// @see https://developer.mozilla.org/en-US/docs/Web/API/Event/stopPropagation
-		event.stopPropagation();
-		$form.ingredients.splice(index, 1);
-		$form.ingredients = $form.ingredients;
+		event.stopPropagation()
+		$form.ingredients.splice(index, 1)
+		$form.ingredients = $form.ingredients
 	}
 </script>
 
@@ -41,7 +41,7 @@
 		/>
 		<button
 			on:click|preventDefault={addIngredient}
-			class="btn btn-sm btn-secondary btn-outline py-1 px-2 mt-2">Add</button
+			class="btn uppercase btn-sm btn-secondary btn-outline py-1 px-2 mt-2">Add</button
 		>
 		<div>
 			{#each $form?.ingredients || [] as ingredient, index}
@@ -49,7 +49,7 @@
 					<button
 						type="button"
 						on:click|preventDefault={(event) => removeIngredient(event, index)}
-						class="ml-2 btn btn-error btn-xs">🗑️</button
+						class="ml-2 btn uppercase btn-error btn-xs">🗑️</button
 					>
 					<ul class="pl-5">
 						<li>
@@ -64,5 +64,5 @@
 			>{/if}
 	</div>
 
-	<button type="submit" class="btn btn-sm btn-primary">{submitText}</button>
+	<button type="submit" class="btn uppercase btn-sm btn-primary">{submitText}</button>
 </form>
