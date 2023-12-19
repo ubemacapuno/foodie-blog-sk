@@ -17,7 +17,7 @@ export const dishes_fields = {
 	cook_time: positiveNumberSchema.nullable().optional(),
 	created_by_user_email: z.string().email(),
 	updated_by_user_email: z.string().email().optional(),
-	calories: z.number().positive().max(9999).nullable().optional(),
+	calories: positiveNumberSchema.nullable().optional(),
 	ingredients: z
 		.array(
 			z
@@ -41,7 +41,7 @@ export const dishes_fields = {
 export const dishes_schema = z.object(dishes_fields)
 export const new_dish_schema = z.object({
 	name: z.string().min(3).max(50, 'Please use less than 50 characters.'),
-	rating: z.string().nonempty().default('5'),
+	rating: z.string().default('5'),
 	cuisine: z
 		.string()
 		.min(1, 'Please enter a cuisine.')
