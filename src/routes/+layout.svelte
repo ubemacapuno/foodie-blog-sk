@@ -11,15 +11,15 @@
 	let isLoading = true
 
 	//call method from the loading store:
-	$: loading.setNavigate(!!$navigating)
-	$: if ($loading.status === 'NAVIGATING') {
-		setTimeout(() => {
-			//If loading.status is 'NAVIGATING' after the setTimeout, then set loading.status to 'LOADING':
-			if ($loading.status === 'NAVIGATING') {
-				$loading.status = 'LOADING'
-			}
-		}, 5000)
-	}
+	// $: loading.setNavigate(!!$navigating)
+	// $: if ($loading.status === 'NAVIGATING') {
+	// 	setTimeout(() => {
+	// 		//If loading.status is 'NAVIGATING' after the setTimeout, then set loading.status to 'LOADING':
+	// 		if ($loading.status === 'NAVIGATING') {
+	// 			$loading.status = 'LOADING'
+	// 		}
+	// 	}, 5000)
+	// }
 </script>
 
 <div class="flex flex-col min-h-screen relative">

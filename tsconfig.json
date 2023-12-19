@@ -21,19 +21,9 @@
 		"esModuleInterop": true,
 		"skipLibCheck": true,
 		"forceConsistentCasingInFileNames": true,
-		"baseUrl": ".",
 		"allowJs": true,
 		"checkJs": true,
 		"verbatimModuleSyntax": false,
-		"paths": {
-			"$/*": ["./src/routes/*"],
-			"$constants/*": ["./src/constants/*"],
-			"$db/*": ["./src/db/*"],
-			"$dishes/*": ["./src/lib/models/dishes/*"],
-			"$elements/*": ["./src/elements/*"],
-			"$utilities/*": ["./src/utilities/*"],
-			"$stores/*": ["./src/lib/stores/*"]
-		},
 		"ignoreDeprecations": "5.0"
 	},
 	"exclude": [".svelte-kit", "node_modules"],

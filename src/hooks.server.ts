@@ -10,7 +10,7 @@ async function authorization({ event, resolve }) {
 	if (event.url.pathname.startsWith('/authenticated')) {
 		const session = await event.locals.getSession()
 		if (!session) {
-			redirect(303, '/');
+			redirect(303, '/')
 		}
 	}
 
