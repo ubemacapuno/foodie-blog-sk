@@ -3,19 +3,21 @@ import { z } from 'zod'
 import { zodToJsonSchema } from 'zod-to-json-schema'
 import { requiredString } from '$utilities/zod_helpers'
 
+const positiveNumberSchema = z.number().min(1, { message: 'Must be greater than 0' }).max(9999)
+
 // Validation schema for dishes
 export const dishes_fields = {
 	_id: z.string().min(1),
 	name: z.string().min(3).max(50, 'Please use less than 50 characters.'),
 	date_added: requiredString,
 	date_updated: requiredString,
-	rating: z.string().nonempty().default('5'),
-	serving_size: z.number().positive().max(9999).nullable().optional(),
-	prep_time: z.number().positive().max(9999).nullable().optional(),
-	cook_time: z.number().positive().max(9999).nullable().optional(),
+	rating: z.string().default('5'),
+	serving_size: positiveNumberSchema.nullable().optional(),
+	prep_time: positiveNumberSchema.nullable().optional(),
+	cook_time: positiveNumberSchema.nullable().optional(),
 	created_by_user_email: z.string().email(),
 	updated_by_user_email: z.string().email().optional(),
-	calories: z.number().positive().max(9999).nullable().optional(),
+	calories: positiveNumberSchema.nullable().optional(),
 	ingredients: z
 		.array(
 			z
@@ -23,7 +25,8 @@ export const dishes_fields = {
 				.min(2, 'Ingredient must be at least 2 characters long.')
 				.max(200, 'Single ingredient must be 200 or less characters.')
 		)
-		.max(100, 'Please use less than 100 ingredients.'),
+		.max(100, 'Please use less than 100 ingredients.')
+		.optional(),
 	instructions: z
 		.string()
 		.max(5000, 'Instructions must not exceed 5000 characters.')
@@ -39,7 +42,7 @@ export const dishes_fields = {
 export const dishes_schema = z.object(dishes_fields)
 export const new_dish_schema = z.object({
 	name: z.string().min(3).max(50, 'Please use less than 50 characters.'),
-	rating: z.string().nonempty().default('5'),
+	rating: z.string().default('5'),
 	cuisine: z
 		.string()
 		.min(1, 'Please enter a cuisine.')

@@ -47,7 +47,7 @@ export const Restaurants: Actions = {
 		console.log('FORM (create)', form)
 
 		// Redirect to _id page with a toast message
-		throw redirect(
+		redirect(
 			303,
 			`/authenticated/restaurants/${created_path.insertedId}`,
 			{
@@ -71,7 +71,7 @@ export const Restaurants: Actions = {
 		}
 
 		if (session?.user?.email !== form.data.created_by_user_email) {
-			throw redirect(
+			redirect(
 				302,
 				`/authenticated/restaurants/${form.data._id}`,
 				{
@@ -101,31 +101,47 @@ export const Restaurants: Actions = {
 		return message(form, getSuccessMessage('restaurant', 'updated'))
 	},
 
-	delete: async function (event) {
-		// console.log('EVENT', event);
+	lete: async function (event) {
+		// TODO: We're querying the collection twice in this action. See if we can slim it down to just once.
 		const session = await event.locals.getSession()
 		const form = await superValidate(event, restaurants_schema)
 
-		// Check if session exists
 		if (!session) {
 			return message(form, AUTH_ERROR_MESSAGE)
 		}
 
-		// TODO: Setup a check so users can only delete their own restaurants
+		if (!form.data._id) {
+			return fail(400, { message: 'Missing restaurant ID' })
+		}
 
-		if (!form.data._id) return fail(400, { message: DEFAULT_FORM_ERROR })
+		// Retrieve the restaurant to check the owner
+		const restaurant = await restaurants.findOne({ _id: form.data._id })
+		if (!restaurant) {
+			return message(form, 'Restaurant not found')
+		}
+
+		// Check if the session user's email matches the restaurant's created_by_user_email
+		if (session?.user?.email !== restaurant.created_by_user_email) {
+			return redirect(
+				302,
+				`/authenticated/restaurants/${form.data._id}`,
+				{
+					message: AUTH_ERROR_MESSAGE,
+					status: 'error',
+					id: uniqueId()
+				},
+				event
+			)
+		}
 
 		await restaurants.deleteOne({ _id: form.data._id }).catch(log_error)
 
-		console.log('FORM (delete)', form)
-
-		throw redirect(
+		return redirect(
 			303,
 			`/authenticated/restaurants`,
 			{
 				message: getSuccessMessage('restaurant', 'deleted'),
 				status: 'success',
-				// Generate a unique id for the toast message
 				id: uniqueId()
 			},
 			event
