@@ -14,6 +14,7 @@
 	import type { ActiveModalId } from '$lib/forms/form-types'
 	import UploadInput from '$lib/forms/UploadInput.svelte'
 	import FeatureFlag from '$lib/components/FeatureFlag.svelte'
+	import DishesRestaurantsForm from '../DishesRestaurantsForm.svelte'
 
 	export let data: PageData
 
@@ -46,7 +47,9 @@
 		}
 	}
 
-	$: ({ dish } = data)
+	$: ({ dish, restaurantList } = data)
+
+	$: console.log('DISH: ', dish)
 </script>
 
 {#if dish}
@@ -180,6 +183,32 @@
 				</div>
 			</div>
 
+			<div class="my-4 card w-80 bg-neutral self-center">
+				<div class="card-body p-3">
+					<h3 class="card-title text-lg text-primary">Restaurants</h3>
+					<div class="flex justify-between">
+						{#if dish?.restaurants?.length > 0}
+							{#each dish?.restaurants || [] as restaurant}
+								<li>{restaurant}</li>
+							{/each}
+						{:else}
+							<EmptyState content="There are no restaurants." />
+						{/if}
+						<div class="flex justify-between">
+							{#if enableButton}
+								<button
+									on:click={() => (activeModalId = 'restaurants')}
+									type="button"
+									class="btn uppercase btn-sm btn-primary"
+								>
+									{updateButtonText}
+								</button>
+							{/if}
+						</div>
+					</div>
+				</div>
+			</div>
+
 			<FeatureFlag flag="uploads">
 				<div class="my-4 card w-80 bg-neutral self-center">
 					<UploadInput />
@@ -244,6 +273,15 @@
 		<DishNotesForm action="?/update" {form} {errors} {constraints} {enhance} />
 	{:else if activeModalId === 'numbers'}
 		<DishNumbersForm action="?/update" {form} {errors} {constraints} {enhance} />
+	{:else if activeModalId === 'restaurants'}
+		<DishesRestaurantsForm
+			{restaurantList}
+			action="?/update"
+			{form}
+			{errors}
+			{constraints}
+			{enhance}
+		/>
 	{:else if activeModalId === 'debug'}
 		<SuperDebug data={$form} />
 	{/if}
