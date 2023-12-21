@@ -43,7 +43,8 @@
 		"tailwindcss": "^3.3.1",
 		"tslib": "^2.4.1",
 		"typescript": "^5.3.3",
-		"vite": "^5.0.0"
+		"vite": "^5.0.0",
+		"zod": "^3.22.4"
 	},
 	"type": "module",
 	"dependencies": {
@@ -69,7 +70,6 @@
 		"svelte-tel-input": "^3.1.0",
 		"sveltekit-flash-message": "^2.1.3",
 		"viewerjs": "^1.11.6",
-		"zod": "^3.22.4",
 		"zod-to-json-schema": "^3.22.3"
 	}
 }

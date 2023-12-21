@@ -100,45 +100,44 @@ export const Dishes: Actions = {
 	},
 
 	delete: async function (event) {
-		// console.log('EVENT', event);
+		// TODO: We're querying the collection twice in this action. See if we can slim it down to just once.
 		const session = await event.locals.getSession()
 		const form = await superValidate(event, dishes_schema)
 
-		// Check if session exists
 		if (!session) {
 			return message(form, AUTH_ERROR_MESSAGE)
 		}
 
-		// TODO: Setup a check so users can only delete their own dishes
-		// console.log('DELETE CHECK - session', session?.user?.email, form.data.created_by_user_email);
-		// console.log('DELETE CHECK - form', form.data);
-		// console.log('DELETE CHECK - form', form.data.created_by_user_email);
+		if (!form.data._id) {
+			return fail(400, { message: 'Missing dish ID' })
+		}
 
-		// if (session?.user?.email !== form.data.created_by_user_email) {
-		// 	redirect(
-		// 		302,
-		// 		`/authenticated/dishes/${form.data._id}`,
-		// 		{
-		// 			message: `Cannot delete this dish. Session email doesn't match email created by user.`,
-		// 			status: 'error',
-		// 			// Add id so the toast gets assigned an id
-		// 			id: uniqueId()
-		// 		},
-		// 		event
-		// 	);
-		// }
+		const dish = await dishes.findOne({ _id: form.data._id })
+		if (!dish) {
+			return message(form, 'Dish not found')
+		}
 
-		if (!form.data._id) return fail(400, { message: DEFAULT_FORM_ERROR })
+		if (session?.user?.email !== dish.created_by_user_email) {
+			return redirect(
+				302,
+				`/authenticated/dishes/${form.data._id}`,
+				{
+					message: AUTH_ERROR_MESSAGE,
+					status: 'error',
+					id: uniqueId()
+				},
+				event
+			)
+		}
 
 		await dishes.deleteOne({ _id: form.data._id }).catch(log_error)
 
-		redirect(
+		return redirect(
 			303,
 			`/authenticated/dishes`,
 			{
 				message: getSuccessMessage('dish', 'deleted'),
 				status: 'success',
-				// Generate a unique id for the toast message
 				id: uniqueId()
 			},
 			event

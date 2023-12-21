@@ -71,9 +71,6 @@ dependencies:
   viewerjs:
     specifier: ^1.11.6
     version: 1.11.6
-  zod:
-    specifier: ^3.22.4
-    version: 3.22.4
   zod-to-json-schema:
     specifier: ^3.22.3
     version: 3.22.3(zod@3.22.4)
@@ -175,6 +172,9 @@ devDependencies:
   vite:
     specifier: ^5.0.0
     version: 5.0.10
+  zod:
+    specifier: ^3.22.4
+    version: 3.22.4
 
 packages:
 
