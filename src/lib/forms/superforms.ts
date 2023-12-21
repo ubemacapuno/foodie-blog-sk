@@ -1,6 +1,6 @@
-import type { FormOptions } from 'sveltekit-superforms/client';
-import { sendToast } from '../stores/toast';
-import * as flashModule from 'sveltekit-flash-message/client';
+import type { FormOptions } from 'sveltekit-superforms/client'
+import { sendToast } from '../stores/toast'
+import * as flashModule from 'sveltekit-flash-message/client'
 
 /**
  * Super Forms Options
@@ -25,11 +25,11 @@ export const defaultSuperOptions: FormOptions = {
 	flashMessage: {
 		module: flashModule,
 		onError: ({ error }) => {
-			console.error('error', error);
-			return sendToast(error?.message, 'warning');
+			console.error('error', error)
+			return sendToast(error?.message, 'warning')
 		}
 	}
-};
+}
 
 // Only enhance options
 export const onResult = (callback?: (data: any | unknown) => any) => ({
@@ -38,27 +38,27 @@ export const onResult = (callback?: (data: any | unknown) => any) => ({
 			callback(result)
 		} else {
 			if (result?.type === 'error') {
-				console.error(result);
-				return sendToast(result.error.message, 'warning');
+				console.error(result)
+				return sendToast(result.error.message, 'warning')
 			}
 
 			if (result?.errors || result?.type === 'failure') {
-				console.error('failure', result);
-				return sendToast(result.message, 'warning');
+				console.error('failure', result)
+				return sendToast(result.message, 'warning')
 			}
 
 			if (result?.type === 'success') {
-				sendToast(result.data.form.message, 'success');
+				sendToast(result.data.form.message, 'success')
 			}
 
 			if (callback && 'data' in result && result?.data) {
-				callback(result.data.form);
+				callback(result.data.form)
 			}
 		}
 	}
-});
+})
 
 export const getSuperOptions = (callback?: (data: any | unknown) => any) => ({
 	...defaultSuperOptions,
 	...onResult(callback)
-});
+})

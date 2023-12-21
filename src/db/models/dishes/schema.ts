@@ -25,7 +25,8 @@ export const dishes_fields = {
 				.min(2, 'Ingredient must be at least 2 characters long.')
 				.max(200, 'Single ingredient must be 200 or less characters.')
 		)
-		.max(100, 'Please use less than 100 ingredients.'),
+		.max(100, 'Please use less than 100 ingredients.')
+		.optional(),
 	instructions: z
 		.string()
 		.max(5000, 'Instructions must not exceed 5000 characters.')
