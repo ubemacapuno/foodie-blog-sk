@@ -14,22 +14,14 @@ export const load = async function ({ params, parent }) {
 	console.log('SESSION: ', session)
 
 	if (!params._id) {
-<<<<<<< HEAD
-		throw redirect(302, '/dishes')
-=======
-		redirect(302, '/dishes');
->>>>>>> origin/main
+		redirect(302, '/dishes')
 	}
 
 	const dish = await dishes.findOne({
 		_id: params._id
 	})
 
-<<<<<<< HEAD
-	if (!dish) throw error(404, 'Dish not found.')
-=======
-	if (!dish) error(404, 'Dish not found.');
->>>>>>> origin/main
+	if (!dish) error(404, 'Dish not found.')
 
 	// Fetch the list of restaurants with their IDs and names
 	const restaurantList = await restaurants
