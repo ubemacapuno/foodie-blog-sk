@@ -1,17 +1,17 @@
 import { zod_to_jsonschema } from '$utilities/zod_to_jsonschema'
 import { z } from 'zod'
 import { zodToJsonSchema } from 'zod-to-json-schema'
-import { REQUIRED_FIELD, requiredString } from '$utilities/zod_helpers'
+import { REQUIRED_FIELD, requiredString, starRating } from '$utilities/zod_helpers'
 
 // Validation schema for restaurant
 export const restaurants_fields = {
-	_id: z.string().min(1),
-	name: z.string().min(1, REQUIRED_FIELD),
-	rating: z.string().nonempty().default('5'),
+	_id: requiredString,
+	name: requiredString,
+	rating: starRating,
 	dishes: z
 		.object({
 			name: z.string().min(1, REQUIRED_FIELD),
-			rating: z.string().nonempty().default('5'),
+			rating: starRating,
 			description: z
 				.string()
 				.max(1000, 'Description must not exceed 1000 characters.')
@@ -31,7 +31,7 @@ export const restaurants_schema = z.object(restaurants_fields)
 
 export const new_restaurant_schema = z.object({
 	name: z.string().min(1, REQUIRED_FIELD),
-	rating: z.string().nonempty().default('5')
+	rating: starRating
 })
 
 export const updated_restaurants_schema = restaurants_schema.omit({
