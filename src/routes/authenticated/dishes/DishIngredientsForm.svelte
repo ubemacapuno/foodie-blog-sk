@@ -1,26 +1,28 @@
 <script lang="ts">
-	export let form;
-	export let action: string;
-	export let errors;
-	export let newIngredient;
-	export let enhance;
-	export let submitText = 'submit';
+	export let form
+	export let action: string
+	export let errors
+	export let newIngredient
+	export let enhance
+	export let submitText = 'submit'
 
 	function addIngredient() {
 		if (newIngredient.trim() !== '') {
-			$form.ingredients = [...$form.ingredients, newIngredient];
-			newIngredient = '';
+			$form.ingredients = Array.isArray($form.ingredients)
+				? [...$form.ingredients, newIngredient]
+				: [newIngredient]
+			newIngredient = ''
 		} else {
-			alert('Ingredient must not be BLANK.');
+			alert('Ingredient must not be BLANK.')
 		}
 	}
 
 	function removeIngredient(event, index) {
 		// stopPropagation prevents form from submitting after deleting items from the ingredient array
 		// @see https://developer.mozilla.org/en-US/docs/Web/API/Event/stopPropagation
-		event.stopPropagation();
-		$form.ingredients.splice(index, 1);
-		$form.ingredients = $form.ingredients;
+		event.stopPropagation()
+		$form.ingredients.splice(index, 1)
+		$form.ingredients = $form.ingredients || []
 	}
 </script>
 
