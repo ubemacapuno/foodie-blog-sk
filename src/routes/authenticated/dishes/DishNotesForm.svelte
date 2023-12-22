@@ -4,7 +4,7 @@
 	export let errors
 	export let constraints
 	export let enhance
-	export let submitText = 'update'
+	export let submitText = 'Update'
 </script>
 
 <form

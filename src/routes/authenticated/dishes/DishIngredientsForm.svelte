@@ -4,14 +4,17 @@
 	export let errors
 	export let newIngredient
 	export let enhance
-	export let submitText = 'submit'
+	export let submitText = 'Submit'
 
 	function addIngredient() {
-		if (newIngredient.trim() !== '') {
-			$form.ingredients = [...$form.ingredients, newIngredient]
+		const trimmedIngredient = newIngredient.trim()
+		if (trimmedIngredient.length >= 2) {
+			$form.ingredients = Array.isArray($form.ingredients)
+				? [...$form.ingredients, trimmedIngredient]
+				: [trimmedIngredient]
 			newIngredient = ''
 		} else {
-			alert('Ingredient must not be BLANK.')
+			alert('Ingredient must be at least 2 characters long.')
 		}
 	}
 
@@ -20,7 +23,7 @@
 		// @see https://developer.mozilla.org/en-US/docs/Web/API/Event/stopPropagation
 		event.stopPropagation()
 		$form.ingredients.splice(index, 1)
-		$form.ingredients = $form.ingredients
+		$form.ingredients = $form.ingredients || []
 	}
 </script>
 

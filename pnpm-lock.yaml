@@ -18,7 +18,7 @@ dependencies:
     specifier: '3'
     version: 3.0.0(@sveltejs/kit@2.0.3)
   daisyui:
-    specifier: ^4.4.20
+    specifier: ^4.4.23
     version: 4.4.23(postcss@8.4.21)
   date-fns:
     specifier: ^2.30.0
@@ -161,7 +161,7 @@ devDependencies:
     specifier: 1.5.1
     version: 1.5.1(@sveltejs/kit@2.0.3)(svelte@4.2.8)(zod@3.22.4)
   tailwindcss:
-    specifier: ^3.3.7
+    specifier: ^3.4.0
     version: 3.4.0
   tslib:
     specifier: ^2.4.1

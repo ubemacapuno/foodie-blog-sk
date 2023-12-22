@@ -1,23 +1,21 @@
 import { zod_to_jsonschema } from '$utilities/zod_to_jsonschema'
 import { z } from 'zod'
 import { zodToJsonSchema } from 'zod-to-json-schema'
-import { requiredString } from '$utilities/zod_helpers'
-
-const positiveNumberSchema = z.number().min(1, { message: 'Must be greater than 0' }).max(9999)
+import { optionalPositiveNumber, requiredString, starRating } from '$utilities/zod_helpers'
 
 // Validation schema for dishes
 export const dishes_fields = {
-	_id: z.string().min(1),
-	name: z.string().min(3).max(50, 'Please use less than 50 characters.'),
+	_id: requiredString,
+	name: requiredString,
 	date_added: requiredString,
 	date_updated: requiredString,
-	rating: z.string().default('5'),
-	serving_size: positiveNumberSchema.nullable().optional(),
-	prep_time: positiveNumberSchema.nullable().optional(),
-	cook_time: positiveNumberSchema.nullable().optional(),
+	rating: starRating,
+	serving_size: optionalPositiveNumber,
+	prep_time: optionalPositiveNumber,
+	cook_time: optionalPositiveNumber,
 	created_by_user_email: z.string().email(),
 	updated_by_user_email: z.string().email().optional(),
-	calories: positiveNumberSchema.nullable().optional(),
+	calories: optionalPositiveNumber,
 	ingredients: z
 		.array(
 			z
@@ -42,7 +40,7 @@ export const dishes_fields = {
 export const dishes_schema = z.object(dishes_fields)
 export const new_dish_schema = z.object({
 	name: z.string().min(3).max(50, 'Please use less than 50 characters.'),
-	rating: z.string().default('5'),
+	rating: starRating,
 	cuisine: z
 		.string()
 		.min(1, 'Please enter a cuisine.')

@@ -5,7 +5,7 @@
 	export let constraints
 	export let enhance
 	export let delayed = null
-	export let submitText = 'submit'
+	export let submitText = 'Submit'
 </script>
 
 <form
