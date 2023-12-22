@@ -1,5 +1,5 @@
 import type { PageServerLoad } from './$types'
-import { dish_counter } from '$db/models/dish_counter/collection' // Make sure this path is correct
+import { dish_counter } from '$db/models/dish_counter/collection'
 
 export const load: PageServerLoad = (async () => {
 	// Retrieve the specific dish_counter document
