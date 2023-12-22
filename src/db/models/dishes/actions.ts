@@ -12,12 +12,8 @@ import { log_error } from '$utilities/log_error'
 import { dishes_schema, type Dish, new_dish_schema } from './schema'
 import { dishes } from './collection'
 import type { InsertOneResult } from 'mongodb'
-import {
-	AUTH_ERROR_MESSAGE,
-	CHECK_FORM_MESSAGE,
-	DEFAULT_FORM_ERROR,
-	getSuccessMessage
-} from '$constants/forms'
+import { AUTH_ERROR_MESSAGE, CHECK_FORM_MESSAGE, getSuccessMessage } from '$constants/forms'
+import { dish_counter } from '../dish_counter/collection'
 
 export const Dishes: Actions = {
 	create: async function (event) {
@@ -43,7 +39,28 @@ export const Dishes: Actions = {
 		const insert_data = prepare_data_for_insert<Dish>(form.data)
 
 		// Insert into database
+		console.log('Inserting dish data:', insert_data)
 		const created_path = <InsertOneResult>await dishes.insertOne(insert_data).catch(log_error)
+
+		if (created_path) {
+			// Check for existing counter
+			const counter = await dish_counter.findOne({ _id: 'dish_count' })
+			if (counter) {
+				// Increment existing counter
+				await dish_counter.updateOne(
+					{ _id: 'dish_count' },
+					{ $inc: { count: 1 }, $set: { date_last_updated: new Date().toISOString() } }
+				)
+			} else {
+				// Create a new counter if it doesn't exist
+				await dish_counter.insertOne({
+					_id: 'dish_count',
+					count: 1,
+					date_created: new Date().toISOString(),
+					date_last_updated: new Date().toISOString()
+				})
+			}
+		}
 
 		// Redirect to _id page with a toast message
 		redirect(
