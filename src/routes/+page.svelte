@@ -6,20 +6,15 @@
 
 	export let data: PageData
 
-	// Declare the variables with an initial value
 	let count_all_dishes_created: number | undefined
 	let date_created: string | undefined | null
-	let startDateFormatted = 'Fetching date...' // Initial message or could be empty string
+	let startDateFormatted = 'Fetching date...'
 	let currentDateFormatted = format(new Date(), 'PP')
 
-	// Reactive statement to update variables when data changes
 	$: if (data) {
 		;({ count_all_dishes_created, date_created } = data)
-		// Update the formatted date only when date_created is available
 		if (date_created) {
 			startDateFormatted = format(new Date(date_created), 'PP')
-		} else {
-			startDateFormatted = 'Unknown Start Date'
 		}
 	}
 </script>
