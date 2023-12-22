@@ -39,7 +39,7 @@
 
 	$: {
 		if (userEmail === dish?.created_by_user_email) {
-			updateButtonText = 'update'
+			updateButtonText = 'Update'
 			enableButton = true
 		} else {
 			enableButton = false
