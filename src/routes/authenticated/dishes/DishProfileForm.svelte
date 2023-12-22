@@ -1,11 +1,11 @@
 <script lang="ts">
-	export let form;
-	export let action: string;
-	export let errors;
-	export let constraints;
-	export let enhance;
-	export let delayed = null;
-	export let submitText = 'submit';
+	export let form
+	export let action: string
+	export let errors
+	export let constraints
+	export let enhance
+	export let delayed = null
+	export let submitText = 'Submit'
 </script>
 
 <form
