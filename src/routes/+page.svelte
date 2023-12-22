@@ -15,7 +15,6 @@
 	// Reactive statement to update variables when data changes
 	$: if (data) {
 		;({ count_all_dishes_created, date_created } = data)
-		console.log('date_created: ', date_created)
 		// Update the formatted date only when date_created is available
 		if (date_created) {
 			startDateFormatted = format(new Date(date_created), 'PP')

@@ -39,7 +39,6 @@ export const Dishes: Actions = {
 		const insert_data = prepare_data_for_insert<Dish>(form.data)
 
 		// Insert into database
-		console.log('Inserting dish data:', insert_data)
 		const created_path = <InsertOneResult>await dishes.insertOne(insert_data).catch(log_error)
 
 		if (created_path) {

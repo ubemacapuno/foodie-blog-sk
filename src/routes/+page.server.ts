@@ -9,8 +9,6 @@ export const load: PageServerLoad = (async () => {
 	const count_all_dishes_created = dish_counter_doc ? dish_counter_doc.count : 0
 	const date_created = dish_counter_doc ? dish_counter_doc.date_created : null
 
-	console.log('DATE CREATED: ', date_created)
-
 	return {
 		count_all_dishes_created,
 		date_created // include this in the returned object
