@@ -12,12 +12,8 @@ import { log_error } from '$utilities/log_error'
 import { restaurants_schema, type Restaurant, new_restaurant_schema } from './schema'
 import { restaurants } from './collection'
 import type { InsertOneResult } from 'mongodb'
-import {
-	AUTH_ERROR_MESSAGE,
-	CHECK_FORM_MESSAGE,
-	DEFAULT_FORM_ERROR,
-	getSuccessMessage
-} from '$constants/forms'
+import { AUTH_ERROR_MESSAGE, CHECK_FORM_MESSAGE, getSuccessMessage } from '$constants/forms'
+import { restaurant_counter } from '../restaurant_counter/collection'
 
 export const Restaurants: Actions = {
 	create: async function (event) {
@@ -44,7 +40,26 @@ export const Restaurants: Actions = {
 
 		// Insert into database
 		const created_path = <InsertOneResult>await restaurants.insertOne(insert_data).catch(log_error)
-		console.log('FORM (create)', form)
+
+		if (created_path) {
+			// Check for existing counter
+			const counter = await restaurant_counter.findOne({ _id: 'restaurant_count' })
+			if (counter) {
+				// Increment existing counter
+				await restaurant_counter.updateOne(
+					{ _id: 'restaurant_count' },
+					{ $inc: { count: 1 }, $set: { date_last_updated: new Date().toISOString() } }
+				)
+			} else {
+				// Create a new counter if it doesn't exist
+				await restaurant_counter.insertOne({
+					_id: 'restaurant_count',
+					count: 1,
+					date_created: new Date().toISOString(),
+					date_last_updated: new Date().toISOString()
+				})
+			}
+		}
 
 		// Redirect to _id page with a toast message
 		redirect(
@@ -101,7 +116,7 @@ export const Restaurants: Actions = {
 		return message(form, getSuccessMessage('restaurant', 'updated'))
 	},
 
-	lete: async function (event) {
+	delete: async function (event) {
 		// TODO: We're querying the collection twice in this action. See if we can slim it down to just once.
 		const session = await event.locals.getSession()
 		const form = await superValidate(event, restaurants_schema)

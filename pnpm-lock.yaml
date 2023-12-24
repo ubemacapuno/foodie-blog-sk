@@ -66,8 +66,8 @@ dependencies:
     specifier: ^3.1.0
     version: 3.1.0
   sveltekit-flash-message:
-    specifier: ^2.1.3
-    version: 2.1.3(@sveltejs/kit@2.0.3)(svelte@4.2.8)
+    specifier: ^2.3.0
+    version: 2.3.0(@sveltejs/kit@2.0.3)(svelte@4.2.8)
   viewerjs:
     specifier: ^1.11.6
     version: 1.11.6
@@ -158,8 +158,8 @@ devDependencies:
     specifier: ^1.0.15
     version: 1.0.16(@sveltejs/kit@2.0.3)(svelte@4.2.8)
   sveltekit-superforms:
-    specifier: 1.5.1
-    version: 1.5.1(@sveltejs/kit@2.0.3)(svelte@4.2.8)(zod@3.22.4)
+    specifier: 1.13.1
+    version: 1.13.1(@sveltejs/kit@2.0.3)(svelte@4.2.8)(zod@3.22.4)
   tailwindcss:
     specifier: ^3.4.0
     version: 3.4.0
@@ -4655,10 +4655,10 @@ packages:
       svelte: 3.59.2
     dev: true
 
-  /sveltekit-flash-message@2.1.3(@sveltejs/kit@2.0.3)(svelte@4.2.8):
-    resolution: {integrity: sha512-NFhQ3t2101AM9JO5Mgj38r69ykF4BOs1Ap3567DaM1RoAaNtXRXpAuEc/DQV78HZN/Fxzw8dxyTMdIC1HztUvA==}
+  /sveltekit-flash-message@2.3.0(@sveltejs/kit@2.0.3)(svelte@4.2.8):
+    resolution: {integrity: sha512-PJgOtKfJ02sNBNp3iELSJ/TlJGCxkLtqPVSlSvp16KFueJrtiMDjFDliPkYJAGJ3EJHcoVac6aF1moCUOjS5Vw==}
     peerDependencies:
-      '@sveltejs/kit': 1.x
+      '@sveltejs/kit': 1.x || 2.x
       svelte: 3.x || 4.x
     dependencies:
       '@sveltejs/kit': 2.0.3(@sveltejs/vite-plugin-svelte@3.0.1)(svelte@4.2.8)(vite@5.0.10)
@@ -4675,10 +4675,10 @@ packages:
       svelte: 4.2.8
     dev: true
 
-  /sveltekit-superforms@1.5.1(@sveltejs/kit@2.0.3)(svelte@4.2.8)(zod@3.22.4):
-    resolution: {integrity: sha512-OqKzxuL1P29CFiK1CD00JRsvEsRPedvrR0qXmB4uqzXAIjOS+DpLjoEaa6Cnkd4H00fRa2161GcZNeEBue/D3A==}
+  /sveltekit-superforms@1.13.1(@sveltejs/kit@2.0.3)(svelte@4.2.8)(zod@3.22.4):
+    resolution: {integrity: sha512-aWHAV6t6+7g37IGFNLRtbRIoqfC3a56Hf4/tTUNFZfwO2mOQGfeMb49WWBLdZZTrFRPGngfNRUxQzeoO3GspnQ==}
     peerDependencies:
-      '@sveltejs/kit': 1.x
+      '@sveltejs/kit': 1.x || 2.x
       svelte: 3.x || 4.x
       zod: 3.x
     dependencies:

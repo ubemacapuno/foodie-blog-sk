@@ -4,30 +4,47 @@
 	import { page } from '$app/stores'
 	import LoginButton from '$lib/components/LoginButton.svelte'
 
-	// TODO - create stats props:
 	export let data: PageData
 
-	$: ({ count_all_dishes } = data)
+	let count_all_dishes_created: number | undefined
+	let count_all_restaurants_created: number | undefined
+	let date_dish_counter_created: string | undefined | null
+	let startDateFormatted = 'Fetching date...'
+	let currentDateFormatted = format(new Date(), 'PP')
 
-	const currentDateFormatted = format(new Date(), 'PP')
+	$: if (data) {
+		;({ count_all_dishes_created, date_dish_counter_created, count_all_restaurants_created } = data)
+		if (date_dish_counter_created) {
+			startDateFormatted = format(new Date(date_dish_counter_created), 'PP')
+		}
+	}
 </script>
 
 <div class="flex flex-col gap-5">
 	<div class="stats stats-vertical shadow">
-		<h1 class="text-xl my-2">More stats coming soon!</h1>
+		<div class="flex flex-row flex-nowrap font-bold normal-case text-md p-2">
+			<span class="text-primary">Foodie</span>
+			<span class="lowercase text-base-content mr-2">blog</span>
+			<span class="text-primary">Analytics</span>
+		</div>
+
 		<div class="stat">
-			<div class="text-primary stat-title">Total Dishes</div>
-			<div class="stat-value text-primary">{count_all_dishes || '-'}</div>
-			<div class="stat-desc">Mar 25, 2023 - {currentDateFormatted}</div>
+			<div class="my-2">
+				<div class="text-secondary stat-title">Dishes Blogged</div>
+				<div class="stat-value text-accent">{count_all_dishes_created || '-'}</div>
+			</div>
+			<div class="my-2">
+				<div class="text-secondary stat-title">Restaurants Blogged</div>
+				<div class="stat-value text-accent">{count_all_restaurants_created || '-'}</div>
+			</div>
+			<div class="stat-desc">{startDateFormatted} - {currentDateFormatted}</div>
 		</div>
 	</div>
 	<div>
 		{#if !$page.data.session}
 			<LoginButton>Sign In</LoginButton>
 		{:else}
-			<a class="btn uppercase btn-sm btn-secondary" href="/authenticated/dashboard"
-				>User Dashboard</a
-			>
+			<a class="btn btn-sm btn-primary" href="/authenticated/dashboard">User Dashboard</a>
 		{/if}
 	</div>
 </div>
