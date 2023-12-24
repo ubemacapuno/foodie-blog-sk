@@ -22,7 +22,7 @@
 
 <div class="flex flex-col gap-5">
 	<div class="stats stats-vertical shadow">
-		<div class="flex flex-row flex-nowrap font-bold normal-case text-md m-1">
+		<div class="flex flex-row flex-nowrap font-bold normal-case text-md p-2">
 			<span class="text-primary">Foodie</span>
 			<span class="lowercase text-base-content mr-2">blog</span>
 			<span class="text-primary">Analytics</span>
