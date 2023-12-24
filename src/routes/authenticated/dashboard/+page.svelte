@@ -45,7 +45,7 @@
 			<div class="stats bg-neutral text-primary-content stats-vertical">
 				<div class="stat">
 					<div class="stat-title">
-						<a href="/authenticated/dishes" class="link link-secondary">Your Dishes</a>
+						<a href="/authenticated/dishes" class="link link-secondary">Dishes Blogged</a>
 					</div>
 					<div class="stat-value text-primary">
 						{user_dishes_length}
@@ -53,7 +53,7 @@
 				</div>
 				<div class="stat">
 					<div class="stat-title">
-						<a href="/authenticated/restaurants" class="link link-secondary">Your Restaurants</a>
+						<a href="/authenticated/restaurants" class="link link-secondary">Restaurants Blogged</a>
 					</div>
 					<div class="stat-value text-primary">
 						{user_restaurants_length}

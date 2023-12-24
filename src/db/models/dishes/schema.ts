@@ -35,7 +35,8 @@ export const dishes_fields = {
 		.min(1, 'Please enter a cuisine.')
 		.max(50, 'Please use less than 50 characters.'),
 	notes: z.string().max(5000, 'Notes must not exceed 5000 characters.').nullable().optional(),
-	connected_uploads: z.array(z.string()).default([]) // Upload ID
+	connected_uploads: z.array(z.string()).default([]), // List of Upload IDs
+	connected_restaurants: z.array(z.string()).default([]) // List of Restaurant IDs
 }
 export const dishes_schema = z.object(dishes_fields)
 export const new_dish_schema = z.object({
@@ -44,8 +45,7 @@ export const new_dish_schema = z.object({
 	cuisine: z
 		.string()
 		.min(1, 'Please enter a cuisine.')
-		.max(50, 'Please use less than 50 characters.'),
-	connected_restaurants: z.array(z.string()).optional() // Array of restaurant IDs
+		.max(50, 'Please use less than 50 characters.')
 })
 
 export const updated_dishes_schema = dishes_schema.omit({
@@ -55,7 +55,5 @@ export const dishes_raw_schema_json = zodToJsonSchema(dishes_schema, {
 	$refStrategy: 'none'
 })
 export const dishes_json_schema = zod_to_jsonschema(dishes_raw_schema_json)
-
-/* TODO: Populated Dishes Schemas */
 
 export type Dish = z.infer<typeof dishes_schema>

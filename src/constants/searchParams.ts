@@ -13,3 +13,6 @@ export const FILE_SORT_DATE_DESC = 'date-desc'
 
 // Feature flags
 export const FEATURE_FLAG = 'featureFlag'
+
+/* Filtering */
+export const S = 's' // searchQuery

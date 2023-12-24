@@ -37,6 +37,7 @@
 		dataType: 'json'
 	})
 	const userEmail = data.session?.user?.email
+	const dishRestaurantForm = data.form
 
 	$: {
 		if (userEmail === dish?.created_by_user_email) {
@@ -47,9 +48,9 @@
 		}
 	}
 
-	$: ({ dish, restaurantList } = data)
+	$: ({ dish, restaurantList, all_restaurants } = data)
 
-	$: console.log('DISH: ', dish)
+	$: console.log('all_restaurants: ', all_restaurants)
 </script>
 
 {#if dish}
@@ -275,11 +276,10 @@
 		<DishNumbersForm action="?/update" {form} {errors} {constraints} {enhance} />
 	{:else if activeModalId === 'restaurants'}
 		<DishesRestaurantsForm
-			{restaurantList}
+			{all_restaurants}
+			{dishRestaurantForm}
 			action="?/update"
-			{form}
-			{errors}
-			{constraints}
+			onClose={() => (activeModalId = undefined)}
 			{enhance}
 		/>
 	{:else if activeModalId === 'debug'}

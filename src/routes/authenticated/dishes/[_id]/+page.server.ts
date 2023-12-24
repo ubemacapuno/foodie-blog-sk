@@ -28,6 +28,9 @@ export const load = async function ({ params, parent }) {
 		.find({ created_by_user_email: user_email }, { projection: { _id: 1, name: 1 } })
 		.toArray()
 
+	const all_restaurants = await restaurants.find({}, { sort: { order: 1 } }).toArray()
+	console.log('ALL_RESTAURANTS: ', all_restaurants)
+
 	// Convert each restaurant document to a plain object
 	const serializableRestaurantList = restaurantList.map((restaurant) => ({
 		_id: restaurant._id,
@@ -36,7 +39,7 @@ export const load = async function ({ params, parent }) {
 
 	const form = await superValidate(dish, schema)
 
-	return { form, dish, restaurantList: serializableRestaurantList }
+	return { form, dish, restaurantList: serializableRestaurantList, all_restaurants }
 } satisfies PageServerLoad
 
 export const actions = {
