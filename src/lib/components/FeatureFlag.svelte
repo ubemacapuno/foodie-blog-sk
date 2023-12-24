@@ -28,7 +28,7 @@
 	const featureFlag = queryParam(FEATURE_FLAG)
 
 	// 💡 Reminder: Every time you add or remove a feature flag remember to update the 'Flag' type as well so we know what flags are available.
-	type Flag = 'all' | 'uploads'
+	type Flag = 'all' | 'uploads' | 'restaurants'
 
 	export let flag: Flag
 </script>
