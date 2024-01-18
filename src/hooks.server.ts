@@ -1,7 +1,6 @@
 import { start_mongo } from '$db/mongo'
 import { SvelteKitAuth } from '@auth/sveltekit'
 import GitHub from '@auth/core/providers/github'
-import { GITHUB_ID, GITHUB_SECRET, AUTH_SECRET } from '$env/static/private'
 import { redirect, type Handle } from '@sveltejs/kit'
 import { sequence } from '@sveltejs/kit/hooks'
 
