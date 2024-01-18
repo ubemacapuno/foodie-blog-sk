@@ -49,11 +49,7 @@ const logger: Handle = async ({ event, resolve }) => {
 // And returning a handle which gets passed to the next function
 export const handle: Handle = sequence(
 	SvelteKitAuth({
-		providers: [GitHub({ clientId: GITHUB_ID, clientSecret: GITHUB_SECRET })],
-		// TODO - Manually set 'static private' AUTH_SECRET var for now, but for later Authjs versions, check if there is a better way to do this:
-		// @see https://github.com/nextauthjs/next-auth/issues/9436#issuecomment-1866896827
-		trustHost: true,
-		secret: AUTH_SECRET
+		providers: [GitHub]
 	}),
 	authorization,
 	logger
