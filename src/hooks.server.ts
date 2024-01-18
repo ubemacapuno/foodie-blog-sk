@@ -1,6 +1,7 @@
 import { start_mongo } from '$db/mongo'
 import { SvelteKitAuth } from '@auth/sveltekit'
 import GitHub from '@auth/core/providers/github'
+import { GITHUB_ID, GITHUB_SECRET, AUTH_SECRET } from '$env/static/private'
 import { redirect, type Handle } from '@sveltejs/kit'
 import { sequence } from '@sveltejs/kit/hooks'
 
@@ -48,7 +49,11 @@ const logger: Handle = async ({ event, resolve }) => {
 // And returning a handle which gets passed to the next function
 export const handle: Handle = sequence(
 	SvelteKitAuth({
-		providers: [GitHub]
+		providers: [GitHub({ clientId: GITHUB_ID, clientSecret: GITHUB_SECRET })],
+		// TODO - Manually set 'static private' AUTH_SECRET var for now. This should be fixed now, but needs testing because it seems to break on production.
+		// @see https://github.com/nextauthjs/next-auth/issues/9436#issuecomment-1866896827
+		trustHost: true,
+		secret: AUTH_SECRET
 	}),
 	authorization,
 	logger
