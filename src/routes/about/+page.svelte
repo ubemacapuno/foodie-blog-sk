@@ -35,7 +35,7 @@
 			this app to make it easy to record and read dishes I want to cook.
 		</p>
 		<p class="py-3 text-left">
-			This application is a complete overhaul of my <a
+			This application is a refactor of my <a
 				class="link link-accent"
 				href="https://github.com/ubemacapuno/foodie-blog">original FoodieBlog</a
 			> application, which was developed using Embedded JavaScript (EJS), Node (Express), and MongoDB.

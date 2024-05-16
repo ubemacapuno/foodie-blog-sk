@@ -53,7 +53,7 @@
 		<br />
 		<div class="form-control pt-2 pb-4">
 			<label class="cursor-pointer label flex flex-row justify-center gap-x-10">
-				<span class="label-text text-accent">I Agree</span>
+				<span class="label-text text-accent">I Consent</span>
 				<input
 					type="checkbox"
 					bind:checked={isCheckboxChecked}
